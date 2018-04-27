@@ -2,21 +2,26 @@
 #define SERVER_H
 
 #include <QMainWindow>
+#include <QUdpSocket>
+#include <QObject>
+#include <iostream>
 
-namespace Ui {
-class Server;
-}
-
-class Server : public QMainWindow
+class Server : public QObject
 {
     Q_OBJECT
-
 public:
-    explicit Server(QWidget *parent = 0);
+    explicit Server(QObject *parent = 0);
     ~Server();
 
+signals:
+
+public slots:
+    void readyRead();
+
 private:
-    Ui::Server *ui;
+    QUdpSocket *socket;
+    QHostAddress clientAddress;
+    qint16 clientPort;
 };
 
 #endif // SERVER_H
