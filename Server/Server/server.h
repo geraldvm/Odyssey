@@ -6,6 +6,7 @@
 #include <QObject>
 #include <iostream>
 
+
 class Server : public QObject
 {
     Q_OBJECT
