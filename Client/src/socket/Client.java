@@ -15,20 +15,28 @@ public class Client{
 
         try{
             client = new Socket(ip,puerto);
-            entrada = new BufferedReader((new InputStreamReader(client.getInputStream())));
+            //entrada = new BufferedReader((new InputStreamReader(client.getInputStream())));
             teclado = new BufferedReader(new InputStreamReader(System.in));
             String tec = teclado.readLine();
             salida = new PrintStream(client.getOutputStream());//Canal de salida
             salida.println(tec);
+            /*
             String msg = entrada.readLine();
             System.out.println(msg);
+            */
 
+            while(true){
+                entrada = new BufferedReader((new InputStreamReader(client.getInputStream())));
+                String msg = entrada.readLine();
+                System.out.println(msg);
+            }
 
-            entrada.close();
+            /*entrada.close();
 
             salida.close();
             teclado.close();
             client.close();
+            */
         }catch (Exception e){};
     }
 }
