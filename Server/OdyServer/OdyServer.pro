@@ -27,12 +27,16 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     server.cpp \
-    DataStructures/binarysearch.cpp
+    DataStructures/binarysearch.cpp \
+    DataStructures/abb.cpp \
+    DataStructures/nodo.cpp
 
 HEADERS += \
         mainwindow.h \
     server.h \
-    DataStructures/binarysearch.h
+    DataStructures/binarysearch.h \
+    DataStructures/abb.h \
+    DataStructures/nodo.h
 
 FORMS += \
         mainwindow.ui

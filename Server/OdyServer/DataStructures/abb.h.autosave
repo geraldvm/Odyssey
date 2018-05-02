@@ -1,0 +1,90 @@
+#ifndef ABB_H
+#define ABB_H
+#include "nodo.h"
+#include <QString>
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <stdlib.h>
+/**
+ * @brief The ABB class: Árbol de Búsqueda Binaria:
+ * Se trata de árboles de orden 2 en los que se cumple
+ * que para cada nodo, el valor de la clave de la raíz del
+ * subárbol izquierdo es menor que el valor de la clave del
+ * nodo y que el valor de la clave raíz del subárbol derecho es
+ * mayor que el valor de la clave del nodo.
+ */
+class ABB
+{
+    public:
+        ABB();
+        ~ABB();
+        /**
+         * @brief insert: Método para insertar datos al árbol.
+         * @param data: Valor del dato que se va ingresar.
+         */
+        void insert(int data);
+        /**
+         * @brief preorder: Método encargado de recorrer el árbol
+         * de la forma Raíz - Hijo Izquierdo - Hijo Derecho. Tiene
+         * como salida un print en consola.
+         */
+        void preorder();
+        /**
+         * @brief inorder: Método encargado de recorrer el árbol
+         * de la forma Hijo Izquierdo - Raíz - Hijo Derecho.
+         * Tiene como salida un print en consola.
+         */
+        void inorder();
+        /**
+         * @brief postorder: Método encargado de recorrer el árbol
+         * de la forma Hijo Izquierdo - Hijo Derecho - Raíz.
+         * Tiene como salida un print en consola.
+         */
+        void postorder();
+        /**
+         * @brief findMin: Encuentra el dato más pequeño
+         * dentro de la estructura.
+         * @return int
+         */
+        int findMin();
+        /**
+         * @brief findMax: Encuentra el dato más grande
+         * dentro de el árbol.
+         * @return int.
+         */
+        int findMax();
+        /**
+         * @brief deleteNode: Elimina un nodo dentro de la estructura.
+         * @param data: Se ingresa el dato que se desea eliminar.
+         * @return retorna la nueva raíz.
+         */
+        Nodo* deleteNode(int data);
+        /**
+         * @brief printMin: Es el método findMin() implementado para la interfaz gráfica.
+         * @return QString
+         */
+        QString printMin();
+        /**
+         * @brief printMax: Es el método findMax() implementado para la interfaz gráfica.
+         * @return QString
+         */
+        QString printMax();
+
+    private:
+        Nodo* root;
+        int size;
+        void insert(Nodo* node, int data);
+        void preorder(Nodo* node);
+        void inorder(Nodo* node);
+        void postorder(Nodo* node);
+        int findMin_aux();
+        int findMax_aux();
+        Nodo* minValueNode(Nodo* node);
+        Nodo* deleteNode(Nodo* root, int data);
+        QString printMin_aux();
+        QString printMax_aux();
+
+};
+
+#endif // ABB_H

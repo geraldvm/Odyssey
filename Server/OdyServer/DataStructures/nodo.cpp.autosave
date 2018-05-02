@@ -1,0 +1,47 @@
+#include "nodo.h"
+
+
+Nodo::Nodo()
+{
+    this->data = NULL;
+    this->left = NULL;
+    this->right = NULL;
+}
+
+Nodo::~Nodo()
+{
+    delete left;
+    delete right;
+}
+Nodo::Nodo(int data)
+{
+    this->data = data;
+    this->right = NULL;
+    this->left = NULL;
+}
+
+
+void Nodo::setData(int data) {
+    this->data=data;
+}
+
+
+void Nodo::setRight(Nodo* next) {
+    this->right=next;
+}
+void Nodo::setLeft(Nodo* left) {
+    this->left=left;
+}
+
+int Nodo::getData() {
+    return this->data;
+}
+
+
+Nodo *Nodo::getLeft() {
+    return this->left;
+}
+
+Nodo *Nodo::getRight() {
+    return this->right;
+}

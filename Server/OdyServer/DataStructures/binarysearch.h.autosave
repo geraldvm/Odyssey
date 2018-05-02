@@ -12,7 +12,7 @@ template <class T>
 class BinarySearch
 {
 public:
-    BinarySearch();
+    BinarySearch(std::string file);
     /**
      * @brief binarySearch: Método de búsqueda en los archivo de tipo binario
      * @param data: dato que se desea buscar
@@ -23,6 +23,7 @@ public:
 
 private:
     int binarySearch(int l, int r, T data);
+    std::string file;
 
 };
 
