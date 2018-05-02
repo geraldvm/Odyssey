@@ -40,3 +40,17 @@ public class Client{
         }catch (Exception e){};
     }
 }
+
+/*
+QByteArray read = socket->read(socket->bytesAvailable());
+qDebug() << "Read : " << read.size();
+
+QFile file(  ???); // what should I put in the bracket???
+if(!(file.open(QIODevice::Append)))
+{
+    qDebug("File cannot be opened.");
+    exit(0);
+}
+file.write(read);
+file.close();
+ */

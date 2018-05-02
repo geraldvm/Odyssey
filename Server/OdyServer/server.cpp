@@ -53,13 +53,14 @@ void Server::sendFile(QTcpSocket* socket)
     {
         read.clear();
         read = inputFile.read(32768*8);
-        std::cout<< "Read : " << read.size();
+        //std::cout<< "Read : " << read.size();
         if(read.size()==0)
            break;
         //std::cout<< "Written : " << socket->write(read);
         socket->write(read);
         socket->waitForBytesWritten();
         read.clear();
+        //https://stackoverflow.com/questions/13800664/how-to-send-a-file-along-with-its-filename-over-qtcpsocket
     }
     inputFile.close();
 }

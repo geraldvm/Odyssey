@@ -26,11 +26,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    server.cpp
+    server.cpp \
+    DataStructures/binarysearch.cpp
 
 HEADERS += \
         mainwindow.h \
-    server.h
+    server.h \
+    DataStructures/binarysearch.h
 
 FORMS += \
         mainwindow.ui
