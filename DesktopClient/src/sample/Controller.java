@@ -1,10 +1,9 @@
 package sample;
 
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXRadioButton;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import javafx.application.Platform;
 
+import javafx.beans.property.DoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,6 +12,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -21,7 +22,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ResourceBundle;
+import javafx.util.Duration;
 
 public class Controller implements Initializable{
     @FXML private ImageView userArrow, playerArrow, libraryArrow,socialArrow;
@@ -29,9 +32,18 @@ public class Controller implements Initializable{
     @FXML private AnchorPane loginPanel,logoutPanel,userPanel, playerPanel, libraryPanel, socialPanel;
     @FXML private JFXComboBox<String> comboBoxGenre;
     @FXML private JFXRadioButton okRadioButton,noRadioButton;
-    @FXML private JFXTextField nameText,lastnameText,usernameText,passwordText,ageText;
-    @FXML private JFXTextField userLogText,passwordLogText;
+    @FXML private JFXTextField nameText,lastnameText,usernameText,ageText;
+    @FXML private JFXTextField userLogText;
+    @FXML private JFXPasswordField passwordLogText,passwordText;
+    @FXML private JFXProgressBar progressBar;
+    @FXML private JFXSlider slider;
+    @FXML private ImageView playButton,pauseButton;
+    @FXML private Label totalDuration,currentDuration;
+
     private int sessionPanel;
+    private DecimalFormat formatter = new DecimalFormat("00.00");
+    private Duration totalTime;
+    private Reproductor player = new Reproductor();
 
     ObservableList<String> comboGenreContent =
             FXCollections.observableArrayList(
@@ -56,6 +68,8 @@ public class Controller implements Initializable{
         ToggleGroup group = new ToggleGroup();
         okRadioButton.setToggleGroup(group);
         noRadioButton.setToggleGroup(group);
+
+        progressBar.progressProperty().bind(slider.valueProperty().divide(100));
     }
 
 
@@ -99,6 +113,7 @@ public class Controller implements Initializable{
             playerArrow.setVisible(false);
             playerPanel.setVisible(false);
         }else {
+
             userArrow.setVisible(false);
             userPanel.setVisible(false);
             loginPanel.setVisible(false);
@@ -109,6 +124,7 @@ public class Controller implements Initializable{
             libraryPanel.setVisible(false);
             socialArrow.setVisible(false);
             socialPanel.setVisible(false);
+            startPlayer();
 
         }
 
@@ -218,18 +234,19 @@ public class Controller implements Initializable{
             alert.setTitle("Save Profile");
             alert.setContentText("Please, fill out the entire blank");
             alert.show();
+        }else {
+            System.out.println(usernameText.getText().toString());
+            System.out.println(nameText.getText());
+            System.out.println(lastnameText.getText());
+            System.out.println(ageText.getText());
+            System.out.println(passwordText.getText());
+            playerBtn.setDisable(false);
+            libraryBtn.setDisable(false);
+            socialBtn.setDisable(false);
+            userPanel.setVisible(false);
+            logoutPanel.setVisible(true);
+            sessionPanel = 1;
         }
-        System.out.println(usernameText.getText().toString());
-        System.out.println(nameText.getText());
-        System.out.println(lastnameText.getText());
-        System.out.println(ageText.getText());
-        System.out.println(passwordText.getText());
-        playerBtn.setDisable(false);
-        libraryBtn.setDisable(false);
-        socialBtn.setDisable(false);
-        userPanel.setVisible(false);
-        logoutPanel.setVisible(true);
-        sessionPanel=1;
 
     }
 
@@ -239,16 +256,17 @@ public class Controller implements Initializable{
             alert.setTitle("Login");
             alert.setContentText("Please, fill out the entire blank");
             alert.show();
+        }else {
+            System.out.println(userLogText.getText().toString());
+            System.out.println(passwordLogText.getText());
+            playerBtn.setDisable(false);
+            libraryBtn.setDisable(false);
+            socialBtn.setDisable(false);
+            loginPanel.setVisible(false);
+            loginPanel.setVisible(false);
+            logoutPanel.setVisible(true);
+            sessionPanel = 1;
         }
-        System.out.println(userLogText.getText().toString());
-        System.out.println(passwordLogText.getText());
-        playerBtn.setDisable(false);
-        libraryBtn.setDisable(false);
-        socialBtn.setDisable(false);
-        loginPanel.setVisible(false);
-        loginPanel.setVisible(false);
-        logoutPanel.setVisible(true);
-        sessionPanel=1;
         //Abrir ventana cerrar sesion
     }
     public void onRegisterButton(ActionEvent event){
@@ -266,6 +284,48 @@ public class Controller implements Initializable{
         sessionPanel=0;
     }
 
+
+    private void startPlayer(){
+        player.cargarArchivo("sound.wav");
+        player.iniciar();
+        currentDuration.setText(String.valueOf(formatter.format(0)));
+
+        player.getMediaPlayer().currentTimeProperty().addListener((observable, oldValue, newValue) -> {
+            slider.valueProperty().setValue(newValue.divide(totalTime.toMillis()).toMillis() * 100.0);
+            currentDuration.setText(String.valueOf(formatter.format(newValue.toSeconds())));
+        });
+
+        player.getMediaPlayer().setOnReady(() -> {
+            totalTime = player.getMediaPlayer().getMedia().getDuration();
+            totalDuration.setText(String.valueOf(formatter.format(Math.floor(totalTime.toSeconds()))));
+        });
+
+        slider.valueProperty().addListener((ov) -> {
+            if (slider.isValueChanging()) {
+                if (null != player.getMediaPlayer()) {
+                    player.getMediaPlayer().seek(totalTime.multiply(slider.valueProperty().getValue() / 100.0));
+                } else
+                    slider.valueProperty().setValue(0);
+            }
+        });
+    }
+    public void onPlayButton(MouseEvent event){
+        System.out.println("PLAY");
+        player.play();
+        playButton.setVisible(false);
+        pauseButton.setVisible(true);
+
+
+    }
+    public void onPauseButton(MouseEvent event){
+        System.out.println("PAUSE");
+        player.pause();
+        pauseButton.setVisible(false);
+        playButton.setVisible(true);
+
+
+
+    }
 
 
 }
