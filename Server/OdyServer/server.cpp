@@ -27,11 +27,18 @@ void Server::newConnection(){
 
     socket->waitForBytesWritten(3000);//Wait 3 seconds
     socket->waitForReadyRead(3000);
-    sendFile(socket);
+
     while(true){
         if(socket->bytesAvailable()>0){
             std::cout<<"Reading "<<socket->bytesAvailable()<<std::endl;
             QString st = socket->readAll();
+            std::string h = "send";
+            //std::cout<<"COMPARE "<<std::endl;
+            if(st.toStdString().compare("send")==2){
+
+                sendFile(socket);
+                socket->waitForBytesWritten(3000);
+            }
             std::cout<<st.toStdString()<<std::endl;
         }else{
 
@@ -45,7 +52,9 @@ void Server::newConnection(){
 
 void Server::sendFile(QTcpSocket* socket)
 {
-    QString path = "/home/gerald/Desktop/Havana.mp3";
+    //QString path = "/home/gerald/Desktop/texto.txt";
+    QString path = "/home/gerald/Desktop/data.xml";
+    //QString path = "/home/gerald/Desktop/Havana.mp3";
     QFile inputFile(path);
     QByteArray read ;
     inputFile.open(QIODevice::ReadOnly);

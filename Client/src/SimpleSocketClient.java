@@ -22,7 +22,7 @@ public class SimpleSocketClient
     public SimpleSocketClient()
     {
         String testServerName = "localhost";
-        int port = 1234;
+        int port = 7777;
         try
         {
             // open a socket
@@ -30,13 +30,13 @@ public class SimpleSocketClient
 
             // write-to, and read-from the socket.
             // in this case just write a simple command to a web server.
-            String result = writeToAndReadFromSocket(socket, "GET /\n\n");
+            String result = writeToAndReadFromSocket(socket, "send");
 
             // print out the result we got back from the server
             System.out.println(result);
 
             // close the socket, and we're done
-            socket.close();
+            //socket.close();
         }
         catch (Exception e)
         {
