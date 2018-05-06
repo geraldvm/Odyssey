@@ -1073,6 +1073,9 @@ mainwindow.o: ../xmlProject/mainwindow.cpp ../xmlProject/mainwindow.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/QButtonGroup \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qbuttongroup.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/QGroupBox \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qgroupbox.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/QHBoxLayout \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
@@ -1082,7 +1085,6 @@ mainwindow.o: ../xmlProject/mainwindow.cpp ../xmlProject/mainwindow.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qheaderview.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemview.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qabstractitemmodel.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qitemselectionmodel.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
@@ -1095,6 +1097,14 @@ mainwindow.o: ../xmlProject/mainwindow.cpp ../xmlProject/mainwindow.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qstyle.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qtabbar.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qrubberband.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/QLabel \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qlabel.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/QLineEdit \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qlineedit.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qtextcursor.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qtextformat.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qpen.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qtextoption.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/QMenuBar \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qmenubar.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qmenu.h \
@@ -1102,15 +1112,17 @@ mainwindow.o: ../xmlProject/mainwindow.cpp ../xmlProject/mainwindow.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qplaintextedit.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qtextedit.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qtextdocument.h \
-		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qtextoption.h \
-		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qtextcursor.h \
-		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qtextformat.h \
-		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qpen.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qabstracttextdocumentlayout.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qtextlayout.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qglyphrun.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qrawfont.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qfontdatabase.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/QPushButton \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qpushbutton.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/QRadioButton \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qradiobutton.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/QSpacerItem \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/QStatusBar \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qstatusbar.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/QToolBar \

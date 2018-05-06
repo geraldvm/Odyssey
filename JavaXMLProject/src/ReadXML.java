@@ -25,6 +25,7 @@ public class ReadXML {
             if(node.getNodeType()==Node.ELEMENT_NODE){
                 Element element=(Element) node;
                 System.out.println("ID: "+element.getAttribute("ID"));
+                System.out.println("Signal: "+element.getAttribute("Signal"));
                 System.out.println("Name: "+element.getElementsByTagName("Name").item(0).getTextContent());
                 System.out.println("Surname: "+element.getElementsByTagName("Surname").item(0).getTextContent());
                 System.out.println("Age: "+element.getElementsByTagName("Age").item(0).getTextContent());

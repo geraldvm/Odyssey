@@ -31,18 +31,23 @@ void Server::newConnection(){
     while(true){
         if(socket->bytesAvailable()>0){
             std::cout<<"Reading "<<socket->bytesAvailable()<<std::endl;
-            QString st = socket->readAll();
-            std::string h = "send";
+            std::string st = socket->readAll().toStdString();
+            socket->waitForReadyRead(3000);
+            std::cout<<"Client: "<<st<<std::endl;
+            sendFile(socket);
+            //socket->write("YESSS\n");
+            socket->waitForBytesWritten(1000);
             //std::cout<<"COMPARE "<<std::endl;
-            if(st.toStdString().compare("send")==2){
-
+            if(st.compare("send")==2){
+                std::cout<<"Send Data "<<std::endl;
                 sendFile(socket);
                 socket->waitForBytesWritten(3000);
             }
-            std::cout<<st.toStdString()<<std::endl;
+            //std::cout<<"Client: "<<st<std::endl;
         }else{
 
              //std::cout<<"HOLA";
+
             socket->waitForReadyRead(3000);
         }
     //socket->close();
@@ -66,7 +71,7 @@ void Server::sendFile(QTcpSocket* socket)
         if(read.size()==0)
            break;
         //std::cout<< "Written : " << socket->write(read);
-        socket->write(read);
+        socket->write(read+"\n");
         socket->waitForBytesWritten();
         read.clear();
         //https://stackoverflow.com/questions/13800664/how-to-send-a-file-along-with-its-filename-over-qtcpsocket

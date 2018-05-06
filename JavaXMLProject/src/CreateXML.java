@@ -25,6 +25,9 @@ public class CreateXML {
         Attr attr = document.createAttribute("ID");
         attr.setValue("1");
         element.setAttributeNode(attr);
+        attr = document.createAttribute("Signal");
+        attr.setValue("5550");
+        element.setAttributeNode(attr);
 
         Element name = document.createElement("Name");
         name.appendChild(document.createTextNode("Gerald"));
