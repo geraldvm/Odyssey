@@ -21,11 +21,16 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 import javafx.util.Duration;
 
+import sample.client.ClientThread;
 import sample.document.XMLDocument;
 public class Controller implements Initializable{
     @FXML private ImageView userArrow, playerArrow, libraryArrow,socialArrow;
@@ -74,12 +79,16 @@ public class Controller implements Initializable{
         noRadioButton.setToggleGroup(group);
 
         progressBar.progressProperty().bind(slider.valueProperty().divide(100));
+
+        ClientThread.initClient();
+
     }
 
 
 
     public void onExitButtonClicked(MouseEvent event){
         Platform.exit();
+        ClientThread.client.disconnected();
         System.exit(0);
 
     }
@@ -249,6 +258,18 @@ public class Controller implements Initializable{
                     passwordText.getText().toString(),nameText.getText().toString(),
                     lastnameText.getText().toString(),ageText.getText().toString(),
                     "Reggae");
+            ClientThread.client.sendMSG("SI FUNCIONA LLORE CONMGO PAPI");
+
+            try {
+                String data = readFileAsString("/home/gerald/Documents/I Sem 2018/Datos 2/Odyssey/DesktopClient/temp.xml");
+                ClientThread.client.sendMSG(data);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            //sendFile("sample.fxml");/home/gerald/Documents/I Sem 2018/Datos 2/Odyssey/DesktopClient/temp.xml
+
+
             playerBtn.setDisable(false);
             libraryBtn.setDisable(false);
             socialBtn.setDisable(false);
@@ -270,6 +291,12 @@ public class Controller implements Initializable{
             System.out.println(passwordLogText.getText());
             myXML.userVerification(userLogText.getText().toString(),
                     passwordLogText.getText().toString());
+            try {
+                String data = readFileAsString("/home/gerald/Documents/I Sem 2018/Datos 2/Odyssey/DesktopClient/temp.xml");
+                ClientThread.client.sendMSG(data);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             playerBtn.setDisable(false);
             libraryBtn.setDisable(false);
             socialBtn.setDisable(false);
@@ -293,6 +320,7 @@ public class Controller implements Initializable{
         libraryBtn.setDisable(true);
         socialBtn.setDisable(true);
         sessionPanel=0;
+
     }
 
 
@@ -320,22 +348,26 @@ public class Controller implements Initializable{
             }
         });
     }
+
     public void onPlayButton(MouseEvent event){
         System.out.println("PLAY");
         player.play();
         playButton.setVisible(false);
         pauseButton.setVisible(true);
-
-
     }
+
     public void onPauseButton(MouseEvent event){
         System.out.println("PAUSE");
         player.pause();
         pauseButton.setVisible(false);
         playButton.setVisible(true);
+    }
 
-
-
+    public static String readFileAsString(String fileName)throws Exception
+    {
+        String data = "";
+        data = new String(Files.readAllBytes(Paths.get(fileName)));
+        return data;
     }
 
 

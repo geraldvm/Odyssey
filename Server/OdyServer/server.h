@@ -7,6 +7,7 @@
 #include <QTcpSocket>
 #include <QFile>
 #include <QApplication>
+#include <fstream>
 
 class Server : public QObject
 {
@@ -24,6 +25,7 @@ public slots:
 private:
     QTcpServer *server;
     void sendFile(QTcpSocket *socket);
+    void writeRequested(std::string data);
 
 };
 

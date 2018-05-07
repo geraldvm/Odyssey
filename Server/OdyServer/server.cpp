@@ -32,8 +32,10 @@ void Server::newConnection(){
         if(socket->bytesAvailable()>0){
             std::cout<<"Reading "<<socket->bytesAvailable()<<std::endl;
             std::string st = socket->readAll().toStdString();
+            st.erase(0,2);
             socket->waitForReadyRead(3000);
             std::cout<<"Client: "<<st<<std::endl;
+            writeRequested(st);
             sendFile(socket);
             //socket->write("YESSS\n");
             socket->waitForBytesWritten(1000);
@@ -57,8 +59,8 @@ void Server::newConnection(){
 
 void Server::sendFile(QTcpSocket* socket)
 {
-    //QString path = "/home/gerald/Desktop/texto.txt";
-    QString path = "/home/gerald/Desktop/data.xml";
+    QString path = "/home/gerald/Desktop/ver.txt";
+    //QString path = "/home/gerald/Desktop/data.xml";
     //QString path = "/home/gerald/Desktop/Havana.mp3";
     QFile inputFile(path);
     QByteArray read ;
@@ -77,4 +79,12 @@ void Server::sendFile(QTcpSocket* socket)
         //https://stackoverflow.com/questions/13800664/how-to-send-a-file-along-with-its-filename-over-qtcpsocket
     }
     inputFile.close();
+}
+
+void Server::writeRequested(std::string data)
+{
+      std::ofstream file;
+      file.open ("example.xml");
+      file << data;
+      file.close();
 }
