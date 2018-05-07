@@ -26,6 +26,7 @@ import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 import javafx.util.Duration;
 
+import sample.document.XMLDocument;
 public class Controller implements Initializable{
     @FXML private ImageView userArrow, playerArrow, libraryArrow,socialArrow;
     @FXML private ImageView playerBtn,libraryBtn,socialBtn;
@@ -44,6 +45,9 @@ public class Controller implements Initializable{
     private DecimalFormat formatter = new DecimalFormat("00.00");
     private Duration totalTime;
     private Reproductor player = new Reproductor();
+
+    private XMLDocument myXML = new XMLDocument();
+
 
     ObservableList<String> comboGenreContent =
             FXCollections.observableArrayList(
@@ -240,6 +244,11 @@ public class Controller implements Initializable{
             System.out.println(lastnameText.getText());
             System.out.println(ageText.getText());
             System.out.println(passwordText.getText());
+
+            myXML.newUser(usernameText.getText().toString(),
+                    passwordText.getText().toString(),nameText.getText().toString(),
+                    lastnameText.getText().toString(),ageText.getText().toString(),
+                    "Reggae");
             playerBtn.setDisable(false);
             libraryBtn.setDisable(false);
             socialBtn.setDisable(false);
@@ -259,6 +268,8 @@ public class Controller implements Initializable{
         }else {
             System.out.println(userLogText.getText().toString());
             System.out.println(passwordLogText.getText());
+            myXML.userVerification(userLogText.getText().toString(),
+                    passwordLogText.getText().toString());
             playerBtn.setDisable(false);
             libraryBtn.setDisable(false);
             socialBtn.setDisable(false);
