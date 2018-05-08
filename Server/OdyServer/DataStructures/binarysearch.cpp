@@ -1,4 +1,6 @@
 #include "binarysearch.h"
+/*
+
 BinarySearch::BinarySearch(string file){
     this->file=file;
 
@@ -46,3 +48,4 @@ int BinarySearch::binarySearch(T data) {
 BinarySearch::~BinarySearch(){
 
 }
+*/

@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXProgressBar?>
 <?import com.jfoenix.controls.JFXRadioButton?>
@@ -10,7 +11,9 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -92,7 +95,7 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <JFXButton layoutX="162.0" layoutY="280.0" onAction="#onLoginButton" style="-fx-background-color: #36843f;" text="Log In" textFill="WHITE">
+            <JFXButton layoutX="162.0" layoutY="280.0" onAction="#onLoginButton" style="-fx-background-color: #36843f;" text="Sign In" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
@@ -107,7 +110,7 @@
                   <Image url="@images/icon_username.png" />
                </image>
             </ImageView>
-            <JFXButton layoutX="154.0" layoutY="365.0" onAction="#onRegisterButton" style="-fx-background-color: #af5018;" text="Register" textFill="WHITE">
+            <JFXButton layoutX="154.0" layoutY="365.0" onAction="#onRegisterButton" style="-fx-background-color: #af5018;" text="Sign Up" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
@@ -168,7 +171,7 @@
                </font>
             </Label>
             <Separator layoutX="17.0" layoutY="261.0" opacity="0.31" prefHeight="3.0" prefWidth="357.0" />
-            <JFXComboBox fx:id="comboBoxGenre" focusColor="#5bd36d" layoutX="171.0" layoutY="332.0" onAction="#onComboGenreChanged" prefHeight="26.0" prefWidth="148.0" promptText="          Genre" style="-fx-background-color: white;" />
+            <JFXComboBox fx:id="comboBoxGenre" focusColor="#5cd16c00" layoutX="171.0" layoutY="332.0" onAction="#onComboGenreChanged" prefHeight="26.0" prefWidth="148.0" promptText="          Genre" style="-fx-background-color: white;" unFocusColor="#b2b2b2" />
             <JFXTextField id="ageText" fx:id="ageText" focusColor="#5bd36d" layoutX="171.0" layoutY="201.0" promptText="Type your age" style="-fx-text-fill: #5bd36d;">
                <font>
                   <Font size="14.0" />
@@ -221,7 +224,7 @@
                   <JFXProgressBar fx:id="progressBar" prefHeight="0.0" prefWidth="274.0" />
                </children>
             </StackPane>
-            <ImageView fitHeight="163.0" fitWidth="167.0" layoutX="114.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="157.0" fitWidth="217.0" layoutX="131.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/icon_audiowave.png" />
                </image>
@@ -247,26 +250,34 @@
                </font>
             </Label>
          </children></AnchorPane>
-      <AnchorPane fx:id="libraryPanel" layoutX="7.0" layoutY="260.0" prefHeight="436.0" prefWidth="390.0" style="-fx-background-color: #0e192b;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane fx:id="libraryPanel" layoutY="83.0" prefHeight="436.0" prefWidth="390.0" style="-fx-background-color: #0e192b;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <JFXToggleButton layoutX="124.0" layoutY="90.0" text="Estudiante" textFill="#fff6f6" toggleColor="#5bd36d">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </JFXToggleButton>
-            <JFXTextField disable="true" focusColor="#5bd36d" layoutX="158.0" layoutY="176.0" promptText="Write your name" style="-fx-text-fill: #5bd36d;">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </JFXTextField>
-            <JFXCheckBox layoutX="124.0" layoutY="277.0" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </JFXCheckBox>
-            <ImageView fitHeight="38.0" fitWidth="35.0" layoutX="45.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="26.0" fitWidth="35.0" layoutX="31.0" layoutY="22.0" onMousePressed="#searchSongBy" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/icon_search.png" />
+               </image>
+            </ImageView>
+            <JFXComboBox fx:id="comboSearch" focusColor="#5bd36d" layoutX="263.0" layoutY="22.0" prefHeight="26.0" prefWidth="102.0" promptText="Search by" style="-fx-text-fill: #5bd36d;" />
+            <JFXTextField fx:id="searchText" focusColor="#af5018" layoutX="83.0" layoutY="22.0" promptText="Text here" style="-fx-text-fill: white;" />
+            <JFXListView fx:id="musicList" layoutX="50.0" layoutY="90.0" onMousePressed="#onSelectedSong" prefHeight="269.0" prefWidth="287.0" style="-fx-background-color: #0e192b;">
+               <contextMenu>
+                  <ContextMenu>
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#onPlaySong" text="Play" />
+                        <MenuItem mnemonicParsing="false" onAction="#onModifySong" text="Modify" />
+                        <MenuItem mnemonicParsing="false" onAction="#onDeleteSong" text="Delete" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu>
+            </JFXListView>
+            <ImageView fitHeight="150.0" fitWidth="25.0" layoutX="19.0" layoutY="385.0" onMousePressed="#onPrevButton" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icons_previous.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="25.0" layoutX="337.0" layoutY="385.0" onMousePressed="#onNextButton" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icon_nextA.png" />
                </image>
             </ImageView>
          </children>

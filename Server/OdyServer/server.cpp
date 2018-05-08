@@ -1,4 +1,5 @@
 #include "server.h"
+#include "parserxml.h"
 
 Server::Server(QObject *parent) :
     QObject(parent)
@@ -11,7 +12,11 @@ Server::Server(QObject *parent) :
     }else{
         //std::cout<<"Server ";
         std::cout<<"Server started!"<<std::endl;
+        ParserXML* xm = new ParserXML();
+        xm->getRoot();
     }
+
+
 
 
 }
@@ -36,7 +41,7 @@ void Server::newConnection(){
             socket->waitForReadyRead(3000);
             std::cout<<"Client: "<<st<<std::endl;
             writeRequested(st);
-            sendFile(socket);
+            //sendFile(socket);
             //socket->write("YESSS\n");
             socket->waitForBytesWritten(1000);
             //std::cout<<"COMPARE "<<std::endl;
@@ -84,7 +89,14 @@ void Server::sendFile(QTcpSocket* socket)
 void Server::writeRequested(std::string data)
 {
       std::ofstream file;
-      file.open ("example.xml");
+      file.open ("requested.xml");
       file << data;
       file.close();
 }
+
+void Server::readRequested()
+{
+
+}
+
+

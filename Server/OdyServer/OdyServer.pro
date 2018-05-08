@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network
+QT       += core gui network xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -29,14 +29,16 @@ SOURCES += \
     server.cpp \
     DataStructures/binarysearch.cpp \
     DataStructures/abb.cpp \
-    DataStructures/nodo.cpp
+    DataStructures/nodo.cpp \
+    parserxml.cpp
 
 HEADERS += \
         mainwindow.h \
     server.h \
     DataStructures/binarysearch.h \
     DataStructures/abb.h \
-    DataStructures/nodo.h
+    DataStructures/nodo.h \
+    parserxml.h
 
 FORMS += \
         mainwindow.ui

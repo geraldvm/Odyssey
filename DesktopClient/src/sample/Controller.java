@@ -11,6 +11,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
+import javafx.scene.chart.AreaChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -28,6 +30,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.ResourceBundle;
+
+import javafx.scene.media.AudioEqualizer;
 import javafx.util.Duration;
 
 import sample.client.ClientThread;
@@ -46,6 +50,12 @@ public class Controller implements Initializable{
     @FXML private ImageView playButton,pauseButton;
     @FXML private Label totalDuration,currentDuration;
 
+    @FXML JFXListView<String> musicList;
+    @FXML JFXComboBox<String> comboSearch;
+    @FXML JFXTextField searchText;
+
+
+
     private int sessionPanel;
     private DecimalFormat formatter = new DecimalFormat("00.00");
     private Duration totalTime;
@@ -54,19 +64,17 @@ public class Controller implements Initializable{
     private XMLDocument myXML = new XMLDocument();
 
 
-    ObservableList<String> comboGenreContent =
-            FXCollections.observableArrayList(
-                    "Pop","Rock","Reggae","R&B",
-                    "Hip-Hop","Dance-Hall","House"
-            );
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {//"Constructor" de las variables de la interfaz
         nameText.addEventFilter(KeyEvent.ANY, handlerLetters);
         lastnameText.addEventFilter(KeyEvent.ANY, handlerLetters);
         ageText.addEventFilter(KeyEvent.ANY,handlerNumbers);
+        searchText.addEventFilter(KeyEvent.ANY,handlerLetters);
 
-        comboBoxGenre.setItems(comboGenreContent);
+        comboBoxGenre.getItems().addAll("Pop","Rock","Reggae","R&B",
+                "Hip-Hop","Dance-Hall","House");
+        comboSearch.getItems().addAll("Song","Artist","Album","Lyrics");
+
 
         sessionPanel = 0;
 
@@ -239,6 +247,7 @@ public class Controller implements Initializable{
         }
 
     }
+
     public void onSaveButton(ActionEvent event){
         if(nameText.getText().isEmpty()||usernameText.getText().isEmpty()||
                 lastnameText.getText().isEmpty()||ageText.getText().isEmpty()||
@@ -257,7 +266,7 @@ public class Controller implements Initializable{
             myXML.newUser(usernameText.getText().toString(),
                     passwordText.getText().toString(),nameText.getText().toString(),
                     lastnameText.getText().toString(),ageText.getText().toString(),
-                    "Reggae");
+                    comboBoxGenre.getValue().toString());
             ClientThread.client.sendMSG("SI FUNCIONA LLORE CONMGO PAPI");
 
             try {
@@ -369,6 +378,61 @@ public class Controller implements Initializable{
         data = new String(Files.readAllBytes(Paths.get(fileName)));
         return data;
     }
+
+    public void onNextButton(MouseEvent event){
+        setMusicList(0);
+    }
+    public void onPrevButton(MouseEvent event){
+        setMusicList(2);
+    }
+    private void setMusicList(int i){
+        int listSize = musicList.getItems().size();
+        //comboBoxGenre.getItems().remove(1);
+        for(int x =0;x<listSize;x++){
+            musicList.getItems().remove(0);
+        }
+        if(i==0){
+            musicList.getItems().addAll("Havana","Wake Me Up","Helicopter", "Tsunami",
+                    "Tololouse","We are Loud","Animals","Levels",
+                    "Party Rock","Thinking out Loud");
+
+        }else{
+            musicList.getItems().addAll("November Rain","Patience","Welcome to the Jungle",
+                    "Don't Cry","Crazy","I dont wanna miss a thing",
+                    "Hole in my soul", "Always","Smells Like Teen Spirit",
+                    "Zombie");
+        }
+    }
+    public void onSelectedSong(MouseEvent even){
+        String song= musicList.getSelectionModel().getSelectedItem();
+        System.out.println(song);
+
+    }
+
+    public void onPlaySong(ActionEvent e){
+        String song= musicList.getSelectionModel().getSelectedItem();
+        System.out.println("Play: "+song+".mp3");
+
+    }
+    public void onDeleteSong(ActionEvent e){
+        String song= musicList.getSelectionModel().getSelectedItem();
+        System.out.println("Delete: "+song+".mp3");
+
+    }
+    public void onModifySong(ActionEvent e){
+        String song= musicList.getSelectionModel().getSelectedItem();
+        System.out.println("Modify: "+song);
+
+    }
+
+    public void searchSongBy(MouseEvent e){
+        System.out.println("Search by: "+comboSearch.getValue());
+        System.out.println("Searching..."+searchText.getText());
+
+    }
+
+
+
 
 
 }

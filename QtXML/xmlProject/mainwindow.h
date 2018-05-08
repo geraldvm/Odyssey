@@ -28,6 +28,7 @@ private slots:
     void on_buttonBuscarEtiqueta_clicked();
 
 private:
+
     Ui::MainWindow *ui;
     QDomDocument *xmlTemporal;
 };

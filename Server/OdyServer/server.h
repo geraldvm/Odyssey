@@ -9,6 +9,7 @@
 #include <QApplication>
 #include <fstream>
 
+
 class Server : public QObject
 {
     Q_OBJECT
@@ -26,6 +27,7 @@ private:
     QTcpServer *server;
     void sendFile(QTcpSocket *socket);
     void writeRequested(std::string data);
+    void readRequested();
 
 };
 

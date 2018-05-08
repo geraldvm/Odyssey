@@ -12,10 +12,10 @@ MAKEFILE      = Makefile
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_XML_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I../OdyServer -I. -I/home/gerald/Qt/5.10.0/gcc_64/include -I/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/gerald/Qt/5.10.0/gcc_64/include/QtGui -I/home/gerald/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/gerald/Qt/5.10.0/gcc_64/include/QtCore -I. -isystem /usr/include/libdrm -I. -I/home/gerald/Qt/5.10.0/gcc_64/mkspecs/linux-g++
+INCPATH       = -I../OdyServer -I. -I/home/gerald/Qt/5.10.0/gcc_64/include -I/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/gerald/Qt/5.10.0/gcc_64/include/QtGui -I/home/gerald/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/gerald/Qt/5.10.0/gcc_64/include/QtXml -I/home/gerald/Qt/5.10.0/gcc_64/include/QtCore -I. -isystem /usr/include/libdrm -I. -I/home/gerald/Qt/5.10.0/gcc_64/mkspecs/linux-g++
 QMAKE         = /home/gerald/Qt/5.10.0/gcc_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -38,7 +38,7 @@ DISTNAME      = OdyServer1.0.0
 DISTDIR = /home/gerald/Documents/I\ Sem\ 2018/Datos\ 2/Odyssey/Server/build-OdyServer-Desktop_Qt_5_10_0_GCC_64bit-Debug/.tmp/OdyServer1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/home/gerald/Qt/5.10.0/gcc_64/lib
-LIBS          = $(SUBLIBS) -L/home/gerald/Qt/5.10.0/gcc_64/lib -lQt5Widgets -lQt5Gui -lQt5Network -lQt5Core -lGL -lpthread 
+LIBS          = $(SUBLIBS) -L/home/gerald/Qt/5.10.0/gcc_64/lib -lQt5Widgets -lQt5Gui -lQt5Network -lQt5Xml -lQt5Core -lGL -lpthread 
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -52,11 +52,19 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../OdyServer/main.cpp \
 		../OdyServer/mainwindow.cpp \
-		../OdyServer/server.cpp moc_mainwindow.cpp \
+		../OdyServer/server.cpp \
+		../OdyServer/DataStructures/binarysearch.cpp \
+		../OdyServer/DataStructures/abb.cpp \
+		../OdyServer/DataStructures/nodo.cpp \
+		../OdyServer/parserxml.cpp moc_mainwindow.cpp \
 		moc_server.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		server.o \
+		binarysearch.o \
+		abb.o \
+		nodo.o \
+		parserxml.o \
 		moc_mainwindow.o \
 		moc_server.o
 DIST          = /home/gerald/Qt/5.10.0/gcc_64/mkspecs/features/spec_pre.prf \
@@ -222,6 +230,7 @@ DIST          = /home/gerald/Qt/5.10.0/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/gerald/Qt/5.10.0/gcc_64/mkspecs/features/qt_config.prf \
 		/home/gerald/Qt/5.10.0/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/gerald/Qt/5.10.0/gcc_64/mkspecs/features/spec_post.prf \
+		../OdyServer/.qmake.stash \
 		/home/gerald/Qt/5.10.0/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/gerald/Qt/5.10.0/gcc_64/mkspecs/features/toolchain.prf \
 		/home/gerald/Qt/5.10.0/gcc_64/mkspecs/features/default_pre.prf \
@@ -242,9 +251,17 @@ DIST          = /home/gerald/Qt/5.10.0/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/gerald/Qt/5.10.0/gcc_64/mkspecs/features/yacc.prf \
 		/home/gerald/Qt/5.10.0/gcc_64/mkspecs/features/lex.prf \
 		../OdyServer/OdyServer.pro ../OdyServer/mainwindow.h \
-		../OdyServer/server.h ../OdyServer/main.cpp \
+		../OdyServer/server.h \
+		../OdyServer/DataStructures/binarysearch.h \
+		../OdyServer/DataStructures/abb.h \
+		../OdyServer/DataStructures/nodo.h \
+		../OdyServer/parserxml.h ../OdyServer/main.cpp \
 		../OdyServer/mainwindow.cpp \
-		../OdyServer/server.cpp
+		../OdyServer/server.cpp \
+		../OdyServer/DataStructures/binarysearch.cpp \
+		../OdyServer/DataStructures/abb.cpp \
+		../OdyServer/DataStructures/nodo.cpp \
+		../OdyServer/parserxml.cpp
 QMAKE_TARGET  = OdyServer
 DESTDIR       = 
 TARGET        = OdyServer
@@ -419,6 +436,7 @@ Makefile: ../OdyServer/OdyServer.pro /home/gerald/Qt/5.10.0/gcc_64/mkspecs/linux
 		/home/gerald/Qt/5.10.0/gcc_64/mkspecs/features/qt_config.prf \
 		/home/gerald/Qt/5.10.0/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/gerald/Qt/5.10.0/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/home/gerald/Qt/5.10.0/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/gerald/Qt/5.10.0/gcc_64/mkspecs/features/toolchain.prf \
 		/home/gerald/Qt/5.10.0/gcc_64/mkspecs/features/default_pre.prf \
@@ -442,6 +460,7 @@ Makefile: ../OdyServer/OdyServer.pro /home/gerald/Qt/5.10.0/gcc_64/mkspecs/linux
 		/home/gerald/Qt/5.10.0/gcc_64/lib/libQt5Widgets.prl \
 		/home/gerald/Qt/5.10.0/gcc_64/lib/libQt5Gui.prl \
 		/home/gerald/Qt/5.10.0/gcc_64/lib/libQt5Network.prl \
+		/home/gerald/Qt/5.10.0/gcc_64/lib/libQt5Xml.prl \
 		/home/gerald/Qt/5.10.0/gcc_64/lib/libQt5Core.prl
 	$(QMAKE) -o Makefile ../OdyServer/OdyServer.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
 /home/gerald/Qt/5.10.0/gcc_64/mkspecs/features/spec_pre.prf:
@@ -607,6 +626,7 @@ Makefile: ../OdyServer/OdyServer.pro /home/gerald/Qt/5.10.0/gcc_64/mkspecs/linux
 /home/gerald/Qt/5.10.0/gcc_64/mkspecs/features/qt_config.prf:
 /home/gerald/Qt/5.10.0/gcc_64/mkspecs/linux-g++/qmake.conf:
 /home/gerald/Qt/5.10.0/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /home/gerald/Qt/5.10.0/gcc_64/mkspecs/features/exclusive_builds.prf:
 /home/gerald/Qt/5.10.0/gcc_64/mkspecs/features/toolchain.prf:
 /home/gerald/Qt/5.10.0/gcc_64/mkspecs/features/default_pre.prf:
@@ -630,6 +650,7 @@ Makefile: ../OdyServer/OdyServer.pro /home/gerald/Qt/5.10.0/gcc_64/mkspecs/linux
 /home/gerald/Qt/5.10.0/gcc_64/lib/libQt5Widgets.prl:
 /home/gerald/Qt/5.10.0/gcc_64/lib/libQt5Gui.prl:
 /home/gerald/Qt/5.10.0/gcc_64/lib/libQt5Network.prl:
+/home/gerald/Qt/5.10.0/gcc_64/lib/libQt5Xml.prl:
 /home/gerald/Qt/5.10.0/gcc_64/lib/libQt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ../OdyServer/OdyServer.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
@@ -646,8 +667,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /home/gerald/Qt/5.10.0/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../OdyServer/mainwindow.h ../OdyServer/server.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../OdyServer/main.cpp ../OdyServer/mainwindow.cpp ../OdyServer/server.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../OdyServer/mainwindow.h ../OdyServer/server.h ../OdyServer/DataStructures/binarysearch.h ../OdyServer/DataStructures/abb.h ../OdyServer/DataStructures/nodo.h ../OdyServer/parserxml.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../OdyServer/main.cpp ../OdyServer/mainwindow.cpp ../OdyServer/server.cpp ../OdyServer/DataStructures/binarysearch.cpp ../OdyServer/DataStructures/abb.cpp ../OdyServer/DataStructures/nodo.cpp ../OdyServer/parserxml.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../OdyServer/mainwindow.ui $(DISTDIR)/
 
 
@@ -792,7 +813,7 @@ moc_mainwindow.cpp: /home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/QMainWindow 
 		../OdyServer/mainwindow.h \
 		moc_predefs.h \
 		/home/gerald/Qt/5.10.0/gcc_64/bin/moc
-	/home/gerald/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/gerald/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I'/home/gerald/Documents/I Sem 2018/Datos 2/Odyssey/Server/OdyServer' -I/home/gerald/Qt/5.10.0/gcc_64/include -I/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/gerald/Qt/5.10.0/gcc_64/include/QtGui -I/home/gerald/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/gerald/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../OdyServer/mainwindow.h -o moc_mainwindow.cpp
+	/home/gerald/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/gerald/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I'/home/gerald/Documents/I Sem 2018/Datos 2/Odyssey/Server/OdyServer' -I/home/gerald/Qt/5.10.0/gcc_64/include -I/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/gerald/Qt/5.10.0/gcc_64/include/QtGui -I/home/gerald/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/gerald/Qt/5.10.0/gcc_64/include/QtXml -I/home/gerald/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../OdyServer/mainwindow.h -o moc_mainwindow.cpp
 
 moc_server.cpp: /home/gerald/Qt/5.10.0/gcc_64/include/QtCore/QObject \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qobject.h \
@@ -867,10 +888,57 @@ moc_server.cpp: /home/gerald/Qt/5.10.0/gcc_64/include/QtCore/QObject \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtNetwork/qhostaddress.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtNetwork/QTcpSocket \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtNetwork/qtcpsocket.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/QFile \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qfile.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qfiledevice.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/QApplication \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qapplication.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qtguiglobal.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qtgui-config.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qwindowdefs.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qsize.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qcursor.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qwidget.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qmargins.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qpaintdevice.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qrect.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qpalette.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qcolor.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qrgb.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qrgba64.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qbrush.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qmatrix.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qpolygon.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qregion.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qdatastream.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qline.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qtransform.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qpainterpath.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qimage.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qpixelformat.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qpixmap.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qfont.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qfontmetrics.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qfontinfo.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qkeysequence.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qevent.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qurl.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qurlquery.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qvector2d.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qtouchdevice.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
 		../OdyServer/server.h \
 		moc_predefs.h \
 		/home/gerald/Qt/5.10.0/gcc_64/bin/moc
-	/home/gerald/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/gerald/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I'/home/gerald/Documents/I Sem 2018/Datos 2/Odyssey/Server/OdyServer' -I/home/gerald/Qt/5.10.0/gcc_64/include -I/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/gerald/Qt/5.10.0/gcc_64/include/QtGui -I/home/gerald/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/gerald/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../OdyServer/server.h -o moc_server.cpp
+	/home/gerald/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/gerald/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I'/home/gerald/Documents/I Sem 2018/Datos 2/Odyssey/Server/OdyServer' -I/home/gerald/Qt/5.10.0/gcc_64/include -I/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/gerald/Qt/5.10.0/gcc_64/include/QtGui -I/home/gerald/Qt/5.10.0/gcc_64/include/QtNetwork -I/home/gerald/Qt/5.10.0/gcc_64/include/QtXml -I/home/gerald/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../OdyServer/server.h -o moc_server.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1006,7 +1074,19 @@ main.o: ../OdyServer/main.cpp ../OdyServer/mainwindow.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
-		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
+		../OdyServer/server.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/QObject \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/QDebug \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtNetwork/QTcpServer \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtNetwork/qtcpserver.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtNetwork/qtnetworkglobal.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtNetwork/qtnetwork-config.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtNetwork/qabstractsocket.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtNetwork/qhostaddress.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtNetwork/QTcpSocket \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtNetwork/qtcpsocket.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/QFile
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../OdyServer/main.cpp
 
 mainwindow.o: ../OdyServer/mainwindow.cpp ../OdyServer/mainwindow.h \
@@ -1116,7 +1196,45 @@ mainwindow.o: ../OdyServer/mainwindow.cpp ../OdyServer/mainwindow.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qtouchdevice.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qtabwidget.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qicon.h \
-		ui_mainwindow.h
+		ui_mainwindow.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/QVariant \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/QAction \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qaction.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qactiongroup.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/QApplication \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qapplication.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/QButtonGroup \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qbuttongroup.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/QHeaderView \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qheaderview.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemview.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qabstractitemmodel.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qitemselectionmodel.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qstyleoption.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qvalidator.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qregularexpression.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qslider.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractslider.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qstyle.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qtabbar.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qrubberband.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/QMenuBar \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qmenubar.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qmenu.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/QStatusBar \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qstatusbar.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/QToolBar \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qtoolbar.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../OdyServer/mainwindow.cpp
 
 server.o: ../OdyServer/server.cpp ../OdyServer/server.h \
@@ -1192,8 +1310,147 @@ server.o: ../OdyServer/server.cpp ../OdyServer/server.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtNetwork/qabstractsocket.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtNetwork/qhostaddress.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtNetwork/QTcpSocket \
-		/home/gerald/Qt/5.10.0/gcc_64/include/QtNetwork/qtcpsocket.h
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtNetwork/qtcpsocket.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/QFile \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qfile.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qfiledevice.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/QApplication \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qapplication.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qtguiglobal.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qtgui-config.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qwindowdefs.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qsize.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qcursor.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qwidget.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qmargins.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qpaintdevice.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qrect.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qpalette.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qcolor.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qrgb.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qrgba64.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qbrush.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qmatrix.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qpolygon.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qregion.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qdatastream.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qline.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qtransform.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qpainterpath.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qimage.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qpixelformat.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qpixmap.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qfont.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qfontmetrics.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qfontinfo.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qkeysequence.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qevent.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qurl.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qurlquery.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qvector2d.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qtouchdevice.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
+		../OdyServer/parserxml.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/QXmlStreamWriter \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qxmlstream.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/QTextStream \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtXml/QDomDocument \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtXml/qdom.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtXml/qtxmlglobal.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtXml/qtxml-config.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtXml/QDomElement
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o server.o ../OdyServer/server.cpp
+
+binarysearch.o: ../OdyServer/DataStructures/binarysearch.cpp ../OdyServer/DataStructures/binarysearch.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o binarysearch.o ../OdyServer/DataStructures/binarysearch.cpp
+
+abb.o: ../OdyServer/DataStructures/abb.cpp ../OdyServer/DataStructures/abb.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o abb.o ../OdyServer/DataStructures/abb.cpp
+
+nodo.o: ../OdyServer/DataStructures/nodo.cpp ../OdyServer/DataStructures/nodo.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o nodo.o ../OdyServer/DataStructures/nodo.cpp
+
+parserxml.o: ../OdyServer/parserxml.cpp ../OdyServer/parserxml.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/QXmlStreamWriter \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qxmlstream.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qiodevice.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qglobal.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qconfig.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qtcore-config.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qsysinfo.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qlogging.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qflags.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qatomic.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qmutex.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qnumeric.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qversiontagging.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qobject.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qnamespace.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qstring.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qchar.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qbytearray.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qrefcount.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qarraydata.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qstringliteral.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qstringview.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qlist.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qalgorithms.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qiterator.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qpair.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qstringlist.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qregexp.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qcoreevent.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qmetatype.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qobject_impl.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qvector.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qpoint.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/QTextStream \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qtextstream.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qlocale.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qvariant.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qmap.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qdebug.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qhash.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qset.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qshareddata.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtXml/QDomDocument \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtXml/qdom.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtXml/qtxmlglobal.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtXml/qtxml-config.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtXml/QDomElement
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o parserxml.o ../OdyServer/parserxml.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
