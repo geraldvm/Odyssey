@@ -3,6 +3,9 @@ file(REMOVE_RECURSE
   "CMakeFiles/ArbolAVL.dir/logic/Mapa.cpp.o"
   "CMakeFiles/ArbolAVL.dir/logic/NodoAVL.cpp.o"
   "CMakeFiles/ArbolAVL.dir/logic/ArbolAVL.cpp.o"
+  "CMakeFiles/ArbolAVL.dir/logic/JsonMaker.cpp.o"
+  "CMakeFiles/ArbolAVL.dir/logic/guardarJson.cpp.o"
+  "CMakeFiles/ArbolAVL.dir/logic/leerJson.cpp.o"
   "ArbolAVL.pdb"
   "ArbolAVL"
 )

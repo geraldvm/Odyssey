@@ -150,6 +150,33 @@ logic/ArbolAVL.cpp.s:
 	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/logic/ArbolAVL.cpp.s
 .PHONY : logic/ArbolAVL.cpp.s
 
+logic/JsonMaker.o: logic/JsonMaker.cpp.o
+
+.PHONY : logic/JsonMaker.o
+
+# target to build an object file
+logic/JsonMaker.cpp.o:
+	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/logic/JsonMaker.cpp.o
+.PHONY : logic/JsonMaker.cpp.o
+
+logic/JsonMaker.i: logic/JsonMaker.cpp.i
+
+.PHONY : logic/JsonMaker.i
+
+# target to preprocess a source file
+logic/JsonMaker.cpp.i:
+	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/logic/JsonMaker.cpp.i
+.PHONY : logic/JsonMaker.cpp.i
+
+logic/JsonMaker.s: logic/JsonMaker.cpp.s
+
+.PHONY : logic/JsonMaker.s
+
+# target to generate assembly for a file
+logic/JsonMaker.cpp.s:
+	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/logic/JsonMaker.cpp.s
+.PHONY : logic/JsonMaker.cpp.s
+
 logic/Mapa.o: logic/Mapa.cpp.o
 
 .PHONY : logic/Mapa.o
@@ -204,6 +231,60 @@ logic/NodoAVL.cpp.s:
 	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/logic/NodoAVL.cpp.s
 .PHONY : logic/NodoAVL.cpp.s
 
+logic/guardarJson.o: logic/guardarJson.cpp.o
+
+.PHONY : logic/guardarJson.o
+
+# target to build an object file
+logic/guardarJson.cpp.o:
+	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/logic/guardarJson.cpp.o
+.PHONY : logic/guardarJson.cpp.o
+
+logic/guardarJson.i: logic/guardarJson.cpp.i
+
+.PHONY : logic/guardarJson.i
+
+# target to preprocess a source file
+logic/guardarJson.cpp.i:
+	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/logic/guardarJson.cpp.i
+.PHONY : logic/guardarJson.cpp.i
+
+logic/guardarJson.s: logic/guardarJson.cpp.s
+
+.PHONY : logic/guardarJson.s
+
+# target to generate assembly for a file
+logic/guardarJson.cpp.s:
+	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/logic/guardarJson.cpp.s
+.PHONY : logic/guardarJson.cpp.s
+
+logic/leerJson.o: logic/leerJson.cpp.o
+
+.PHONY : logic/leerJson.o
+
+# target to build an object file
+logic/leerJson.cpp.o:
+	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/logic/leerJson.cpp.o
+.PHONY : logic/leerJson.cpp.o
+
+logic/leerJson.i: logic/leerJson.cpp.i
+
+.PHONY : logic/leerJson.i
+
+# target to preprocess a source file
+logic/leerJson.cpp.i:
+	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/logic/leerJson.cpp.i
+.PHONY : logic/leerJson.cpp.i
+
+logic/leerJson.s: logic/leerJson.cpp.s
+
+.PHONY : logic/leerJson.s
+
+# target to generate assembly for a file
+logic/leerJson.cpp.s:
+	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/logic/leerJson.cpp.s
+.PHONY : logic/leerJson.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -243,12 +324,21 @@ help:
 	@echo "... logic/ArbolAVL.o"
 	@echo "... logic/ArbolAVL.i"
 	@echo "... logic/ArbolAVL.s"
+	@echo "... logic/JsonMaker.o"
+	@echo "... logic/JsonMaker.i"
+	@echo "... logic/JsonMaker.s"
 	@echo "... logic/Mapa.o"
 	@echo "... logic/Mapa.i"
 	@echo "... logic/Mapa.s"
 	@echo "... logic/NodoAVL.o"
 	@echo "... logic/NodoAVL.i"
 	@echo "... logic/NodoAVL.s"
+	@echo "... logic/guardarJson.o"
+	@echo "... logic/guardarJson.i"
+	@echo "... logic/guardarJson.s"
+	@echo "... logic/leerJson.o"
+	@echo "... logic/leerJson.i"
+	@echo "... logic/leerJson.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

@@ -18,6 +18,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/andres/Downloads/clion-2017.3.3/bin/cmake/share/cmake-3.10/Modules/CMakeFindCodeBlocks.cmake"
   "/home/andres/Downloads/clion-2017.3.3/bin/cmake/share/cmake-3.10/Modules/CMakeGenericSystem.cmake"
   "/home/andres/Downloads/clion-2017.3.3/bin/cmake/share/cmake-3.10/Modules/CMakeLanguageInformation.cmake"
+  "/home/andres/Downloads/clion-2017.3.3/bin/cmake/share/cmake-3.10/Modules/CMakeParseArguments.cmake"
   "/home/andres/Downloads/clion-2017.3.3/bin/cmake/share/cmake-3.10/Modules/CMakeSystemSpecificInformation.cmake"
   "/home/andres/Downloads/clion-2017.3.3/bin/cmake/share/cmake-3.10/Modules/CMakeSystemSpecificInitialize.cmake"
   "/home/andres/Downloads/clion-2017.3.3/bin/cmake/share/cmake-3.10/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
@@ -30,6 +31,20 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/andres/Downloads/clion-2017.3.3/bin/cmake/share/cmake-3.10/Modules/Platform/Linux.cmake"
   "/home/andres/Downloads/clion-2017.3.3/bin/cmake/share/cmake-3.10/Modules/Platform/UnixPaths.cmake"
   "/home/andres/Downloads/clion-2017.3.3/bin/cmake/share/cmake-3.10/Modules/ProcessorCount.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfig.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigExtras.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigExtrasMkspecDir.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigVersion.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreMacros.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5GuiConfig.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5GuiConfigExtras.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5GuiConfigVersion.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsConfig.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsConfigVersion.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/Qt5Xml/Qt5XmlConfig.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/Qt5Xml/Qt5XmlConfigVersion.cmake"
   )
 
 # The corresponding makefile is:
