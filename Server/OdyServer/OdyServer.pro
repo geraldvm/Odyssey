@@ -30,7 +30,8 @@ SOURCES += \
     DataStructures/binarysearch.cpp \
     DataStructures/abb.cpp \
     DataStructures/nodo.cpp \
-    parserxml.cpp
+    parserxml.cpp \
+    xmldocument.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -38,7 +39,8 @@ HEADERS += \
     DataStructures/binarysearch.h \
     DataStructures/abb.h \
     DataStructures/nodo.h \
-    parserxml.h
+    parserxml.h \
+    xmldocument.h
 
 FORMS += \
         mainwindow.ui
