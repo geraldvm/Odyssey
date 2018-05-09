@@ -1,0 +1,3 @@
+/home/andres/CLionProjects/convertidorMp3/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/andres/CLionProjects/convertidorMp3/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/andres/CLionProjects/convertidorMp3/cmake-build-debug/CMakeFiles/convertidorMp3.dir
