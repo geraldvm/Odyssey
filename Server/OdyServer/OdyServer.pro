@@ -31,7 +31,8 @@ SOURCES += \
     DataStructures/abb.cpp \
     DataStructures/nodo.cpp \
     parserxml.cpp \
-    xmldocument.cpp
+    xmldocument.cpp \
+    Mp3Binary/converter.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -40,7 +41,8 @@ HEADERS += \
     DataStructures/abb.h \
     DataStructures/nodo.h \
     parserxml.h \
-    xmldocument.h
+    xmldocument.h \
+    Mp3Binary/converter.h
 
 FORMS += \
         mainwindow.ui

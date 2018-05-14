@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/andres/CLionProjects/convertidorMp3/convertidor.cpp" "/home/andres/CLionProjects/convertidorMp3/cmake-build-debug/CMakeFiles/convertidorMp3.dir/convertidor.cpp.o"
-  "/home/andres/CLionProjects/convertidorMp3/main.cpp" "/home/andres/CLionProjects/convertidorMp3/cmake-build-debug/CMakeFiles/convertidorMp3.dir/main.cpp.o"
+  "/home/gerald/Documents/I Sem 2018/Datos 2/Odyssey/convertidorMp3/convertidor.cpp" "/home/gerald/Documents/I Sem 2018/Datos 2/Odyssey/convertidorMp3/cmake-build-debug/CMakeFiles/convertidorMp3.dir/convertidor.cpp.o"
+  "/home/gerald/Documents/I Sem 2018/Datos 2/Odyssey/convertidorMp3/main.cpp" "/home/gerald/Documents/I Sem 2018/Datos 2/Odyssey/convertidorMp3/cmake-build-debug/CMakeFiles/convertidorMp3.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

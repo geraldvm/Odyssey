@@ -56,7 +56,9 @@ SOURCES       = ../OdyServer/main.cpp \
 		../OdyServer/DataStructures/binarysearch.cpp \
 		../OdyServer/DataStructures/abb.cpp \
 		../OdyServer/DataStructures/nodo.cpp \
-		../OdyServer/parserxml.cpp moc_mainwindow.cpp \
+		../OdyServer/parserxml.cpp \
+		../OdyServer/xmldocument.cpp \
+		../OdyServer/Mp3Binary/converter.cpp moc_mainwindow.cpp \
 		moc_server.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
@@ -65,6 +67,8 @@ OBJECTS       = main.o \
 		abb.o \
 		nodo.o \
 		parserxml.o \
+		xmldocument.o \
+		converter.o \
 		moc_mainwindow.o \
 		moc_server.o
 DIST          = /home/gerald/Qt/5.10.0/gcc_64/mkspecs/features/spec_pre.prf \
@@ -255,13 +259,17 @@ DIST          = /home/gerald/Qt/5.10.0/gcc_64/mkspecs/features/spec_pre.prf \
 		../OdyServer/DataStructures/binarysearch.h \
 		../OdyServer/DataStructures/abb.h \
 		../OdyServer/DataStructures/nodo.h \
-		../OdyServer/parserxml.h ../OdyServer/main.cpp \
+		../OdyServer/parserxml.h \
+		../OdyServer/xmldocument.h \
+		../OdyServer/Mp3Binary/converter.h ../OdyServer/main.cpp \
 		../OdyServer/mainwindow.cpp \
 		../OdyServer/server.cpp \
 		../OdyServer/DataStructures/binarysearch.cpp \
 		../OdyServer/DataStructures/abb.cpp \
 		../OdyServer/DataStructures/nodo.cpp \
-		../OdyServer/parserxml.cpp
+		../OdyServer/parserxml.cpp \
+		../OdyServer/xmldocument.cpp \
+		../OdyServer/Mp3Binary/converter.cpp
 QMAKE_TARGET  = OdyServer
 DESTDIR       = 
 TARGET        = OdyServer
@@ -667,8 +675,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /home/gerald/Qt/5.10.0/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../OdyServer/mainwindow.h ../OdyServer/server.h ../OdyServer/DataStructures/binarysearch.h ../OdyServer/DataStructures/abb.h ../OdyServer/DataStructures/nodo.h ../OdyServer/parserxml.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../OdyServer/main.cpp ../OdyServer/mainwindow.cpp ../OdyServer/server.cpp ../OdyServer/DataStructures/binarysearch.cpp ../OdyServer/DataStructures/abb.cpp ../OdyServer/DataStructures/nodo.cpp ../OdyServer/parserxml.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../OdyServer/mainwindow.h ../OdyServer/server.h ../OdyServer/DataStructures/binarysearch.h ../OdyServer/DataStructures/abb.h ../OdyServer/DataStructures/nodo.h ../OdyServer/parserxml.h ../OdyServer/xmldocument.h ../OdyServer/Mp3Binary/converter.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../OdyServer/main.cpp ../OdyServer/mainwindow.cpp ../OdyServer/server.cpp ../OdyServer/DataStructures/binarysearch.cpp ../OdyServer/DataStructures/abb.cpp ../OdyServer/DataStructures/nodo.cpp ../OdyServer/parserxml.cpp ../OdyServer/xmldocument.cpp ../OdyServer/Mp3Binary/converter.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../OdyServer/mainwindow.ui $(DISTDIR)/
 
 
@@ -1086,7 +1094,8 @@ main.o: ../OdyServer/main.cpp ../OdyServer/mainwindow.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtNetwork/qhostaddress.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtNetwork/QTcpSocket \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtNetwork/qtcpsocket.h \
-		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/QFile
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/QFile \
+		../OdyServer/Mp3Binary/converter.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../OdyServer/main.cpp
 
 mainwindow.o: ../OdyServer/mainwindow.cpp ../OdyServer/mainwindow.h \
@@ -1449,8 +1458,92 @@ parserxml.o: ../OdyServer/parserxml.cpp ../OdyServer/parserxml.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtXml/qdom.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtXml/qtxmlglobal.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtXml/qtxml-config.h \
-		/home/gerald/Qt/5.10.0/gcc_64/include/QtXml/QDomElement
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtXml/QDomElement \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/QObject \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/QFile \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qfile.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qfiledevice.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o parserxml.o ../OdyServer/parserxml.cpp
+
+xmldocument.o: ../OdyServer/xmldocument.cpp ../OdyServer/xmldocument.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/QFile \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qfile.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qfiledevice.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qiodevice.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qglobal.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qconfig.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qtcore-config.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qsysinfo.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qlogging.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qflags.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qatomic.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qmutex.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qnumeric.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qversiontagging.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qobject.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qnamespace.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qstring.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qchar.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qbytearray.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qrefcount.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qarraydata.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qstringliteral.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qstringview.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qlist.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qalgorithms.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qiterator.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qpair.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qstringlist.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qregexp.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qcoreevent.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qmetatype.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qobject_impl.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/QXmlStreamWriter \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qxmlstream.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qvector.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qpoint.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/QTextStream \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qtextstream.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qlocale.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qvariant.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qmap.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qdebug.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qhash.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qset.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qshareddata.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtXml/QDomDocument \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtXml/qdom.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtXml/qtxmlglobal.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtXml/qtxml-config.h \
+		/home/gerald/Qt/5.10.0/gcc_64/include/QtXml/QDomElement
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o xmldocument.o ../OdyServer/xmldocument.cpp
+
+converter.o: ../OdyServer/Mp3Binary/converter.cpp ../OdyServer/Mp3Binary/converter.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o converter.o ../OdyServer/Mp3Binary/converter.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

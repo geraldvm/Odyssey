@@ -64,8 +64,8 @@ void Server::newConnection(){
 
 void Server::sendFile(QTcpSocket* socket)
 {
-    QString path = "/home/gerald/Desktop/ver.txt";
-    //QString path = "/home/gerald/Desktop/data.xml";
+    //QString path = "/home/gerald/Desktop/ver.txt";
+    QString path = "/home/gerald/Desktop/data.xml";
     //QString path = "/home/gerald/Desktop/Havana.mp3";
     QFile inputFile(path);
     QByteArray read ;

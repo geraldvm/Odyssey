@@ -6,17 +6,17 @@
 
 #IncludeRegexTransform: 
 
-/home/andres/CLionProjects/convertidorMp3/convertidor.cpp
+/home/gerald/Documents/I Sem 2018/Datos 2/Odyssey/convertidorMp3/convertidor.cpp
 cstring
 -
 convertidor.h
-/home/andres/CLionProjects/convertidorMp3/convertidor.h
+/home/gerald/Documents/I Sem 2018/Datos 2/Odyssey/convertidorMp3/convertidor.h
 cstdio
 -
 cstdlib
 -
 
-/home/andres/CLionProjects/convertidorMp3/convertidor.h
+/home/gerald/Documents/I Sem 2018/Datos 2/Odyssey/convertidorMp3/convertidor.h
 iostream
 -
 fstream
@@ -24,9 +24,9 @@ fstream
 vector
 -
 
-/home/andres/CLionProjects/convertidorMp3/main.cpp
+/home/gerald/Documents/I Sem 2018/Datos 2/Odyssey/convertidorMp3/main.cpp
 iostream
 -
 convertidor.h
-/home/andres/CLionProjects/convertidorMp3/convertidor.h
+/home/gerald/Documents/I Sem 2018/Datos 2/Odyssey/convertidorMp3/convertidor.h
 

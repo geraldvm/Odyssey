@@ -11,8 +11,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
-import javafx.scene.chart.AreaChart;
-import javafx.scene.chart.XYChart;
+import javafx.scene.Node;
+import javafx.scene.chart.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -29,9 +29,14 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
+import java.util.Random;
 import java.util.ResourceBundle;
 
+
+import javafx.scene.media.AudioSpectrumListener;
 import javafx.scene.media.AudioEqualizer;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 import sample.client.ClientThread;
@@ -41,7 +46,6 @@ public class Controller implements Initializable{
     @FXML private ImageView playerBtn,libraryBtn,socialBtn;
     @FXML private AnchorPane loginPanel,logoutPanel,userPanel, playerPanel, libraryPanel, socialPanel;
     @FXML private JFXComboBox<String> comboBoxGenre;
-    @FXML private JFXRadioButton okRadioButton,noRadioButton;
     @FXML private JFXTextField nameText,lastnameText,usernameText,ageText;
     @FXML private JFXTextField userLogText;
     @FXML private JFXPasswordField passwordLogText,passwordText;
@@ -56,6 +60,9 @@ public class Controller implements Initializable{
 
 
 
+
+
+    @FXML private Circle circle;
     private int sessionPanel;
     private DecimalFormat formatter = new DecimalFormat("00.00");
     private Duration totalTime;
@@ -82,11 +89,13 @@ public class Controller implements Initializable{
         libraryBtn.setDisable(true);
         socialBtn.setDisable(true);
 
-        ToggleGroup group = new ToggleGroup();
-        okRadioButton.setToggleGroup(group);
-        noRadioButton.setToggleGroup(group);
+
+
+
+
 
         progressBar.progressProperty().bind(slider.valueProperty().divide(100));
+
 
         ClientThread.initClient();
 
@@ -363,14 +372,21 @@ public class Controller implements Initializable{
         player.play();
         playButton.setVisible(false);
         pauseButton.setVisible(true);
+
+        player.getSpec(circle,player.getMediaPlayer());
+
     }
 
-    public void onPauseButton(MouseEvent event){
+    public void onPauseButton(MouseEvent event) {
         System.out.println("PAUSE");
         player.pause();
         pauseButton.setVisible(false);
         playButton.setVisible(true);
+
+
+
     }
+
 
     public static String readFileAsString(String fileName)throws Exception
     {

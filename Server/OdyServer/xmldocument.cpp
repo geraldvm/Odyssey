@@ -11,12 +11,18 @@ XMLDocument::XMLDocument()
 
 void XMLDocument::userVerification(std::string status)
 {
+    QFile xml("myXml.xml");
+    xml.open(QIODevice::WriteOnly);
+
+    QXmlStreamWriter docXml(&xml);
+    docXml.setAutoFormatting(true);
+
     docXml.writeStartDocument();
 
     docXml.writeStartElement("userVerification");
 
     docXml.writeStartElement("user");
-    docXml.writeAttribute("Status",status);
+    //docXml.writeAttribute("Status",status);
     docXml.writeEndElement();
 
     docXml.writeEndElement();
@@ -26,16 +32,22 @@ void XMLDocument::userVerification(std::string status)
 
 }
 
-void XMLDocument::song(std::string number, std::data)
+void XMLDocument::song(std::string number, std::string data)
 {
+
+    QFile xml("myXml.xml");
+    xml.open(QIODevice::WriteOnly);
+
+    QXmlStreamWriter docXml(&xml);
+    docXml.setAutoFormatting(true);
 
     docXml.writeStartDocument();
 
     docXml.writeStartElement("Song");
 
     docXml.writeStartElement("Chunk");
-    docXml.writeAttribute("Part",number);
-    docXml.writeAttribute("Data",data);
+    //docXml.writeAttribute("Part",number);
+    //docXml.writeAttribute("Data",data);
     docXml.writeEndElement();
 
     docXml.writeEndElement();
@@ -47,6 +59,12 @@ void XMLDocument::song(std::string number, std::data)
 
 void XMLDocument::songList()
 {
+    QFile xml("myXml.xml");
+    xml.open(QIODevice::WriteOnly);
+
+    QXmlStreamWriter docXml(&xml);
+    docXml.setAutoFormatting(true);
+
     docXml.writeStartDocument();
 
     docXml.writeStartElement("SongList");
