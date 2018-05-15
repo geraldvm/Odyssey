@@ -8,12 +8,14 @@
 
 #include <c++/5/string>
 #include <QtCore/QJsonObject>
+#include <fstream>
+#include <QtCore/QJsonArray>
 
 class guardarJson {
 
 private:
-    std::string dirUsers = "./usersInfo";
-    std::string dirMetadata = "./metadata";
+    std::string dirUsers = "../data/users/usersInfo";
+    std::string dirMetadata = "../data/metadata/metadata";
 
 public:
     void guardarJsonUsers(QJsonObject archivo);

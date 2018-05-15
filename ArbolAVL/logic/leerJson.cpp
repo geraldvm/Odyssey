@@ -2,24 +2,21 @@
 // Created by andres on 05/05/18.
 //
 
-#include <fstream>
-#include <QtCore/QJsonObject>
-#include <c++/5/iostream>
 #include "../headers/leerJson.h"
 
 using namespace std;
 
-vector<QJsonObject> leerJson::getUsersInfo() {
+ListaSimple<QJsonObject> leerJson::getUsersInfo() {
     QJsonObject obj = QJsonObject();
     string str;
     QJsonArray array;
     int lineaActual = 0;
     int contadorArreglo = 0;
-    ifstream in("./usersInfo", ios::binary);
+    ifstream in(dirUsers, ios::binary);
 
     while(getline(in, str)) {
         if (lineaActual == 5) {
-            obj.insert("pass",stoi(str));
+            obj.insert("pass",QString::fromStdString(str));
             lineaActual++;
         }
         if (str == "[") {
@@ -27,7 +24,7 @@ vector<QJsonObject> leerJson::getUsersInfo() {
             array = QJsonArray();
         }
         if (lineaActual == 3) {
-            obj.insert("edad",stoi(str));
+            obj.insert("edad",QString::fromStdString(str));
             lineaActual++;
         }
         if (lineaActual == 2) {
@@ -65,25 +62,33 @@ vector<QJsonObject> leerJson::getUsersInfo() {
     return listaArchivosJson;
 }
 
-std::vector<QJsonObject> leerJson::getMetadata() {
+ListaSimple<QJsonObject> leerJson::getMetadata() {
     QJsonObject obj = QJsonObject();
     string str;
     int lineaActual = 0;
-    ifstream in("./metadata", ios::binary);
-
+    ifstream in(dirMetadata, ios::binary);
+    string letra;
     while(getline(in, str)) {
+        if (lineaActual == -1 && str != "]") {
+            letra += str;
+        }
+        if (lineaActual == 8) {
+            lineaActual = -1;
+        }
+        if (lineaActual == 7) {
+            obj.insert("calificacion",QString::fromStdString(str));
+            lineaActual++;
+        }
         if (lineaActual == 6) {
-            obj.insert("anno",stoi(str));
-            lineaActual = 0;
-            listaArchivosJson.push_back(obj);
-            obj = QJsonObject();
+            obj.insert("anno",QString::fromStdString(str));
+            lineaActual++;
         }
         if (lineaActual == 5) {
-            obj.insert("numeroDisco",stoi(str));
+            obj.insert("numeroDisco",QString::fromStdString(str));
             lineaActual++;
         }
         if (lineaActual == 4) {
-            obj.insert("numeroPista",stoi(str));
+            obj.insert("numeroPista",QString::fromStdString(str));
             lineaActual++;
         }
         if (lineaActual == 3) {
@@ -101,6 +106,12 @@ std::vector<QJsonObject> leerJson::getMetadata() {
         if (lineaActual == 0) {
             obj.insert("titulo",QString::fromStdString(str));
             lineaActual++;
+        }
+        if (str == "]") {
+            lineaActual = 0;
+            obj.insert("letra",QString::fromStdString(letra));
+            listaArchivosJson.push_back(obj);
+            obj = QJsonObject();
         }
     }
     return listaArchivosJson;

@@ -15,7 +15,7 @@ void mapa::leerMapa() {
                 i++;
                 line2 = line;
             } else {
-                passMap[line2] = std::stoi(line);
+                passMap.newPair(line2,stoi(line));
                 i--;
             }
         }
@@ -26,9 +26,9 @@ void mapa::leerMapa() {
 void mapa::guardarMapa() {
     std::ofstream file(dirMap, std::ios::binary);
     int j = 0;
-    for (auto &i : passMap) {
-        file << i.first + "\n";
-        file << std::to_string(i.second) +"\n";
+    for (int i = 0; i < passMap.size; i++) {
+        file << passMap.fromVals(i) + "\n";
+        file << std::to_string(passMap.fromId(i)) +"\n";
         j++;
     }
     file.close();
@@ -36,7 +36,7 @@ void mapa::guardarMapa() {
 
 void mapa::escribirPass(std::string nombre, std::string pass) {
     int id = generarId(nombre);
-    passMap[pass] = id;
+    passMap.newPair(pass,id);
 }
 
 int mapa::generarId(std::string nombre) {
@@ -49,5 +49,5 @@ int mapa::generarId(std::string nombre) {
 }
 
 bool mapa::confirmarPass(std::string pass, std::string nombre) {
-    return generarId(nombre) == passMap[pass];
+    return generarId(nombre) == passMap.get(pass);
 }

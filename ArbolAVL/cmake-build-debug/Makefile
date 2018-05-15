@@ -48,10 +48,10 @@ RM = /home/andres/Downloads/clion-2017.3.3/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/andres/CLionProjects/ArbolAVL
+CMAKE_SOURCE_DIR = /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/andres/CLionProjects/ArbolAVL/cmake-build-debug
+CMAKE_BINARY_DIR = /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/andres/CLionProjects/ArbolAVL/cmake-build-debug/CMakeFiles /home/andres/CLionProjects/ArbolAVL/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/cmake-build-debug/CMakeFiles /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/andres/CLionProjects/ArbolAVL/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -123,32 +123,86 @@ ArbolAVL/fast:
 	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/build
 .PHONY : ArbolAVL/fast
 
-logic/ArbolAVL.o: logic/ArbolAVL.cpp.o
+estructuras/logic/ArbolAVL.o: estructuras/logic/ArbolAVL.cpp.o
 
-.PHONY : logic/ArbolAVL.o
+.PHONY : estructuras/logic/ArbolAVL.o
 
 # target to build an object file
-logic/ArbolAVL.cpp.o:
-	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/logic/ArbolAVL.cpp.o
-.PHONY : logic/ArbolAVL.cpp.o
+estructuras/logic/ArbolAVL.cpp.o:
+	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/estructuras/logic/ArbolAVL.cpp.o
+.PHONY : estructuras/logic/ArbolAVL.cpp.o
 
-logic/ArbolAVL.i: logic/ArbolAVL.cpp.i
+estructuras/logic/ArbolAVL.i: estructuras/logic/ArbolAVL.cpp.i
 
-.PHONY : logic/ArbolAVL.i
+.PHONY : estructuras/logic/ArbolAVL.i
 
 # target to preprocess a source file
-logic/ArbolAVL.cpp.i:
-	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/logic/ArbolAVL.cpp.i
-.PHONY : logic/ArbolAVL.cpp.i
+estructuras/logic/ArbolAVL.cpp.i:
+	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/estructuras/logic/ArbolAVL.cpp.i
+.PHONY : estructuras/logic/ArbolAVL.cpp.i
 
-logic/ArbolAVL.s: logic/ArbolAVL.cpp.s
+estructuras/logic/ArbolAVL.s: estructuras/logic/ArbolAVL.cpp.s
 
-.PHONY : logic/ArbolAVL.s
+.PHONY : estructuras/logic/ArbolAVL.s
 
 # target to generate assembly for a file
-logic/ArbolAVL.cpp.s:
-	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/logic/ArbolAVL.cpp.s
-.PHONY : logic/ArbolAVL.cpp.s
+estructuras/logic/ArbolAVL.cpp.s:
+	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/estructuras/logic/ArbolAVL.cpp.s
+.PHONY : estructuras/logic/ArbolAVL.cpp.s
+
+estructuras/logic/NodoAVL.o: estructuras/logic/NodoAVL.cpp.o
+
+.PHONY : estructuras/logic/NodoAVL.o
+
+# target to build an object file
+estructuras/logic/NodoAVL.cpp.o:
+	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/estructuras/logic/NodoAVL.cpp.o
+.PHONY : estructuras/logic/NodoAVL.cpp.o
+
+estructuras/logic/NodoAVL.i: estructuras/logic/NodoAVL.cpp.i
+
+.PHONY : estructuras/logic/NodoAVL.i
+
+# target to preprocess a source file
+estructuras/logic/NodoAVL.cpp.i:
+	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/estructuras/logic/NodoAVL.cpp.i
+.PHONY : estructuras/logic/NodoAVL.cpp.i
+
+estructuras/logic/NodoAVL.s: estructuras/logic/NodoAVL.cpp.s
+
+.PHONY : estructuras/logic/NodoAVL.s
+
+# target to generate assembly for a file
+estructuras/logic/NodoAVL.cpp.s:
+	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/estructuras/logic/NodoAVL.cpp.s
+.PHONY : estructuras/logic/NodoAVL.cpp.s
+
+estructuras/logic/cancion.o: estructuras/logic/cancion.cpp.o
+
+.PHONY : estructuras/logic/cancion.o
+
+# target to build an object file
+estructuras/logic/cancion.cpp.o:
+	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/estructuras/logic/cancion.cpp.o
+.PHONY : estructuras/logic/cancion.cpp.o
+
+estructuras/logic/cancion.i: estructuras/logic/cancion.cpp.i
+
+.PHONY : estructuras/logic/cancion.i
+
+# target to preprocess a source file
+estructuras/logic/cancion.cpp.i:
+	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/estructuras/logic/cancion.cpp.i
+.PHONY : estructuras/logic/cancion.cpp.i
+
+estructuras/logic/cancion.s: estructuras/logic/cancion.cpp.s
+
+.PHONY : estructuras/logic/cancion.s
+
+# target to generate assembly for a file
+estructuras/logic/cancion.cpp.s:
+	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/estructuras/logic/cancion.cpp.s
+.PHONY : estructuras/logic/cancion.cpp.s
 
 logic/JsonMaker.o: logic/JsonMaker.cpp.o
 
@@ -203,33 +257,6 @@ logic/Mapa.s: logic/Mapa.cpp.s
 logic/Mapa.cpp.s:
 	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/logic/Mapa.cpp.s
 .PHONY : logic/Mapa.cpp.s
-
-logic/NodoAVL.o: logic/NodoAVL.cpp.o
-
-.PHONY : logic/NodoAVL.o
-
-# target to build an object file
-logic/NodoAVL.cpp.o:
-	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/logic/NodoAVL.cpp.o
-.PHONY : logic/NodoAVL.cpp.o
-
-logic/NodoAVL.i: logic/NodoAVL.cpp.i
-
-.PHONY : logic/NodoAVL.i
-
-# target to preprocess a source file
-logic/NodoAVL.cpp.i:
-	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/logic/NodoAVL.cpp.i
-.PHONY : logic/NodoAVL.cpp.i
-
-logic/NodoAVL.s: logic/NodoAVL.cpp.s
-
-.PHONY : logic/NodoAVL.s
-
-# target to generate assembly for a file
-logic/NodoAVL.cpp.s:
-	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/logic/NodoAVL.cpp.s
-.PHONY : logic/NodoAVL.cpp.s
 
 logic/guardarJson.o: logic/guardarJson.cpp.o
 
@@ -321,18 +348,21 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... ArbolAVL"
-	@echo "... logic/ArbolAVL.o"
-	@echo "... logic/ArbolAVL.i"
-	@echo "... logic/ArbolAVL.s"
+	@echo "... estructuras/logic/ArbolAVL.o"
+	@echo "... estructuras/logic/ArbolAVL.i"
+	@echo "... estructuras/logic/ArbolAVL.s"
+	@echo "... estructuras/logic/NodoAVL.o"
+	@echo "... estructuras/logic/NodoAVL.i"
+	@echo "... estructuras/logic/NodoAVL.s"
+	@echo "... estructuras/logic/cancion.o"
+	@echo "... estructuras/logic/cancion.i"
+	@echo "... estructuras/logic/cancion.s"
 	@echo "... logic/JsonMaker.o"
 	@echo "... logic/JsonMaker.i"
 	@echo "... logic/JsonMaker.s"
 	@echo "... logic/Mapa.o"
 	@echo "... logic/Mapa.i"
 	@echo "... logic/Mapa.s"
-	@echo "... logic/NodoAVL.o"
-	@echo "... logic/NodoAVL.i"
-	@echo "... logic/NodoAVL.s"
 	@echo "... logic/guardarJson.o"
 	@echo "... logic/guardarJson.i"
 	@echo "... logic/guardarJson.s"

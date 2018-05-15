@@ -4,13 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/andres/CLionProjects/ArbolAVL/logic/ArbolAVL.cpp" "/home/andres/CLionProjects/ArbolAVL/cmake-build-debug/CMakeFiles/ArbolAVL.dir/logic/ArbolAVL.cpp.o"
-  "/home/andres/CLionProjects/ArbolAVL/logic/JsonMaker.cpp" "/home/andres/CLionProjects/ArbolAVL/cmake-build-debug/CMakeFiles/ArbolAVL.dir/logic/JsonMaker.cpp.o"
-  "/home/andres/CLionProjects/ArbolAVL/logic/Mapa.cpp" "/home/andres/CLionProjects/ArbolAVL/cmake-build-debug/CMakeFiles/ArbolAVL.dir/logic/Mapa.cpp.o"
-  "/home/andres/CLionProjects/ArbolAVL/logic/NodoAVL.cpp" "/home/andres/CLionProjects/ArbolAVL/cmake-build-debug/CMakeFiles/ArbolAVL.dir/logic/NodoAVL.cpp.o"
-  "/home/andres/CLionProjects/ArbolAVL/logic/guardarJson.cpp" "/home/andres/CLionProjects/ArbolAVL/cmake-build-debug/CMakeFiles/ArbolAVL.dir/logic/guardarJson.cpp.o"
-  "/home/andres/CLionProjects/ArbolAVL/logic/leerJson.cpp" "/home/andres/CLionProjects/ArbolAVL/cmake-build-debug/CMakeFiles/ArbolAVL.dir/logic/leerJson.cpp.o"
-  "/home/andres/CLionProjects/ArbolAVL/main.cpp" "/home/andres/CLionProjects/ArbolAVL/cmake-build-debug/CMakeFiles/ArbolAVL.dir/main.cpp.o"
+  "/home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/estructuras/logic/ArbolAVL.cpp" "/home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/cmake-build-debug/CMakeFiles/ArbolAVL.dir/estructuras/logic/ArbolAVL.cpp.o"
+  "/home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/estructuras/logic/NodoAVL.cpp" "/home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/cmake-build-debug/CMakeFiles/ArbolAVL.dir/estructuras/logic/NodoAVL.cpp.o"
+  "/home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/estructuras/logic/cancion.cpp" "/home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/cmake-build-debug/CMakeFiles/ArbolAVL.dir/estructuras/logic/cancion.cpp.o"
+  "/home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/logic/JsonMaker.cpp" "/home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/cmake-build-debug/CMakeFiles/ArbolAVL.dir/logic/JsonMaker.cpp.o"
+  "/home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/logic/Mapa.cpp" "/home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/cmake-build-debug/CMakeFiles/ArbolAVL.dir/logic/Mapa.cpp.o"
+  "/home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/logic/guardarJson.cpp" "/home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/cmake-build-debug/CMakeFiles/ArbolAVL.dir/logic/guardarJson.cpp.o"
+  "/home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/logic/leerJson.cpp" "/home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/cmake-build-debug/CMakeFiles/ArbolAVL.dir/logic/leerJson.cpp.o"
+  "/home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/main.cpp" "/home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/cmake-build-debug/CMakeFiles/ArbolAVL.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

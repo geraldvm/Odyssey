@@ -6,17 +6,17 @@
 #define ARBOLAVL_MAPA_H
 
 #include <iostream>
-#include <map>
-#include <vector>
 #include <string>
 #include <fstream>
+#include "../estructuras/headers/ListaSimple.h"
+#include "../estructuras/headers/hashMap.h"
 
 class mapa {
 
 private:
-    std::vector<int> keys;
-    std::map<std::string, int> passMap;
-    std::string dirMap = "./mapInfo";
+    ListaSimple<int> keys;
+    hashMap<std::string, int> passMap;
+    std::string dirMap = "../data/map/mapInfo";
     int generarId(std::string nombre);
 
 public:

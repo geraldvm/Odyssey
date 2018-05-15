@@ -2,8 +2,6 @@
 // Created by andres on 05/05/18.
 //
 
-#include <fstream>
-#include <QtCore/QJsonArray>
 #include "../headers/guardarJson.h"
 
 void guardarJson::guardarJsonUsers(QJsonObject archivo) {
@@ -37,5 +35,9 @@ void guardarJson::guardarJsonMetadata(QJsonObject archivo) {
     file << archivo.value("numeroPista").toString().toStdString() + "\n";
     file << archivo.value("numeroDisco").toString().toStdString() + "\n";
     file << archivo.value("anno").toString().toStdString() + "\n";
+    file << archivo.value("calificacion").toString().toStdString() + "\n";
+    file << "[\n";
+    file << archivo.value("letra").toString().toStdString() + "\n";
+    file << "]\n";
     file.close();
 }

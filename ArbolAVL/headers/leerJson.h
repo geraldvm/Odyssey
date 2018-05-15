@@ -7,15 +7,20 @@
 
 
 #include <QtCore/QJsonArray>
-#include <vector>
+#include "../estructuras/headers/ListaSimple.h"
+#include <fstream>
+#include <QtCore/QJsonObject>
+#include <c++/5/iostream>
 
 class leerJson {
 private:
-    std::vector<QJsonObject> listaArchivosJson;
+    ListaSimple<QJsonObject> listaArchivosJson = ListaSimple<QJsonObject>();
+    std::string dirUsers = "../data/users/usersInfo";
+    std::string dirMetadata = "../data/metadata/metadata";
 
 public:
-    std::vector<QJsonObject> getUsersInfo();
-    std::vector<QJsonObject> getMetadata();
+    ListaSimple<QJsonObject> getUsersInfo();
+    ListaSimple<QJsonObject> getMetadata();
 };
 
 

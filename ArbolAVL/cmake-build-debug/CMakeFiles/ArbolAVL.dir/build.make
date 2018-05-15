@@ -43,10 +43,10 @@ RM = /home/andres/Downloads/clion-2017.3.3/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/andres/CLionProjects/ArbolAVL
+CMAKE_SOURCE_DIR = /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/andres/CLionProjects/ArbolAVL/cmake-build-debug
+CMAKE_BINARY_DIR = /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/ArbolAVL.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/ArbolAVL.dir/flags.make
 
 CMakeFiles/ArbolAVL.dir/main.cpp.o: CMakeFiles/ArbolAVL.dir/flags.make
 CMakeFiles/ArbolAVL.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andres/CLionProjects/ArbolAVL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ArbolAVL.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ArbolAVL.dir/main.cpp.o -c /home/andres/CLionProjects/ArbolAVL/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ArbolAVL.dir/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ArbolAVL.dir/main.cpp.o -c /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/main.cpp
 
 CMakeFiles/ArbolAVL.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ArbolAVL.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andres/CLionProjects/ArbolAVL/main.cpp > CMakeFiles/ArbolAVL.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/main.cpp > CMakeFiles/ArbolAVL.dir/main.cpp.i
 
 CMakeFiles/ArbolAVL.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ArbolAVL.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andres/CLionProjects/ArbolAVL/main.cpp -o CMakeFiles/ArbolAVL.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/main.cpp -o CMakeFiles/ArbolAVL.dir/main.cpp.s
 
 CMakeFiles/ArbolAVL.dir/main.cpp.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/ArbolAVL.dir/main.cpp.o.provides.build: CMakeFiles/ArbolAVL.dir/main.
 
 CMakeFiles/ArbolAVL.dir/logic/Mapa.cpp.o: CMakeFiles/ArbolAVL.dir/flags.make
 CMakeFiles/ArbolAVL.dir/logic/Mapa.cpp.o: ../logic/Mapa.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andres/CLionProjects/ArbolAVL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/ArbolAVL.dir/logic/Mapa.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ArbolAVL.dir/logic/Mapa.cpp.o -c /home/andres/CLionProjects/ArbolAVL/logic/Mapa.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/ArbolAVL.dir/logic/Mapa.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ArbolAVL.dir/logic/Mapa.cpp.o -c /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/logic/Mapa.cpp
 
 CMakeFiles/ArbolAVL.dir/logic/Mapa.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ArbolAVL.dir/logic/Mapa.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andres/CLionProjects/ArbolAVL/logic/Mapa.cpp > CMakeFiles/ArbolAVL.dir/logic/Mapa.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/logic/Mapa.cpp > CMakeFiles/ArbolAVL.dir/logic/Mapa.cpp.i
 
 CMakeFiles/ArbolAVL.dir/logic/Mapa.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ArbolAVL.dir/logic/Mapa.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andres/CLionProjects/ArbolAVL/logic/Mapa.cpp -o CMakeFiles/ArbolAVL.dir/logic/Mapa.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/logic/Mapa.cpp -o CMakeFiles/ArbolAVL.dir/logic/Mapa.cpp.s
 
 CMakeFiles/ArbolAVL.dir/logic/Mapa.cpp.o.requires:
 
@@ -105,66 +105,66 @@ CMakeFiles/ArbolAVL.dir/logic/Mapa.cpp.o.provides: CMakeFiles/ArbolAVL.dir/logic
 CMakeFiles/ArbolAVL.dir/logic/Mapa.cpp.o.provides.build: CMakeFiles/ArbolAVL.dir/logic/Mapa.cpp.o
 
 
-CMakeFiles/ArbolAVL.dir/logic/NodoAVL.cpp.o: CMakeFiles/ArbolAVL.dir/flags.make
-CMakeFiles/ArbolAVL.dir/logic/NodoAVL.cpp.o: ../logic/NodoAVL.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andres/CLionProjects/ArbolAVL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/ArbolAVL.dir/logic/NodoAVL.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ArbolAVL.dir/logic/NodoAVL.cpp.o -c /home/andres/CLionProjects/ArbolAVL/logic/NodoAVL.cpp
+CMakeFiles/ArbolAVL.dir/estructuras/logic/NodoAVL.cpp.o: CMakeFiles/ArbolAVL.dir/flags.make
+CMakeFiles/ArbolAVL.dir/estructuras/logic/NodoAVL.cpp.o: ../estructuras/logic/NodoAVL.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/ArbolAVL.dir/estructuras/logic/NodoAVL.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ArbolAVL.dir/estructuras/logic/NodoAVL.cpp.o -c /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/estructuras/logic/NodoAVL.cpp
 
-CMakeFiles/ArbolAVL.dir/logic/NodoAVL.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ArbolAVL.dir/logic/NodoAVL.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andres/CLionProjects/ArbolAVL/logic/NodoAVL.cpp > CMakeFiles/ArbolAVL.dir/logic/NodoAVL.cpp.i
+CMakeFiles/ArbolAVL.dir/estructuras/logic/NodoAVL.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ArbolAVL.dir/estructuras/logic/NodoAVL.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/estructuras/logic/NodoAVL.cpp > CMakeFiles/ArbolAVL.dir/estructuras/logic/NodoAVL.cpp.i
 
-CMakeFiles/ArbolAVL.dir/logic/NodoAVL.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ArbolAVL.dir/logic/NodoAVL.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andres/CLionProjects/ArbolAVL/logic/NodoAVL.cpp -o CMakeFiles/ArbolAVL.dir/logic/NodoAVL.cpp.s
+CMakeFiles/ArbolAVL.dir/estructuras/logic/NodoAVL.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ArbolAVL.dir/estructuras/logic/NodoAVL.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/estructuras/logic/NodoAVL.cpp -o CMakeFiles/ArbolAVL.dir/estructuras/logic/NodoAVL.cpp.s
 
-CMakeFiles/ArbolAVL.dir/logic/NodoAVL.cpp.o.requires:
+CMakeFiles/ArbolAVL.dir/estructuras/logic/NodoAVL.cpp.o.requires:
 
-.PHONY : CMakeFiles/ArbolAVL.dir/logic/NodoAVL.cpp.o.requires
+.PHONY : CMakeFiles/ArbolAVL.dir/estructuras/logic/NodoAVL.cpp.o.requires
 
-CMakeFiles/ArbolAVL.dir/logic/NodoAVL.cpp.o.provides: CMakeFiles/ArbolAVL.dir/logic/NodoAVL.cpp.o.requires
-	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/logic/NodoAVL.cpp.o.provides.build
-.PHONY : CMakeFiles/ArbolAVL.dir/logic/NodoAVL.cpp.o.provides
+CMakeFiles/ArbolAVL.dir/estructuras/logic/NodoAVL.cpp.o.provides: CMakeFiles/ArbolAVL.dir/estructuras/logic/NodoAVL.cpp.o.requires
+	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/estructuras/logic/NodoAVL.cpp.o.provides.build
+.PHONY : CMakeFiles/ArbolAVL.dir/estructuras/logic/NodoAVL.cpp.o.provides
 
-CMakeFiles/ArbolAVL.dir/logic/NodoAVL.cpp.o.provides.build: CMakeFiles/ArbolAVL.dir/logic/NodoAVL.cpp.o
+CMakeFiles/ArbolAVL.dir/estructuras/logic/NodoAVL.cpp.o.provides.build: CMakeFiles/ArbolAVL.dir/estructuras/logic/NodoAVL.cpp.o
 
 
-CMakeFiles/ArbolAVL.dir/logic/ArbolAVL.cpp.o: CMakeFiles/ArbolAVL.dir/flags.make
-CMakeFiles/ArbolAVL.dir/logic/ArbolAVL.cpp.o: ../logic/ArbolAVL.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andres/CLionProjects/ArbolAVL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/ArbolAVL.dir/logic/ArbolAVL.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ArbolAVL.dir/logic/ArbolAVL.cpp.o -c /home/andres/CLionProjects/ArbolAVL/logic/ArbolAVL.cpp
+CMakeFiles/ArbolAVL.dir/estructuras/logic/ArbolAVL.cpp.o: CMakeFiles/ArbolAVL.dir/flags.make
+CMakeFiles/ArbolAVL.dir/estructuras/logic/ArbolAVL.cpp.o: ../estructuras/logic/ArbolAVL.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/ArbolAVL.dir/estructuras/logic/ArbolAVL.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ArbolAVL.dir/estructuras/logic/ArbolAVL.cpp.o -c /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/estructuras/logic/ArbolAVL.cpp
 
-CMakeFiles/ArbolAVL.dir/logic/ArbolAVL.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ArbolAVL.dir/logic/ArbolAVL.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andres/CLionProjects/ArbolAVL/logic/ArbolAVL.cpp > CMakeFiles/ArbolAVL.dir/logic/ArbolAVL.cpp.i
+CMakeFiles/ArbolAVL.dir/estructuras/logic/ArbolAVL.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ArbolAVL.dir/estructuras/logic/ArbolAVL.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/estructuras/logic/ArbolAVL.cpp > CMakeFiles/ArbolAVL.dir/estructuras/logic/ArbolAVL.cpp.i
 
-CMakeFiles/ArbolAVL.dir/logic/ArbolAVL.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ArbolAVL.dir/logic/ArbolAVL.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andres/CLionProjects/ArbolAVL/logic/ArbolAVL.cpp -o CMakeFiles/ArbolAVL.dir/logic/ArbolAVL.cpp.s
+CMakeFiles/ArbolAVL.dir/estructuras/logic/ArbolAVL.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ArbolAVL.dir/estructuras/logic/ArbolAVL.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/estructuras/logic/ArbolAVL.cpp -o CMakeFiles/ArbolAVL.dir/estructuras/logic/ArbolAVL.cpp.s
 
-CMakeFiles/ArbolAVL.dir/logic/ArbolAVL.cpp.o.requires:
+CMakeFiles/ArbolAVL.dir/estructuras/logic/ArbolAVL.cpp.o.requires:
 
-.PHONY : CMakeFiles/ArbolAVL.dir/logic/ArbolAVL.cpp.o.requires
+.PHONY : CMakeFiles/ArbolAVL.dir/estructuras/logic/ArbolAVL.cpp.o.requires
 
-CMakeFiles/ArbolAVL.dir/logic/ArbolAVL.cpp.o.provides: CMakeFiles/ArbolAVL.dir/logic/ArbolAVL.cpp.o.requires
-	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/logic/ArbolAVL.cpp.o.provides.build
-.PHONY : CMakeFiles/ArbolAVL.dir/logic/ArbolAVL.cpp.o.provides
+CMakeFiles/ArbolAVL.dir/estructuras/logic/ArbolAVL.cpp.o.provides: CMakeFiles/ArbolAVL.dir/estructuras/logic/ArbolAVL.cpp.o.requires
+	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/estructuras/logic/ArbolAVL.cpp.o.provides.build
+.PHONY : CMakeFiles/ArbolAVL.dir/estructuras/logic/ArbolAVL.cpp.o.provides
 
-CMakeFiles/ArbolAVL.dir/logic/ArbolAVL.cpp.o.provides.build: CMakeFiles/ArbolAVL.dir/logic/ArbolAVL.cpp.o
+CMakeFiles/ArbolAVL.dir/estructuras/logic/ArbolAVL.cpp.o.provides.build: CMakeFiles/ArbolAVL.dir/estructuras/logic/ArbolAVL.cpp.o
 
 
 CMakeFiles/ArbolAVL.dir/logic/JsonMaker.cpp.o: CMakeFiles/ArbolAVL.dir/flags.make
 CMakeFiles/ArbolAVL.dir/logic/JsonMaker.cpp.o: ../logic/JsonMaker.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andres/CLionProjects/ArbolAVL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/ArbolAVL.dir/logic/JsonMaker.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ArbolAVL.dir/logic/JsonMaker.cpp.o -c /home/andres/CLionProjects/ArbolAVL/logic/JsonMaker.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/ArbolAVL.dir/logic/JsonMaker.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ArbolAVL.dir/logic/JsonMaker.cpp.o -c /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/logic/JsonMaker.cpp
 
 CMakeFiles/ArbolAVL.dir/logic/JsonMaker.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ArbolAVL.dir/logic/JsonMaker.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andres/CLionProjects/ArbolAVL/logic/JsonMaker.cpp > CMakeFiles/ArbolAVL.dir/logic/JsonMaker.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/logic/JsonMaker.cpp > CMakeFiles/ArbolAVL.dir/logic/JsonMaker.cpp.i
 
 CMakeFiles/ArbolAVL.dir/logic/JsonMaker.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ArbolAVL.dir/logic/JsonMaker.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andres/CLionProjects/ArbolAVL/logic/JsonMaker.cpp -o CMakeFiles/ArbolAVL.dir/logic/JsonMaker.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/logic/JsonMaker.cpp -o CMakeFiles/ArbolAVL.dir/logic/JsonMaker.cpp.s
 
 CMakeFiles/ArbolAVL.dir/logic/JsonMaker.cpp.o.requires:
 
@@ -179,16 +179,16 @@ CMakeFiles/ArbolAVL.dir/logic/JsonMaker.cpp.o.provides.build: CMakeFiles/ArbolAV
 
 CMakeFiles/ArbolAVL.dir/logic/guardarJson.cpp.o: CMakeFiles/ArbolAVL.dir/flags.make
 CMakeFiles/ArbolAVL.dir/logic/guardarJson.cpp.o: ../logic/guardarJson.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andres/CLionProjects/ArbolAVL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/ArbolAVL.dir/logic/guardarJson.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ArbolAVL.dir/logic/guardarJson.cpp.o -c /home/andres/CLionProjects/ArbolAVL/logic/guardarJson.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/ArbolAVL.dir/logic/guardarJson.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ArbolAVL.dir/logic/guardarJson.cpp.o -c /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/logic/guardarJson.cpp
 
 CMakeFiles/ArbolAVL.dir/logic/guardarJson.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ArbolAVL.dir/logic/guardarJson.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andres/CLionProjects/ArbolAVL/logic/guardarJson.cpp > CMakeFiles/ArbolAVL.dir/logic/guardarJson.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/logic/guardarJson.cpp > CMakeFiles/ArbolAVL.dir/logic/guardarJson.cpp.i
 
 CMakeFiles/ArbolAVL.dir/logic/guardarJson.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ArbolAVL.dir/logic/guardarJson.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andres/CLionProjects/ArbolAVL/logic/guardarJson.cpp -o CMakeFiles/ArbolAVL.dir/logic/guardarJson.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/logic/guardarJson.cpp -o CMakeFiles/ArbolAVL.dir/logic/guardarJson.cpp.s
 
 CMakeFiles/ArbolAVL.dir/logic/guardarJson.cpp.o.requires:
 
@@ -203,16 +203,16 @@ CMakeFiles/ArbolAVL.dir/logic/guardarJson.cpp.o.provides.build: CMakeFiles/Arbol
 
 CMakeFiles/ArbolAVL.dir/logic/leerJson.cpp.o: CMakeFiles/ArbolAVL.dir/flags.make
 CMakeFiles/ArbolAVL.dir/logic/leerJson.cpp.o: ../logic/leerJson.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andres/CLionProjects/ArbolAVL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/ArbolAVL.dir/logic/leerJson.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ArbolAVL.dir/logic/leerJson.cpp.o -c /home/andres/CLionProjects/ArbolAVL/logic/leerJson.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/ArbolAVL.dir/logic/leerJson.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ArbolAVL.dir/logic/leerJson.cpp.o -c /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/logic/leerJson.cpp
 
 CMakeFiles/ArbolAVL.dir/logic/leerJson.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ArbolAVL.dir/logic/leerJson.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andres/CLionProjects/ArbolAVL/logic/leerJson.cpp > CMakeFiles/ArbolAVL.dir/logic/leerJson.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/logic/leerJson.cpp > CMakeFiles/ArbolAVL.dir/logic/leerJson.cpp.i
 
 CMakeFiles/ArbolAVL.dir/logic/leerJson.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ArbolAVL.dir/logic/leerJson.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andres/CLionProjects/ArbolAVL/logic/leerJson.cpp -o CMakeFiles/ArbolAVL.dir/logic/leerJson.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/logic/leerJson.cpp -o CMakeFiles/ArbolAVL.dir/logic/leerJson.cpp.s
 
 CMakeFiles/ArbolAVL.dir/logic/leerJson.cpp.o.requires:
 
@@ -225,32 +225,58 @@ CMakeFiles/ArbolAVL.dir/logic/leerJson.cpp.o.provides: CMakeFiles/ArbolAVL.dir/l
 CMakeFiles/ArbolAVL.dir/logic/leerJson.cpp.o.provides.build: CMakeFiles/ArbolAVL.dir/logic/leerJson.cpp.o
 
 
+CMakeFiles/ArbolAVL.dir/estructuras/logic/cancion.cpp.o: CMakeFiles/ArbolAVL.dir/flags.make
+CMakeFiles/ArbolAVL.dir/estructuras/logic/cancion.cpp.o: ../estructuras/logic/cancion.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/ArbolAVL.dir/estructuras/logic/cancion.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ArbolAVL.dir/estructuras/logic/cancion.cpp.o -c /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/estructuras/logic/cancion.cpp
+
+CMakeFiles/ArbolAVL.dir/estructuras/logic/cancion.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ArbolAVL.dir/estructuras/logic/cancion.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/estructuras/logic/cancion.cpp > CMakeFiles/ArbolAVL.dir/estructuras/logic/cancion.cpp.i
+
+CMakeFiles/ArbolAVL.dir/estructuras/logic/cancion.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ArbolAVL.dir/estructuras/logic/cancion.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/estructuras/logic/cancion.cpp -o CMakeFiles/ArbolAVL.dir/estructuras/logic/cancion.cpp.s
+
+CMakeFiles/ArbolAVL.dir/estructuras/logic/cancion.cpp.o.requires:
+
+.PHONY : CMakeFiles/ArbolAVL.dir/estructuras/logic/cancion.cpp.o.requires
+
+CMakeFiles/ArbolAVL.dir/estructuras/logic/cancion.cpp.o.provides: CMakeFiles/ArbolAVL.dir/estructuras/logic/cancion.cpp.o.requires
+	$(MAKE) -f CMakeFiles/ArbolAVL.dir/build.make CMakeFiles/ArbolAVL.dir/estructuras/logic/cancion.cpp.o.provides.build
+.PHONY : CMakeFiles/ArbolAVL.dir/estructuras/logic/cancion.cpp.o.provides
+
+CMakeFiles/ArbolAVL.dir/estructuras/logic/cancion.cpp.o.provides.build: CMakeFiles/ArbolAVL.dir/estructuras/logic/cancion.cpp.o
+
+
 # Object files for target ArbolAVL
 ArbolAVL_OBJECTS = \
 "CMakeFiles/ArbolAVL.dir/main.cpp.o" \
 "CMakeFiles/ArbolAVL.dir/logic/Mapa.cpp.o" \
-"CMakeFiles/ArbolAVL.dir/logic/NodoAVL.cpp.o" \
-"CMakeFiles/ArbolAVL.dir/logic/ArbolAVL.cpp.o" \
+"CMakeFiles/ArbolAVL.dir/estructuras/logic/NodoAVL.cpp.o" \
+"CMakeFiles/ArbolAVL.dir/estructuras/logic/ArbolAVL.cpp.o" \
 "CMakeFiles/ArbolAVL.dir/logic/JsonMaker.cpp.o" \
 "CMakeFiles/ArbolAVL.dir/logic/guardarJson.cpp.o" \
-"CMakeFiles/ArbolAVL.dir/logic/leerJson.cpp.o"
+"CMakeFiles/ArbolAVL.dir/logic/leerJson.cpp.o" \
+"CMakeFiles/ArbolAVL.dir/estructuras/logic/cancion.cpp.o"
 
 # External object files for target ArbolAVL
 ArbolAVL_EXTERNAL_OBJECTS =
 
 ArbolAVL: CMakeFiles/ArbolAVL.dir/main.cpp.o
 ArbolAVL: CMakeFiles/ArbolAVL.dir/logic/Mapa.cpp.o
-ArbolAVL: CMakeFiles/ArbolAVL.dir/logic/NodoAVL.cpp.o
-ArbolAVL: CMakeFiles/ArbolAVL.dir/logic/ArbolAVL.cpp.o
+ArbolAVL: CMakeFiles/ArbolAVL.dir/estructuras/logic/NodoAVL.cpp.o
+ArbolAVL: CMakeFiles/ArbolAVL.dir/estructuras/logic/ArbolAVL.cpp.o
 ArbolAVL: CMakeFiles/ArbolAVL.dir/logic/JsonMaker.cpp.o
 ArbolAVL: CMakeFiles/ArbolAVL.dir/logic/guardarJson.cpp.o
 ArbolAVL: CMakeFiles/ArbolAVL.dir/logic/leerJson.cpp.o
+ArbolAVL: CMakeFiles/ArbolAVL.dir/estructuras/logic/cancion.cpp.o
 ArbolAVL: CMakeFiles/ArbolAVL.dir/build.make
 ArbolAVL: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.9.1
 ArbolAVL: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.9.1
 ArbolAVL: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.9.1
 ArbolAVL: CMakeFiles/ArbolAVL.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/andres/CLionProjects/ArbolAVL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable ArbolAVL"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable ArbolAVL"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ArbolAVL.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -260,11 +286,12 @@ CMakeFiles/ArbolAVL.dir/build: ArbolAVL
 
 CMakeFiles/ArbolAVL.dir/requires: CMakeFiles/ArbolAVL.dir/main.cpp.o.requires
 CMakeFiles/ArbolAVL.dir/requires: CMakeFiles/ArbolAVL.dir/logic/Mapa.cpp.o.requires
-CMakeFiles/ArbolAVL.dir/requires: CMakeFiles/ArbolAVL.dir/logic/NodoAVL.cpp.o.requires
-CMakeFiles/ArbolAVL.dir/requires: CMakeFiles/ArbolAVL.dir/logic/ArbolAVL.cpp.o.requires
+CMakeFiles/ArbolAVL.dir/requires: CMakeFiles/ArbolAVL.dir/estructuras/logic/NodoAVL.cpp.o.requires
+CMakeFiles/ArbolAVL.dir/requires: CMakeFiles/ArbolAVL.dir/estructuras/logic/ArbolAVL.cpp.o.requires
 CMakeFiles/ArbolAVL.dir/requires: CMakeFiles/ArbolAVL.dir/logic/JsonMaker.cpp.o.requires
 CMakeFiles/ArbolAVL.dir/requires: CMakeFiles/ArbolAVL.dir/logic/guardarJson.cpp.o.requires
 CMakeFiles/ArbolAVL.dir/requires: CMakeFiles/ArbolAVL.dir/logic/leerJson.cpp.o.requires
+CMakeFiles/ArbolAVL.dir/requires: CMakeFiles/ArbolAVL.dir/estructuras/logic/cancion.cpp.o.requires
 
 .PHONY : CMakeFiles/ArbolAVL.dir/requires
 
@@ -273,6 +300,6 @@ CMakeFiles/ArbolAVL.dir/clean:
 .PHONY : CMakeFiles/ArbolAVL.dir/clean
 
 CMakeFiles/ArbolAVL.dir/depend:
-	cd /home/andres/CLionProjects/ArbolAVL/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/andres/CLionProjects/ArbolAVL /home/andres/CLionProjects/ArbolAVL /home/andres/CLionProjects/ArbolAVL/cmake-build-debug /home/andres/CLionProjects/ArbolAVL/cmake-build-debug /home/andres/CLionProjects/ArbolAVL/cmake-build-debug/CMakeFiles/ArbolAVL.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/cmake-build-debug /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/cmake-build-debug /home/andres/Desktop/Odyssey-DesktopApp/ArbolAVL/cmake-build-debug/CMakeFiles/ArbolAVL.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ArbolAVL.dir/depend
 
