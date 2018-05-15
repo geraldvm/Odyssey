@@ -16,7 +16,7 @@ void convertidor::mp3Binario() {
         return;
     }
     fseek(file,0,SEEK_END);
-    size = ftell(file)/2;
+    size = ftell(file);
     rewind(file);
     bites = (char*) malloc(sizeof(char)*size);
     if (bites == nullptr) {
@@ -27,19 +27,23 @@ void convertidor::mp3Binario() {
     if (result != size) {
         cout << "Error al leer archivo" << endl;
     }
-    for (int i = 0; i < size; i++) {
+    std::ofstream text("bits.txt");
+    char line;
+    for (int i = 0; i < size/15; i++) {
         bitesNormales.push_back(bites[i] + '0');
+        line = bitesNormales[i] + '0';
+        text << line + '0';
+        text << '\n';
     }
     fclose(file);
 }
 
 void convertidor::binarioMp3() {
     FILE * out;
-    auto *buffer = (char*) malloc(sizeof(char)*size);
-    for (int i = 0; i < size; i++) {
-        buffer[i] = bitesNormales[i] - '0';
-        //std::cout<<buffer[i]<<"-";
 
+    auto *buffer = (char*) malloc(sizeof(char)*size);
+    for (int i = 0; i < size/15; i++) {
+        buffer[i] = bitesNormales[i] - '0';
         //cout << bitesNormales[i] + '0' << endl; siempre se tiene que sumar '0'
         // para leerlos normal y restarlo al pasarlo
     }
