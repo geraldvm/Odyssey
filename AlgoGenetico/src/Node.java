@@ -2,8 +2,6 @@ public class Node {
     private Object item;
     private Node next;
 
-
-
     public void setItem(Object item) {
         this.item = item;
     }

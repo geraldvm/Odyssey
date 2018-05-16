@@ -10,10 +10,17 @@ public class algoGenetico {
     private int generaciones = 2;
     private int size = 8;
 
+    /**
+     * Función que aumenta el número de generaciones si los resultados son mal calificados
+     */
     public void aumentarGeneraciones() {
         generaciones++;
     }
 
+    /**
+     * @param fraseIn : String que corresponde a la frase a completar
+     * @param letraIn : Letra completa de la canción
+     */
     public algoGenetico(String fraseIn, String letraIn) {
         letra = letraIn;
         String[] array = fraseIn.split(" ");
@@ -23,6 +30,9 @@ public class algoGenetico {
         generarIniciales();
     }
 
+    /**
+     * Función que genera la lista de objetos inicial basado en la letra completa de la canción
+     */
     private void generarIniciales() {
         String[] palabras = letra.split(" ");
         String[] aux = new String[size];
@@ -38,6 +48,10 @@ public class algoGenetico {
         }
     }
 
+    /**
+     * Crea la lista de hijos según la cantidad de genereaciones definida
+     * @return : Hijo con mayor fitness que se encuentra en la última generación
+     */
     public String[] generarHijos() {
         int primero = 0;
         int segundo = ThreadLocalRandom.current().nextInt(primero+1, iniciales.size-1);
@@ -58,6 +72,12 @@ public class algoGenetico {
         return buscarMejor();
     }
 
+    /**
+     * Función que combina dos miembros de la generación anterior
+     * @param a : Objeto padre a combinar
+     * @param b : Segundo objeto padre
+     * @return : Valor resultante
+     */
     private String[] combinar(String[] a, String[] b) {
         String[] res = new String[size];
         SimpleList indicesIgualesA = new SimpleList();
@@ -91,6 +111,10 @@ public class algoGenetico {
         return res;
     }
 
+    /**
+     * Calcula el fitness basado en la cantidad de palabras de la frase inicial que se encuentran
+     * @return : Hijo de la última generación con el mayor fitness
+     */
     private String[] buscarMejor() {
         int indice = 0;
         int fitnessMayor = 0;

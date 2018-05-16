@@ -10,7 +10,3 @@
 int main() {
     return 0;
 }
-
-//poner convertidorMp3 a cliente java
-//mantener lista con metadata en memoria y basar guardados en esa
-//meter en carpeta debugger en server git
