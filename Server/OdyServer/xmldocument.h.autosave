@@ -7,6 +7,7 @@
 #include <QtXml/QDomDocument>
 #include <QtXml/QDomElement>
 #include "DataStructures/simplelist.h"
+#include "Dmessage.h"
 
 class XMLDocument
 {
@@ -16,6 +17,7 @@ public:
     void song(std::string number, std::string data);
     void songList(SimpleList<std::string> songs);//como parametro lista enlazada o arreglo con las 10 canciones
     void userList(SimpleList<std::string> users);
+    void sendMsg(SimpleList<Message> messageList);
 private:
     QString path;
 

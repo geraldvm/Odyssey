@@ -32,7 +32,7 @@ void Converter::mp3ToBinary()
     }
     for (int i = 0; i < size; i++) {
         bitesNormales.push_back(bites[i] + '0');
-        xml.write(new QString(bites[i]));
+        //xml.write(new QString(bites[i]));
 
     }
     fclose(file);

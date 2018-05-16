@@ -7,18 +7,25 @@
 #include <QtXml/QDomElement>
 #include <QObject>
 #include <QFile>
+#include <QDir>
 
 class ParserXML
 {
 public:
     ParserXML();
     void getRoot();
+    void newUserParser();
+    void userVerificationParser();
+    void modifyMetaData();
+    void pageRequested();
+    void songRequested();
+    void deleteSong();
+    void sendMsg();
 
 private:
     QDomDocument *xmlTemp;
     QDomElement getHeader();
-    void newUserParser();
-    void userVerificationParser();
+
 };
 
 #endif // PARSERXML_H

@@ -1,6 +1,6 @@
 #include "server.h"
 #include "parserxml.h"
-
+#include <QDir>
 Server::Server(QObject *parent) :
     QObject(parent)
 {
@@ -89,7 +89,7 @@ void Server::sendFile(QTcpSocket* socket)
 void Server::writeRequested(std::string data)
 {
       std::ofstream file;
-      file.open ("requested.xml");
+      file.open (QDir::homePath().toStdString()+"/Music/Odyssey/Temp/requested.xml");
       file << data;
       file.close();
 }

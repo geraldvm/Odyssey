@@ -32,7 +32,10 @@ SOURCES += \
     DataStructures/nodo.cpp \
     parserxml.cpp \
     xmldocument.cpp \
-    Mp3Binary/converter.cpp
+    Mp3Binary/converter.cpp \
+    DataStructures/node.cpp \
+    DataStructures/simplelist.cpp \
+    Document/message.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -42,7 +45,10 @@ HEADERS += \
     DataStructures/nodo.h \
     parserxml.h \
     xmldocument.h \
-    Mp3Binary/converter.h
+    Mp3Binary/converter.h \
+    DataStructures/node.h \
+    DataStructures/simplelist.h \
+    Document/message.h
 
 FORMS += \
         mainwindow.ui
