@@ -37,17 +37,17 @@ void Server::newConnection(){
             GET.erase(0,2);
 
             socket->waitForReadyRead(3000);
-            std::cout<<"Client: "<<st<<std::endl;
-            writeRequested(st);
+            //std::cout<<"Client: "<<st<<std::endl;
+            //writeRequested(st);
             //sendFile(socket);
             //socket->write("YESSS\n");
             socket->waitForBytesWritten(1000);
             //std::cout<<"COMPARE "<<std::endl;
-            if(st.compare("send")==2){
+            /*if(st.compare("send")==2){
                 std::cout<<"Send Data "<<std::endl;
                 sendFile(socket);
                 socket->waitForBytesWritten(3000);
-            }
+            }*/
             //std::cout<<"Client: "<<st<std::endl;
         }else{
 
@@ -84,6 +84,7 @@ void Server::sendFile(QTcpSocket* socket)
         read.clear();
         //https://stackoverflow.com/questions/13800664/how-to-send-a-file-along-with-its-filename-over-qtcpsocket
     }
+
     inputFile.close();
 }
 /**

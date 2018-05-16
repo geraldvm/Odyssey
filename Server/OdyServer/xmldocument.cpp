@@ -4,9 +4,8 @@ XMLDocument::XMLDocument()
 {
 
     path=QDir::homePath().append("/Music/Odyssey/Temp/myXml.xml");
-    QFile xml(QDir::homePath().append(path));
+    QFile xml(path);
     xml.open(QIODevice::WriteOnly);
-
     QXmlStreamWriter docXml(&xml);
     docXml.setAutoFormatting(true);
 
@@ -25,7 +24,7 @@ void XMLDocument::userVerification(std::string status)
     docXml.writeStartElement("userVerification");
 
     docXml.writeStartElement("user");
-    docXml.writeAttribute("Status",status);
+    //docXml.writeAttribute("Status",status);
     docXml.writeEndElement();
 
     docXml.writeEndElement();

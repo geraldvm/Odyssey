@@ -35,7 +35,7 @@ void Logic::decision()
     case "deleteSong":
         //Llamar metodo para eliminar Cancion
         break;
-    case "newM":
+    case "newMsg":
         //Llamar metodo para eliminar Cancion
         break;
     default:
@@ -45,9 +45,17 @@ void Logic::decision()
 
 void Logic::writeGET()
 {
-    std::ofstream file;
+    ofstream file;
     file.open (QDir::homePath().toStdString()+"/Music/Odyssey/Temp/requested.xml");
     file << GET;
     file.close();
+}
+
+void Logic::getFileList()
+{
+    string path = QDir::homePath().toStdString()+"/Music/Odyssey/Library";
+    for (auto & file : filesystem::directory_iterator(path)){
+        //put file into array
+    }
 }
 

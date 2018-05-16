@@ -3,6 +3,10 @@
 #include <iostream>
 #include "parserxml.h"
 #include "xmldocument.h"
+#include <string>
+#include <iostream>
+#include <filesystem>
+
 using namespace std;
 class Logic
 {
@@ -18,6 +22,7 @@ private:
      * @brief writeGET create requested.xml
      */
     void writeGET();
+    void getFileList();
 
 };
 

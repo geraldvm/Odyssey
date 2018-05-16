@@ -13,7 +13,7 @@ class ParserXML
 {
 public:
     ParserXML();
-    void getRoot();
+    std::string getRoot();
     void newUserParser();
     void userVerificationParser();
     void modifyMetaData();
