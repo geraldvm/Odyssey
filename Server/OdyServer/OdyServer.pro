@@ -36,7 +36,8 @@ SOURCES += \
     DataStructures/node.cpp \
     DataStructures/simplelist.cpp \
     Document/message.cpp \
-    Document/logic.cpp
+    Document/logic.cpp \
+    Document/page.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -50,7 +51,8 @@ HEADERS += \
     DataStructures/node.h \
     DataStructures/simplelist.h \
     Document/message.h \
-    Document/logic.h
+    Document/logic.h \
+    Document/page.h
 
 FORMS += \
         mainwindow.ui
