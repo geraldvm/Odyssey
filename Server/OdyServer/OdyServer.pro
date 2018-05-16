@@ -35,7 +35,8 @@ SOURCES += \
     Mp3Binary/converter.cpp \
     DataStructures/node.cpp \
     DataStructures/simplelist.cpp \
-    Document/message.cpp
+    Document/message.cpp \
+    Document/logic.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -48,7 +49,8 @@ HEADERS += \
     Mp3Binary/converter.h \
     DataStructures/node.h \
     DataStructures/simplelist.h \
-    Document/message.h
+    Document/message.h \
+    Document/logic.h
 
 FORMS += \
         mainwindow.ui

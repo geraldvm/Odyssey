@@ -9,20 +9,19 @@ ParserXML::ParserXML()
     xml.close();
 }
 
-void ParserXML::getRoot()
-{
 
+std::string ParserXML::getRoot()
+{
 
     QDomElement root =xmlTemp->documentElement();
     std::cout<<root.tagName().toStdString()<<std::endl;
-
+    return root.tagName().toStdString();
     /*
     QFile xml("myXml.xml");
     xml.open(QIODevice::ReadOnly);
     xmlTemporal= new QDomDocument();
     xmlTemporal->setContent(&xml);
     xml.close();*/
-
 }
 
 QDomElement ParserXML::getHeader()

@@ -25,7 +25,7 @@ void XMLDocument::userVerification(std::string status)
     docXml.writeStartElement("userVerification");
 
     docXml.writeStartElement("user");
-    //docXml.writeAttribute("Status",status);
+    docXml.writeAttribute("Status",status);
     docXml.writeEndElement();
 
     docXml.writeEndElement();
@@ -85,7 +85,12 @@ void XMLDocument::userList(SimpleList<std::string> users)
 
 }
 
-void XMLDocument::songList(SimpleList<std::string> users)
+void XMLDocument::sendMsg(SimpleList<Message> messageList)
+{
+
+}
+
+void XMLDocument::songList(SimpleList<std::string> song)
 {
     QFile xml(path);
     xml.open(QIODevice::WriteOnly);

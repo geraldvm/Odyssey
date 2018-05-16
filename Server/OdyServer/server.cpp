@@ -15,10 +15,6 @@ Server::Server(QObject *parent) :
         ParserXML* xm = new ParserXML();
         xm->getRoot();
     }
-
-
-
-
 }
 
 void Server::stop()
@@ -36,8 +32,10 @@ void Server::newConnection(){
     while(true){
         if(socket->bytesAvailable()>0){
             std::cout<<"Reading "<<socket->bytesAvailable()<<std::endl;
-            std::string st = socket->readAll().toStdString();
-            st.erase(0,2);
+
+            std::string GET = socket->readAll().toStdString();
+            GET.erase(0,2);
+
             socket->waitForReadyRead(3000);
             std::cout<<"Client: "<<st<<std::endl;
             writeRequested(st);
@@ -61,7 +59,10 @@ void Server::newConnection(){
     }
 
 }
-
+/**
+ * @brief Server::sendFile
+ * @param socket
+ */
 void Server::sendFile(QTcpSocket* socket)
 {
     //QString path = "/home/gerald/Desktop/ver.txt";
@@ -85,15 +86,9 @@ void Server::sendFile(QTcpSocket* socket)
     }
     inputFile.close();
 }
-
-void Server::writeRequested(std::string data)
-{
-      std::ofstream file;
-      file.open (QDir::homePath().toStdString()+"/Music/Odyssey/Temp/requested.xml");
-      file << data;
-      file.close();
-}
-
+/**
+ * @brief Server::readRequested
+ */
 void Server::readRequested()
 {
 
