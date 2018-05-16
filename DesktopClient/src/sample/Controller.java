@@ -533,7 +533,7 @@ public class Controller implements Initializable{
     }
     public void onModifySong(ActionEvent e){
         song= musicList.getSelectionModel().getSelectedItem();
-        score="0";
+        score="1";
         modifyPanel.setVisible(true);
         playerBtn.setDisable(true);
         libraryBtn.setDisable(true);

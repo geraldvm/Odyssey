@@ -398,7 +398,7 @@
                <children>
                   <ImageView fx:id="star1" fitHeight="150.0" fitWidth="25.0" onMousePressed="#onStarClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/icon_star.png" />
+                        <Image url="@images/icon_star_filled.png" />
                      </image>
                   </ImageView>
                   <Separator prefWidth="200.0" visible="false" />
@@ -430,6 +430,11 @@
             <ImageView fx:id="starFilled" fitHeight="150.0" fitWidth="25.0" layoutX="32.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@images/icon_star_filled.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="spotifyBtn" fitHeight="150.0" fitWidth="37.0" layoutX="26.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icon_spotify.png" />
                </image>
             </ImageView>
          </children>
