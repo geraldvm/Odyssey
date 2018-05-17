@@ -37,7 +37,8 @@ SOURCES += \
     DataStructures/simplelist.cpp \
     Document/message.cpp \
     Document/logic.cpp \
-    Document/page.cpp
+    Document/page.cpp \
+    Document/jsonmaker.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -52,7 +53,11 @@ HEADERS += \
     DataStructures/simplelist.h \
     Document/message.h \
     Document/logic.h \
-    Document/page.h
+    Document/page.h \
+    Document/jsonmaker.h \
+    DataStructures/nodolistasimple.h \
+    DataStructures/listasimple.h \
+    DataStructures/hashmap.h
 
 FORMS += \
         mainwindow.ui

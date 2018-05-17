@@ -432,7 +432,7 @@
                   <Image url="@images/icon_star_filled.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="spotifyBtn" fitHeight="150.0" fitWidth="37.0" layoutX="26.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="spotifyBtn" fitHeight="150.0" fitWidth="37.0" layoutX="26.0" layoutY="55.0" onMousePressed="#onSpotifyClicked" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/icon_spotify.png" />
                </image>

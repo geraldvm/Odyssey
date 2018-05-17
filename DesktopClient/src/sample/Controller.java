@@ -703,7 +703,6 @@ public class Controller implements Initializable{
         for(int x=0;x<this.comboFriends.getItems().size();x++){
             this.comboFriends.getItems().remove(0);
         }
-
         for (int i =0;i<this.friendsList.length();i++){
             this.comboFriends.getItems().add(this.friendsList.findItem(i).toString());
         }
@@ -724,6 +723,21 @@ public class Controller implements Initializable{
     public void onCancelMsgClicked(MouseEvent e){
         msgPanel.setVisible(false);
         libraryPanel.setVisible(true);
+
+    }
+    public void onSpotifyClicked(MouseEvent e){
+        modifyPanel.setVisible(false);
+        playerBtn.setDisable(false);
+        libraryBtn.setDisable(false);
+        socialBtn.setDisable(false);
+        userBtn.setDisable(false);
+        libraryPanel.setVisible(true);
+        myXML.spotifyRequested(song);
+        try {
+            String path = System.getProperty("user.dir").toString()+"/src/sample/Files/temp.xml";
+            String data = readFileAsString(path);
+            ClientThread.client.sendMSG(data);
+        } catch (Exception o) {};
 
     }
 

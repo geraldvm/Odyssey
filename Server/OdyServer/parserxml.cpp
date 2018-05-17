@@ -96,3 +96,13 @@ void ParserXML::sendMsg()
     QString song = Msg.attribute("Song","");
 
 }
+
+void ParserXML::spotifyRequested()
+{
+
+    QDomElement Spotify =this->getHeader().firstChild().toElement();
+    QString song = Spotify.attribute("Name","");
+
+}
+
+

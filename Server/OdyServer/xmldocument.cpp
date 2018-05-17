@@ -2,7 +2,6 @@
 #include <QDir>
 XMLDocument::XMLDocument()
 {
-
     path=QDir::homePath().append("/Music/Odyssey/Temp/myXml.xml");
     QFile xml(path);
     xml.open(QIODevice::WriteOnly);
@@ -70,11 +69,11 @@ void XMLDocument::userList(SimpleList<std::string> users)
     docXml.writeStartDocument();
 
     docXml.writeStartElement("UserList");
-    for(int i =0;i<users.getLength();i++){
+    /*for(int i =0;i<users.getLength();i++){
         docXml.writeStartElement("user");
         docXml.writeAttribute("username",QString::fromStdString(users.findPos(i)));
         docXml.writeEndElement();
-    }
+    }*/
 
 
     docXml.writeEndElement();
@@ -110,10 +109,7 @@ void XMLDocument::songList(SimpleList<std::string> song)
         docXml.writeAttribute("Lyrics","");
         docXml.writeEndElement();
     }
-
-
     docXml.writeEndElement();
-
     docXml.writeEndDocument();
     xml.close();
 }

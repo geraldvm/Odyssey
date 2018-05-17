@@ -5,7 +5,7 @@
 #include "xmldocument.h"
 #include <string>
 #include <iostream>
-#include <filesystem>
+
 
 using namespace std;
 class Logic
@@ -16,8 +16,8 @@ public:
 
 private:
     string GET;
-    XMLDocument POST;
-    ParserXML xml;
+    XMLDocument *POST= new XMLDocument();
+    ParserXML *xml= new ParserXML();
     /**
      * @brief writeGET create requested.xml
      */

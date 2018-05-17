@@ -62,7 +62,8 @@ SOURCES       = ../OdyServer/main.cpp \
 		../OdyServer/DataStructures/node.cpp \
 		../OdyServer/DataStructures/simplelist.cpp \
 		../OdyServer/Document/message.cpp \
-		../OdyServer/Document/logic.cpp moc_mainwindow.cpp \
+		../OdyServer/Document/logic.cpp \
+		../OdyServer/Document/page.cpp moc_mainwindow.cpp \
 		moc_server.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
@@ -77,6 +78,7 @@ OBJECTS       = main.o \
 		simplelist.o \
 		message.o \
 		logic.o \
+		page.o \
 		moc_mainwindow.o \
 		moc_server.o
 DIST          = /home/gerald/Qt/5.10.0/gcc_64/mkspecs/features/spec_pre.prf \
@@ -273,7 +275,8 @@ DIST          = /home/gerald/Qt/5.10.0/gcc_64/mkspecs/features/spec_pre.prf \
 		../OdyServer/DataStructures/node.h \
 		../OdyServer/DataStructures/simplelist.h \
 		../OdyServer/Document/message.h \
-		../OdyServer/Document/logic.h ../OdyServer/main.cpp \
+		../OdyServer/Document/logic.h \
+		../OdyServer/Document/page.h ../OdyServer/main.cpp \
 		../OdyServer/mainwindow.cpp \
 		../OdyServer/server.cpp \
 		../OdyServer/DataStructures/binarysearch.cpp \
@@ -285,7 +288,8 @@ DIST          = /home/gerald/Qt/5.10.0/gcc_64/mkspecs/features/spec_pre.prf \
 		../OdyServer/DataStructures/node.cpp \
 		../OdyServer/DataStructures/simplelist.cpp \
 		../OdyServer/Document/message.cpp \
-		../OdyServer/Document/logic.cpp
+		../OdyServer/Document/logic.cpp \
+		../OdyServer/Document/page.cpp
 QMAKE_TARGET  = OdyServer
 DESTDIR       = 
 TARGET        = OdyServer
@@ -691,8 +695,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /home/gerald/Qt/5.10.0/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../OdyServer/mainwindow.h ../OdyServer/server.h ../OdyServer/DataStructures/binarysearch.h ../OdyServer/DataStructures/abb.h ../OdyServer/DataStructures/nodo.h ../OdyServer/parserxml.h ../OdyServer/xmldocument.h ../OdyServer/Mp3Binary/converter.h ../OdyServer/DataStructures/node.h ../OdyServer/DataStructures/simplelist.h ../OdyServer/Document/message.h ../OdyServer/Document/logic.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../OdyServer/main.cpp ../OdyServer/mainwindow.cpp ../OdyServer/server.cpp ../OdyServer/DataStructures/binarysearch.cpp ../OdyServer/DataStructures/abb.cpp ../OdyServer/DataStructures/nodo.cpp ../OdyServer/parserxml.cpp ../OdyServer/xmldocument.cpp ../OdyServer/Mp3Binary/converter.cpp ../OdyServer/DataStructures/node.cpp ../OdyServer/DataStructures/simplelist.cpp ../OdyServer/Document/message.cpp ../OdyServer/Document/logic.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../OdyServer/mainwindow.h ../OdyServer/server.h ../OdyServer/DataStructures/binarysearch.h ../OdyServer/DataStructures/abb.h ../OdyServer/DataStructures/nodo.h ../OdyServer/parserxml.h ../OdyServer/xmldocument.h ../OdyServer/Mp3Binary/converter.h ../OdyServer/DataStructures/node.h ../OdyServer/DataStructures/simplelist.h ../OdyServer/Document/message.h ../OdyServer/Document/logic.h ../OdyServer/Document/page.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../OdyServer/main.cpp ../OdyServer/mainwindow.cpp ../OdyServer/server.cpp ../OdyServer/DataStructures/binarysearch.cpp ../OdyServer/DataStructures/abb.cpp ../OdyServer/DataStructures/nodo.cpp ../OdyServer/parserxml.cpp ../OdyServer/xmldocument.cpp ../OdyServer/Mp3Binary/converter.cpp ../OdyServer/DataStructures/node.cpp ../OdyServer/DataStructures/simplelist.cpp ../OdyServer/Document/message.cpp ../OdyServer/Document/logic.cpp ../OdyServer/Document/page.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../OdyServer/mainwindow.ui $(DISTDIR)/
 
 
@@ -1758,6 +1762,9 @@ logic.o: ../OdyServer/Document/logic.cpp ../OdyServer/Document/logic.h \
 		/home/gerald/Qt/5.10.0/gcc_64/include/QtCore/QString \
 		../OdyServer/Document/message.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o logic.o ../OdyServer/Document/logic.cpp
+
+page.o: ../OdyServer/Document/page.cpp ../OdyServer/Document/page.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o page.o ../OdyServer/Document/page.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

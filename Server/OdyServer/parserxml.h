@@ -21,6 +21,7 @@ public:
     void songRequested();
     void deleteSong();
     void sendMsg();
+    void spotifyRequested();
 
 private:
     QDomDocument *xmlTemp;

@@ -304,4 +304,37 @@ public class XMLDocument {
         }catch (Exception e){};
 
     }
+    public void spotifyRequested(String song){
+        try{
+            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+
+            Document document = documentBuilder.newDocument();
+
+            Element head = document.createElement("spotifyRequested");
+            document.appendChild(head);
+
+            Element element = document.createElement("Song");
+            head.appendChild(element);
+
+            Attr attr = document.createAttribute("Name");
+            attr.setValue(song);
+            element.setAttributeNode(attr);
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(document);
+
+            String path =System.getProperty("user.dir").toString()+"/src/sample/Files/temp.xml";
+            StreamResult streamResult = new StreamResult(new File(path));
+
+            transformer.transform(source,streamResult);
+
+            System.out.println("temp.xml sucessfully!\n");
+
+
+
+        }catch (Exception e){};
+
+    }
 }

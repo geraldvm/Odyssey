@@ -3,44 +3,40 @@
 Logic::Logic(string GET)
 {
     this->GET=GET;
-    this->xml=new ParserXML();
-    this->POST= new XMLDocument();
 }
 
 void Logic::decision()
 {
-    x=xml.getRoot();
-    switch (x) {
-    case "NewUser":
+    string x=xml->getRoot();
+
+    if(x=="NewUser"){
         //Llamar metodo para guardar datos
-        break;
-    case "userVerification":
+    }
+    else if(x=="userVerification"){
         //Llamar metodo para verificar datos
-        POST.userVerification(true);//or False
+        POST->userVerification("true");//or False
         //enviar POST a cliente
-        break;
-    case "ModifyMetaData":
+    }
+    else if(x=="ModifyMetaData"){
         //Llamar metodo para modificar Metadata
-        break;
-    case "pageRequested":
+    }
+    else if(x=="pageRequested"){
         //Llamar metodo para cargar paginas
         //POST.songList();
         //enviar POST a cliente
-        break;
-    case "songRequested":
+    }
+    else if(x=="songRequested"){
         //Llamar metodo para cargar Cancion
         //enviar POST a cliente
         //POST.song();
-        break;
-    case "deleteSong":
-        //Llamar metodo para eliminar Cancion
-        break;
-    case "newMsg":
-        //Llamar metodo para eliminar Cancion
-        break;
-    default:
-        break;
     }
+    else if(x=="deleteSong"){
+        //Llamar metodo para eliminar Cancion
+    }
+    else if(x=="newMsg"){
+        //Llamar metodo para eliminar Cancion
+    }
+
 }
 
 void Logic::writeGET()
@@ -54,8 +50,8 @@ void Logic::writeGET()
 void Logic::getFileList()
 {
     string path = QDir::homePath().toStdString()+"/Music/Odyssey/Library";
-    for (auto & file : filesystem::directory_iterator(path)){
+    /*for (auto & file : filesystem::directory_iterator(path)){
         //put file into array
-    }
+    }*/
 }
 
