@@ -38,7 +38,12 @@ SOURCES += \
     Document/message.cpp \
     Document/logic.cpp \
     Document/page.cpp \
-    Document/jsonmaker.cpp
+    Document/jsonmaker.cpp \
+    DataStructures/arbolavl.cpp \
+    DataStructures/cancion.cpp \
+    Document/guardarjson.cpp \
+    Document/leerjson.cpp \
+    Document/mapa.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -57,7 +62,13 @@ HEADERS += \
     Document/jsonmaker.h \
     DataStructures/nodolistasimple.h \
     DataStructures/listasimple.h \
-    DataStructures/hashmap.h
+    DataStructures/hashmap.h \
+    DataStructures/nodoavl.h \
+    DataStructures/arbolavl.h \
+    DataStructures/cancion.h \
+    Document/guardarjson.h \
+    Document/leerjson.h \
+    Document/mapa.h
 
 FORMS += \
         mainwindow.ui
