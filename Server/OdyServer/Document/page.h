@@ -12,9 +12,11 @@ using namespace std;
 class Page
 {
 public:
-    Page(string *array);
+    Page();
     ~Page();
     string * getData(int page);
+    void setArray(string *array);
+    int getSize(int page);
 
 private:
     string *array;

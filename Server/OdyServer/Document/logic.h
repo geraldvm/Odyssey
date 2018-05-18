@@ -5,14 +5,16 @@
 #include "xmldocument.h"
 #include <string>
 #include <iostream>
+#include "page.h"
 
 
 using namespace std;
 class Logic
 {
 public:
-    Logic(string GET);
+    Logic();
     void decision();
+    void setGET(string GET);
 
 private:
     string GET;
@@ -23,6 +25,8 @@ private:
      */
     void writeGET();
     void getFileList();
+    Page* page;
+
 
 };
 

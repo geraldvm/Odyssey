@@ -1,8 +1,9 @@
 #include "logic.h"
 
-Logic::Logic(string GET)
+Logic::Logic()
 {
-    this->GET=GET;
+
+    this->page= new Page();
 }
 
 void Logic::decision()
@@ -22,6 +23,8 @@ void Logic::decision()
     }
     else if(x=="pageRequested"){
         //Llamar metodo para cargar paginas
+        xml->pageRequested();
+        POST->songList(page->getData(3),page->getSize(1));
         //POST.songList();
         //enviar POST a cliente
     }
@@ -37,6 +40,11 @@ void Logic::decision()
         //Llamar metodo para eliminar Cancion
     }
 
+}
+
+void Logic::setGET(string GET)
+{
+    this->GET=GET;
 }
 
 void Logic::writeGET()
