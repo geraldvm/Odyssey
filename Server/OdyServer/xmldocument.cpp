@@ -88,7 +88,7 @@ void XMLDocument::sendMsg(SimpleList<Message> messageList)
 
 }
 
-void XMLDocument::songList(std::string& array,int size)
+void XMLDocument::songList(std::string* array,int size)
 {
     QFile xml(path);
     xml.open(QIODevice::WriteOnly);
@@ -99,10 +99,14 @@ void XMLDocument::songList(std::string& array,int size)
     docXml.writeStartDocument();
 
     docXml.writeStartElement("SongList");
+    QString name;
+    string x;
     for(int i =0;i<size;i++){ //i<list.lenght
         docXml.writeStartElement("Song");
-        docXml.writeAttribute("Name",*(array+i));
-
+        x = *(array+i);
+        name= QString::fromStdString(x);
+                //toStdString(x);
+        docXml.writeAttribute("Name",name);
         docXml.writeEndElement();
     }
     docXml.writeEndElement();
