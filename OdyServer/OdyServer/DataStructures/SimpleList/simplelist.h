@@ -91,7 +91,7 @@ class SimpleList {
          * @return Retorna el valor de la posición seleccionada en tipo QString.
          */
         QString getPos(int pos);
-
+        T get(int i);
     private:
         Node<T>* head;
         int size;

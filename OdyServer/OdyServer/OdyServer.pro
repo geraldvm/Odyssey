@@ -34,7 +34,12 @@ SOURCES += \
     Server/logic.cpp \
     Document/parserxml.cpp \
     Objects/attribute.cpp \
-    Document/converter.cpp
+    Document/converter.cpp \
+    DataStructures/SimpleList/nodoavl.cpp \
+    Objects/cancion.cpp \
+    Document/jsonmaker.cpp \
+    Document/guardarjson.cpp \
+    Document/leerjson.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -46,7 +51,15 @@ HEADERS += \
     Server/logic.h \
     Document/parserxml.h \
     Objects/attribute.h \
-    Document/converter.h
+    Document/converter.h \
+    DataStructures/SimpleList/arbolavl.h \
+    DataStructures/SimpleList/nodoavl.h \
+    DataStructures/SimpleList/mapa.h \
+    Objects/cancion.h \
+    Document/jsonmaker.h \
+    Document/guardarjson.h \
+    Document/leerjson.h \
+    DataStructures/SimpleList/hashmap.h
 
 FORMS += \
         mainwindow.ui

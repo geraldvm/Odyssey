@@ -9,8 +9,6 @@ SimpleList<T>::SimpleList()
     head = NULL;
 }
 
-
-
 template<typename T>
 void SimpleList<T>::addFirst(T data) {
     Node<T> *newNode = new Node<T> (data);
@@ -208,6 +206,11 @@ T SimpleList<T>::findPos(int pos) {
             temp = temp->getNext();
         }
     }
+}
+
+template<typename T>
+T SimpleList<T>::get(int i) {
+    return findPos(i);
 }
 
 template<typename T>
