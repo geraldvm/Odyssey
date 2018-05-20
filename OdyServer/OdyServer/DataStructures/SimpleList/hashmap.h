@@ -1,11 +1,14 @@
 #ifndef HASHMAP_H
 #define HASHMAP_H
+
 #include <iostream>
 #include <string>
 #include <fstream>
 #include "mapa.h"
+#include <QDir>
+#include "listasimple.h"
 
-class mapa {
+class hashmap {
 
 private:
     /**
@@ -15,11 +18,11 @@ private:
     /**
      * @brief passMap : Clase que corresponde a un mapa de hash para la contraseña y los ids
      */
-    hashMap<std::string, int> passMap;
+    Mapa<std::string, int> passMap;
     /**
      * @brief dirMap : Dirección para guardar y cargar la información de contraseñas
      */
-    std::string dirMap = QDir::homePath().toStdString().append("/Music/Odyssey/data/passMap.bin");
+    std::string dirMap = QDir::homePath().toStdString().append("/Music/Odyssey/data/passMap.txt");
     /**
      * @brief generearId : Función que genera un entero para usarlo de id
      * @param nombre : Nombre del usuario a asignar valor

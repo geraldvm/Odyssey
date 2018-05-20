@@ -96,6 +96,8 @@ class SimpleList {
         Node<T>* head;
         int size;
         bool isEmpty();
+
 };
+
 
 #endif // SIMPLELIST_H

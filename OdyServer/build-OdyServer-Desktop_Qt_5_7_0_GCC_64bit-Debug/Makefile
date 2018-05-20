@@ -53,7 +53,6 @@ SOURCES       = ../OdyServer/main.cpp \
 		../OdyServer/Server/server.cpp \
 		../OdyServer/Document/xmldocument.cpp \
 		../OdyServer/Objects/message.cpp \
-		../OdyServer/DataStructures/SimpleList/simplelist.cpp \
 		../OdyServer/DataStructures/SimpleList/node.cpp \
 		../OdyServer/Server/logic.cpp \
 		../OdyServer/Document/parserxml.cpp \
@@ -63,14 +62,14 @@ SOURCES       = ../OdyServer/main.cpp \
 		../OdyServer/Objects/cancion.cpp \
 		../OdyServer/Document/jsonmaker.cpp \
 		../OdyServer/Document/guardarjson.cpp \
-		../OdyServer/Document/leerjson.cpp moc_mainwindow.cpp \
+		../OdyServer/Document/leerjson.cpp \
+		../OdyServer/DataStructures/SimpleList/hashmap.cpp moc_mainwindow.cpp \
 		moc_server.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		server.o \
 		xmldocument.o \
 		message.o \
-		simplelist.o \
 		node.o \
 		logic.o \
 		parserxml.o \
@@ -81,6 +80,7 @@ OBJECTS       = main.o \
 		jsonmaker.o \
 		guardarjson.o \
 		leerjson.o \
+		hashmap.o \
 		moc_mainwindow.o \
 		moc_server.o
 DIST          = ../../../../Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_pre.prf \
@@ -249,12 +249,13 @@ DIST          = ../../../../Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		../OdyServer/Document/jsonmaker.h \
 		../OdyServer/Document/guardarjson.h \
 		../OdyServer/Document/leerjson.h \
-		../OdyServer/DataStructures/SimpleList/hashmap.h ../OdyServer/main.cpp \
+		../OdyServer/DataStructures/SimpleList/hashmap.h \
+		../OdyServer/DataStructures/SimpleList/listasimple.h \
+		../OdyServer/DataStructures/SimpleList/nodolistasimple.h ../OdyServer/main.cpp \
 		../OdyServer/mainwindow.cpp \
 		../OdyServer/Server/server.cpp \
 		../OdyServer/Document/xmldocument.cpp \
 		../OdyServer/Objects/message.cpp \
-		../OdyServer/DataStructures/SimpleList/simplelist.cpp \
 		../OdyServer/DataStructures/SimpleList/node.cpp \
 		../OdyServer/Server/logic.cpp \
 		../OdyServer/Document/parserxml.cpp \
@@ -264,7 +265,8 @@ DIST          = ../../../../Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		../OdyServer/Objects/cancion.cpp \
 		../OdyServer/Document/jsonmaker.cpp \
 		../OdyServer/Document/guardarjson.cpp \
-		../OdyServer/Document/leerjson.cpp
+		../OdyServer/Document/leerjson.cpp \
+		../OdyServer/DataStructures/SimpleList/hashmap.cpp
 QMAKE_TARGET  = OdyServer
 DESTDIR       = 
 TARGET        = OdyServer
@@ -601,8 +603,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../OdyServer/mainwindow.h ../OdyServer/Server/server.h ../OdyServer/Document/xmldocument.h ../OdyServer/Objects/message.h ../OdyServer/DataStructures/SimpleList/simplelist.h ../OdyServer/DataStructures/SimpleList/node.h ../OdyServer/Server/logic.h ../OdyServer/Document/parserxml.h ../OdyServer/Objects/attribute.h ../OdyServer/Document/converter.h ../OdyServer/DataStructures/SimpleList/arbolavl.h ../OdyServer/DataStructures/SimpleList/nodoavl.h ../OdyServer/DataStructures/SimpleList/mapa.h ../OdyServer/Objects/cancion.h ../OdyServer/Document/jsonmaker.h ../OdyServer/Document/guardarjson.h ../OdyServer/Document/leerjson.h ../OdyServer/DataStructures/SimpleList/hashmap.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../OdyServer/main.cpp ../OdyServer/mainwindow.cpp ../OdyServer/Server/server.cpp ../OdyServer/Document/xmldocument.cpp ../OdyServer/Objects/message.cpp ../OdyServer/DataStructures/SimpleList/simplelist.cpp ../OdyServer/DataStructures/SimpleList/node.cpp ../OdyServer/Server/logic.cpp ../OdyServer/Document/parserxml.cpp ../OdyServer/Objects/attribute.cpp ../OdyServer/Document/converter.cpp ../OdyServer/DataStructures/SimpleList/nodoavl.cpp ../OdyServer/Objects/cancion.cpp ../OdyServer/Document/jsonmaker.cpp ../OdyServer/Document/guardarjson.cpp ../OdyServer/Document/leerjson.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../OdyServer/mainwindow.h ../OdyServer/Server/server.h ../OdyServer/Document/xmldocument.h ../OdyServer/Objects/message.h ../OdyServer/DataStructures/SimpleList/simplelist.h ../OdyServer/DataStructures/SimpleList/node.h ../OdyServer/Server/logic.h ../OdyServer/Document/parserxml.h ../OdyServer/Objects/attribute.h ../OdyServer/Document/converter.h ../OdyServer/DataStructures/SimpleList/arbolavl.h ../OdyServer/DataStructures/SimpleList/nodoavl.h ../OdyServer/DataStructures/SimpleList/mapa.h ../OdyServer/Objects/cancion.h ../OdyServer/Document/jsonmaker.h ../OdyServer/Document/guardarjson.h ../OdyServer/Document/leerjson.h ../OdyServer/DataStructures/SimpleList/hashmap.h ../OdyServer/DataStructures/SimpleList/listasimple.h ../OdyServer/DataStructures/SimpleList/nodolistasimple.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../OdyServer/main.cpp ../OdyServer/mainwindow.cpp ../OdyServer/Server/server.cpp ../OdyServer/Document/xmldocument.cpp ../OdyServer/Objects/message.cpp ../OdyServer/DataStructures/SimpleList/node.cpp ../OdyServer/Server/logic.cpp ../OdyServer/Document/parserxml.cpp ../OdyServer/Objects/attribute.cpp ../OdyServer/Document/converter.cpp ../OdyServer/DataStructures/SimpleList/nodoavl.cpp ../OdyServer/Objects/cancion.cpp ../OdyServer/Document/jsonmaker.cpp ../OdyServer/Document/guardarjson.cpp ../OdyServer/Document/leerjson.cpp ../OdyServer/DataStructures/SimpleList/hashmap.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../OdyServer/mainwindow.ui $(DISTDIR)/
 
 
@@ -998,6 +1000,9 @@ main.o: ../OdyServer/main.cpp ../OdyServer/mainwindow.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtWidgets/qdesktopwidget.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtGui/qguiapplication.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtGui/qinputmethod.h \
+		../OdyServer/DataStructures/SimpleList/simplelist.h \
+		../OdyServer/DataStructures/SimpleList/node.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QString \
 		../OdyServer/Server/server.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QObject \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QDebug \
@@ -1020,9 +1025,6 @@ main.o: ../OdyServer/main.cpp ../OdyServer/mainwindow.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QDir \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qdir.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qfileinfo.h \
-		../OdyServer/DataStructures/SimpleList/simplelist.h \
-		../OdyServer/DataStructures/SimpleList/node.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QString \
 		../OdyServer/Objects/attribute.h \
 		../OdyServer/Document/xmldocument.h \
 		../OdyServer/Objects/message.h \
@@ -1033,7 +1035,12 @@ main.o: ../OdyServer/main.cpp ../OdyServer/mainwindow.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qjsonvalue.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QJsonArray \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qjsonarray.h \
-		../OdyServer/Document/guardarjson.h
+		../OdyServer/Document/guardarjson.h \
+		../OdyServer/Document/leerjson.h \
+		../OdyServer/DataStructures/SimpleList/hashmap.h \
+		../OdyServer/DataStructures/SimpleList/mapa.h \
+		../OdyServer/DataStructures/SimpleList/simplelist.cpp \
+		../OdyServer/DataStructures/SimpleList/listasimple.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../OdyServer/main.cpp
 
 mainwindow.o: ../OdyServer/mainwindow.cpp ../OdyServer/mainwindow.h \
@@ -1395,40 +1402,6 @@ xmldocument.o: ../OdyServer/Document/xmldocument.cpp ../OdyServer/Document/xmldo
 
 message.o: ../OdyServer/Objects/message.cpp ../OdyServer/Objects/message.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o message.o ../OdyServer/Objects/message.cpp
-
-simplelist.o: ../OdyServer/DataStructures/SimpleList/simplelist.cpp ../OdyServer/DataStructures/SimpleList/simplelist.h \
-		../OdyServer/DataStructures/SimpleList/node.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QString \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qstring.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qchar.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qglobal.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qconfig.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qfeatures.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qsystemdetection.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qprocessordetection.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qcompilerdetection.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qtypeinfo.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qtypetraits.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qisenum.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qsysinfo.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qlogging.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qflags.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qatomic.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qbasicatomic.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qatomic_bootstrap.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qgenericatomic.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qatomic_cxx11.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qatomic_msvc.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qglobalstatic.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qmutex.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qnumeric.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qversiontagging.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qbytearray.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qrefcount.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qnamespace.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qarraydata.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qstringbuilder.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o simplelist.o ../OdyServer/DataStructures/SimpleList/simplelist.cpp
 
 node.o: ../OdyServer/DataStructures/SimpleList/node.cpp ../OdyServer/DataStructures/SimpleList/node.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o node.o ../OdyServer/DataStructures/SimpleList/node.cpp
@@ -1813,11 +1786,159 @@ guardarjson.o: ../OdyServer/Document/guardarjson.cpp ../OdyServer/Document/guard
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qiterator.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qpair.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QJsonArray \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qjsonarray.h
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qjsonarray.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QDir \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qdir.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qfileinfo.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qfile.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qfiledevice.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qiodevice.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qobject.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qlist.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qalgorithms.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qhashfunctions.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qstringlist.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qregexp.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qcoreevent.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qmetatype.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qobject_impl.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qshareddata.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qhash.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o guardarjson.o ../OdyServer/Document/guardarjson.cpp
 
-leerjson.o: ../OdyServer/Document/leerjson.cpp 
+leerjson.o: ../OdyServer/Document/leerjson.cpp ../OdyServer/Document/leerjson.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QJsonArray \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qjsonarray.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qjsonvalue.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qglobal.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qconfig.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qfeatures.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qtypetraits.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qisenum.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qsysinfo.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qlogging.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qflags.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qatomic.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qmutex.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qnumeric.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qversiontagging.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qstring.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qchar.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qbytearray.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qrefcount.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qnamespace.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qarraydata.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qiterator.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QJsonObject \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qjsonobject.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qpair.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QDir \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qdir.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qfileinfo.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qfile.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qfiledevice.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qiodevice.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qobject.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qlist.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qalgorithms.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qhashfunctions.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qstringlist.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qregexp.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qcoreevent.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qmetatype.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qobject_impl.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qshareddata.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qhash.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o leerjson.o ../OdyServer/Document/leerjson.cpp
+
+hashmap.o: ../OdyServer/DataStructures/SimpleList/hashmap.cpp ../OdyServer/DataStructures/SimpleList/hashmap.h \
+		../OdyServer/DataStructures/SimpleList/mapa.h \
+		../OdyServer/DataStructures/SimpleList/simplelist.h \
+		../OdyServer/DataStructures/SimpleList/node.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QString \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qstring.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qchar.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qglobal.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qconfig.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qfeatures.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qtypetraits.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qisenum.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qsysinfo.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qlogging.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qflags.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qatomic.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qmutex.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qnumeric.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qversiontagging.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qbytearray.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qrefcount.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qnamespace.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qarraydata.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qstringbuilder.h \
+		../OdyServer/DataStructures/SimpleList/simplelist.cpp \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QDir \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qdir.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qfileinfo.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qfile.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qfiledevice.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qiodevice.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qobject.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qlist.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qalgorithms.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qiterator.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qhashfunctions.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qpair.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qstringlist.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qregexp.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qcoreevent.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qmetatype.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qobject_impl.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qshareddata.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qhash.h \
+		../OdyServer/DataStructures/SimpleList/listasimple.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o hashmap.o ../OdyServer/DataStructures/SimpleList/hashmap.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

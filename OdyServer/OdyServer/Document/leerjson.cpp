@@ -1,19 +1,17 @@
 #include "leerjson.h"
-#include "QDir"
-#include "DataStructures/SimpleList/simplelist.h"
-#include "DataStructures/SimpleList/simplelist.cpp"
-
+#include <QTextStream>
 using namespace std;
 
-SimpleList<QJsonObject> leerJson::getUsersInfo() {
+ListaSimple<QJsonObject> leerJson::getUsersInfo() {
+    listaArchivosJson = ListaSimple<QJsonObject>();
     QJsonObject obj = QJsonObject();
-    string str;
     QJsonArray array;
     int lineaActual = 0;
     int contadorArreglo = 0;
-    ifstream in(dirUsers, ios::binary);
+    string str;
+    ifstream file (dirUsers);
 
-    while(getline(in, str)) {
+    while(getline(file,str)) {
         if (lineaActual == 5) {
             obj.insert("pass",QString::fromStdString(str));
             lineaActual++;
@@ -35,7 +33,7 @@ SimpleList<QJsonObject> leerJson::getUsersInfo() {
             lineaActual++;
         }
         if (lineaActual == 0) {
-            obj.insert("usuario", QString::fromStdString(str));
+            obj.insert("usuario",QString::fromStdString(str));
             lineaActual++;
         }
         if (lineaActual == -1 && str != "[") {
@@ -51,7 +49,7 @@ SimpleList<QJsonObject> leerJson::getUsersInfo() {
                     obj.insert("amigos", array);
                     lineaActual = 0;
                     contadorArreglo = 0;
-                    listaArchivosJson.addLast(obj);
+                    listaArchivosJson.push_back(obj);
                     obj = QJsonObject();
                 }
             }
@@ -61,15 +59,16 @@ SimpleList<QJsonObject> leerJson::getUsersInfo() {
     return listaArchivosJson;
 }
 
-SimpleList<QJsonObject> leerJson::getMetadata() {
+ListaSimple<QJsonObject> leerJson::getMetadata() {
+    listaArchivosJson = ListaSimple<QJsonObject>();
     QJsonObject obj = QJsonObject();
-    string str;
     int lineaActual = 0;
-    ifstream in(dirMetadata, ios::binary);
-    string letra;
-    while(getline(in, str)) {
+    QString letra;
+    string str;
+    ifstream file(dirMetadata);
+    while(getline(file,str)) {
         if (lineaActual == -1 && str != "]") {
-            letra += str;
+            letra += QString::fromStdString(str);
         }
         if (lineaActual == 8) {
             lineaActual = -1;
@@ -108,8 +107,8 @@ SimpleList<QJsonObject> leerJson::getMetadata() {
         }
         if (str == "]") {
             lineaActual = 0;
-            obj.insert("letra",QString::fromStdString(letra));
-            listaArchivosJson.addLast(obj);
+            obj.insert("letra",letra);
+            listaArchivosJson.push_back(obj);
             obj = QJsonObject();
         }
     }

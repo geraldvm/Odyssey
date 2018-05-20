@@ -14,11 +14,11 @@ private:
     /**
      * Directorio en donde se guardará la información de los usuarios
      */
-    std::string dirUsers = QDir::homePath().toStdString().append("/Music/Odyssey/data/userInfo.bin");
+    std::string dirUsers = QDir::homePath().toStdString().append("/Music/Odyssey/data/userInfo.txt");
     /**
      * Directorio en donde se guardará la información de la metadata
      */
-    std::string dirMetadata = QDir::homePath().toStdString().append("/Music/Odyssey/data/metadata.bin");
+    std::string dirMetadata = QDir::homePath().toStdString().append("/Music/Odyssey/data/metadata.txt");
 
 public:
     /**

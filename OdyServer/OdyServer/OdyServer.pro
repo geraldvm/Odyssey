@@ -29,7 +29,6 @@ SOURCES += \
     Server/server.cpp \
     Document/xmldocument.cpp \
     Objects/message.cpp \
-    DataStructures/SimpleList/simplelist.cpp \
     DataStructures/SimpleList/node.cpp \
     Server/logic.cpp \
     Document/parserxml.cpp \
@@ -39,7 +38,9 @@ SOURCES += \
     Objects/cancion.cpp \
     Document/jsonmaker.cpp \
     Document/guardarjson.cpp \
-    Document/leerjson.cpp
+    Document/leerjson.cpp \
+    DataStructures/SimpleList/simplelist.cpp \
+    DataStructures/SimpleList/hashmap.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -59,7 +60,9 @@ HEADERS += \
     Document/jsonmaker.h \
     Document/guardarjson.h \
     Document/leerjson.h \
-    DataStructures/SimpleList/hashmap.h
+    DataStructures/SimpleList/hashmap.h \
+    DataStructures/SimpleList/listasimple.h \
+    DataStructures/SimpleList/nodolistasimple.h
 
 FORMS += \
         mainwindow.ui

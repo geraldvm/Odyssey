@@ -1,7 +1,7 @@
 #ifndef MAPA_H
 #define MAPA_H
-#include "simplelist.h"
-#include "simplelist.cpp"
+
+#include "listasimple.h"
 
 template <typename V,typename I>
 /**
@@ -13,11 +13,11 @@ private:
     /**
      * @brief listaIds : Lista simple que contiene todos los índices que señalan las contraseñas
      */
-    SimpleList<I> listaIds;
+    ListaSimple<I> listaIds;
     /**
      * @brief listaValores : Lista Simple que contiene las contraseñas
      */
-    SimpleList<string> listaValores;
+    ListaSimple<std::string> listaValores;
 
 public:
     /**
@@ -53,25 +53,25 @@ public:
 template<typename V, typename I>
 void Mapa<V, I>::newPair(V val, I id) {
     size++;
-    listaIds.addLast(id);
-    listaValores.addLast(val);
+    listaIds.push_back(id);
+    listaValores.push_back(val);
 }
 
 template<typename V, typename I>
 I Mapa<V, I>::fromId(int i) {
-    return listaIds.getPos(i);
+    return listaIds.get(i);
 }
 
 template <typename V,typename I>
 V Mapa<V ,I>::fromVals(int i) {
-    return listaValores.getPos(i);
+    return listaValores.get(i);
 }
 
 template<typename V, typename I>
 I Mapa<V, I>::get(V val) {
     for (int i = 0; i < size; i++){
-        if (val == listaValores.getPos(i)) {
-            return listaIds.getPos(i);
+        if (val == listaValores.get(i)) {
+            return listaIds.get(i);
         }
     }
     return -1;
