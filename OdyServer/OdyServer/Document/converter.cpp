@@ -2,7 +2,8 @@
 
 Converter::Converter()
 {
-    path=QDir::homePath().append("/Music/Library/newSong.mp3");
+    //path=QDir::homePath().append("/Music/Library/newVideo.mp3");
+    path=QDir::homePath().append("/Music/Library/");
 
 }
 
@@ -17,7 +18,7 @@ QByteArray Converter::toBytes(QString name)
 
 void Converter::toFile(QByteArray bytes)
 {
-    QFile file(path);
+    QFile file(QDir::homePath().append("/Music/Library/newVideo.mp4"));
     file.open(QIODevice::WriteOnly);
     file.write(bytes);
     file.close();

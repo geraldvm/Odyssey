@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXProgressBar?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Sphere?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="519.0" prefWidth="390.0" style="-fx-background-color: Transparent;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <AnchorPane prefHeight="62.0" prefWidth="384.0" style="-fx-background-color: #0e192b;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="71.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Separator prefWidth="200.0" visible="false" />
+                  <ImageView fx:id="userBtn" fitHeight="38.0" fitWidth="35.0" onMousePressed="#onUserButtonClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/icon_user.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="15.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Separator prefWidth="200.0" visible="false" />
+                  <ImageView fx:id="playerBtn" fitHeight="38.0" fitWidth="35.0" onMousePressed="#onPlayerButtonClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/icon_music.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="15.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Separator prefWidth="200.0" visible="false" />
+                  <ImageView fx:id="libraryBtn" fitHeight="38.0" fitWidth="35.0" onMousePressed="#onLibraryButtonClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/icon_lyrics.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="15.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Separator prefWidth="200.0" visible="false" />
+                  <ImageView fx:id="addLibraryBtn" fitHeight="38.0" fitWidth="35.0" onMousePressed="#onAddLibButtonClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/icon_addLib.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="15.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Separator prefWidth="200.0" visible="false" />
+                  <ImageView fx:id="socialBtn" fitHeight="38.0" fitWidth="35.0" onMousePressed="#onSocialButtonClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/icon_friends.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="15.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Separator prefWidth="200.0" visible="false" />
+                  <ImageView fitHeight="150.0" fitWidth="35.0" onMouseClicked="#onExitButtonClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/icon_exit.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="15.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Separator prefWidth="200.0" visible="false" />
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="loginPanel" layoutX="27.0" layoutY="280.0" prefHeight="436.0" prefWidth="390.0" style="-fx-background-color: #0e192b;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <JFXTextField fx:id="userLogText" focusColor="#5bd36d" layoutX="140.0" layoutY="151.0" promptText="Write your username" style="-fx-text-fill: #5bd36d;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXTextField>
+            <Label layoutX="109.0" layoutY="31.0" text="Odyssey ++" textFill="WHITE">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <Label layoutX="163.0" layoutY="89.0" text="Login" textFill="#666865">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <JFXButton layoutX="161.0" layoutY="282.0" onAction="#onLoginButton" style="-fx-background-color: #36843f;" text="Sign In" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+            <ImageView fitHeight="43.0" fitWidth="37.0" layoutX="68.0" layoutY="209.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icon_password.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="37.0" layoutX="68.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icon_username.png" />
+               </image>
+            </ImageView>
+            <JFXButton layoutX="156.0" layoutY="366.0" onAction="#onRegisterButton" style="-fx-background-color: #af5018;" text="Sign Up" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="108.0" layoutY="334.0" text="If you are a new user pick here" textFill="#666865">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <JFXPasswordField fx:id="passwordLogText" focusColor="#c40d3b" layoutX="146.0" layoutY="215.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="userPanel" layoutY="221.0" prefHeight="436.0" prefWidth="390.0" style="-fx-background-color: #0e192b;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <JFXTextField fx:id="lastnameText" focusColor="#5bd36d" layoutX="171.0" layoutY="145.0" promptText="Write your last name" style="-fx-text-fill: #5bd36d;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="nameText" focusColor="#5bd36d" layoutX="171.0" layoutY="86.0" promptText="Write your name" style="-fx-text-fill: #5bd36d;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="usernameText" focusColor="#5bd36d" layoutX="171.0" layoutY="40.0" promptText="Write your username" style="-fx-text-fill: #5bd36d;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXTextField>
+            <Label layoutX="28.0" layoutY="91.0" text="Name:" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="23.0" layoutY="45.0" text="Username:" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="26.0" layoutY="150.0" prefHeight="18.0" prefWidth="91.0" text="Last Name:" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="25.0" layoutY="290.0" text="Password:" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="35.0" layoutY="206.0" text="Age:" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="27.0" layoutY="336.0" text="Genre:" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Separator layoutX="17.0" layoutY="261.0" opacity="0.31" prefHeight="3.0" prefWidth="357.0" />
+            <JFXComboBox fx:id="comboBoxGenre" focusColor="#5cd16c00" layoutX="171.0" layoutY="332.0" onAction="#onComboGenreChanged" prefHeight="26.0" prefWidth="148.0" promptText="          Genre" style="-fx-background-color: white;" unFocusColor="#b2b2b2" />
+            <JFXTextField id="ageText" fx:id="ageText" focusColor="#5bd36d" layoutX="171.0" layoutY="201.0" promptText="Type your age" style="-fx-text-fill: #5bd36d;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton layoutX="177.0" layoutY="385.0" onAction="#onSaveButton" style="-fx-background-color: #36843f;" text="Save" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXPasswordField fx:id="passwordText" focusColor="#c40d3b" layoutX="177.0" layoutY="280.0" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets></AnchorPane>
+      <AnchorPane fx:id="logoutPanel" layoutX="37.0" layoutY="290.0" prefHeight="436.0" prefWidth="390.0" style="-fx-background-color: #0e192b;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label layoutX="109.0" layoutY="31.0" text="Odyssey ++" textFill="WHITE">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <Label fx:id="profileLabel" layoutX="133.0" layoutY="148.0" text="User Information" textFill="#666865">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <JFXButton layoutX="162.0" layoutY="280.0" onAction="#onLogoutButton" style="-fx-background-color: #820a34;" text="Logout" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+            <ImageView fitHeight="150.0" fitWidth="37.0" layoutX="71.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icon_username.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="playerPanel" layoutX="10.0" layoutY="231.0" prefHeight="436.0" prefWidth="390.0" style="-fx-background-color: #0e192b;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-8.0">
+         <children>
+            <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="200.0" layoutX="170.0" layoutY="50.0" />
+            <Circle fx:id="circle" fill="#157323" layoutX="195.0" layoutY="140.0" opacity="0.38" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+            <Label layoutX="33.0" layoutY="32.0" text="Song Name" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <StackPane layoutX="77.0" layoutY="231.0" prefHeight="49.0" prefWidth="280.0">
+               <children>
+                  <JFXSlider fx:id="slider" />
+                  <JFXProgressBar fx:id="progressBar" prefHeight="0.0" prefWidth="274.0" />
+               </children>
+            </StackPane>
+            <ImageView fx:id="playButton" fitHeight="42.0" fitWidth="37.0" layoutX="28.0" layoutY="238.0" onMousePressed="#onPlayButton" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icon_play.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="pauseButton" fitHeight="49.0" fitWidth="48.0" layoutX="22.0" layoutY="232.0" onMousePressed="#onPauseButton" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@images/icon_pause.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="currentDuration" layoutX="77.0" layoutY="271.0" text="Label" textFill="#e8e8e8">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="totalDuration" layoutX="319.0" layoutY="280.0" text="Label" textFill="#e8e8e8">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Sphere fx:id="grafico" cullFace="FRONT" drawMode="LINE" layoutX="195.0" layoutY="140.0" radius="50" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="libraryPanel" layoutY="83.0" prefHeight="436.0" prefWidth="390.0" style="-fx-background-color: #0e192b;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <ImageView fitHeight="26.0" fitWidth="35.0" layoutX="31.0" layoutY="22.0" onMousePressed="#searchSongBy" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icon_search.png" />
+               </image>
+            </ImageView>
+            <JFXComboBox fx:id="comboSearch" focusColor="#5bd36d" layoutX="263.0" layoutY="22.0" prefHeight="26.0" prefWidth="102.0" promptText="Search by" style="-fx-text-fill: #5bd36d;" />
+            <JFXTextField fx:id="searchText" focusColor="#af5018" layoutX="83.0" layoutY="22.0" promptText="Text here" style="-fx-text-fill: white;" />
+            <JFXListView fx:id="musicList" layoutX="50.0" layoutY="90.0" onMousePressed="#onSelectedSong" prefHeight="269.0" prefWidth="287.0" style="-fx-background-color: #0e192b;">
+               <contextMenu>
+                  <ContextMenu>
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#onPlaySong" text="Play" />
+                        <MenuItem mnemonicParsing="false" onAction="#onModifySong" text="Modify" />
+                        <MenuItem mnemonicParsing="false" onAction="#onDeleteSong" text="Delete" />
+                        <MenuItem mnemonicParsing="false" onAction="#onMsgPanel" text="Recommend" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu>
+            </JFXListView>
+            <ImageView fitHeight="150.0" fitWidth="25.0" layoutX="19.0" layoutY="385.0" onMousePressed="#onPrevButton" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icons_previous.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="25.0" layoutX="337.0" layoutY="385.0" onMousePressed="#onNextButton" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icon_nextA.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="socialPanel" layoutX="17.0" layoutY="270.0" prefHeight="436.0" prefWidth="390.0" style="-fx-background-color: #0e192b;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <ImageView fitHeight="37.0" fitWidth="45.0" layoutX="114.0" layoutY="44.0" onMousePressed="#onMsgSocialClicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icon_chat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="34.0" fitWidth="38.0" layoutX="58.0" layoutY="45.0" onMousePressed="#onUserSocialClicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icon_addUser.png" />
+               </image>
+            </ImageView>
+            <JFXListView fx:id="socialListView" layoutX="58.0" layoutY="96.0" prefHeight="213.0" prefWidth="274.0" style="-fx-background-color: #0e192b;" />
+            <JFXButton fx:id="addFriendBtn" layoutX="171.0" layoutY="365.0" onAction="#onAddUserClicked" style="-fx-background-color: #36843f;" text="Add" textFill="WHITE" visible="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <ImageView fx:id="userArrow" fitHeight="16.0" fitWidth="35.0" layoutX="28.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/icon_arrow.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="playerArrow" fitHeight="16.0" fitWidth="35.0" layoutX="89.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@images/icon_arrow.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="libraryArrow" fitHeight="16.0" fitWidth="35.0" layoutX="148.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@images/icon_arrow.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="socialArrow" fitHeight="16.0" fitWidth="35.0" layoutX="273.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@images/icon_arrow.png" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="modifyPanel" layoutX="10.0" layoutY="231.0" prefHeight="436.0" prefWidth="390.0" style="-fx-background-color: #022d1f;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <JFXTextField fx:id="albumSongModify" focusColor="#5bd36d" layoutX="171.0" layoutY="145.0" promptText="Write Album here" style="-fx-text-fill: #5bd36d;">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="artistSongModify" focusColor="#5bd36d" layoutX="171.0" layoutY="102.0" promptText="Artist name here" style="-fx-text-fill: #5bd36d;">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="songNameModify" focusColor="#5bd36d" layoutX="171.0" layoutY="62.0" promptText="Song name here" style="-fx-text-fill: #5bd36d;">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </JFXTextField>
+            <Label layoutX="112.0" layoutY="108.0" text="Artist:" textFill="WHITE" />
+            <Label layoutX="110.0" layoutY="65.0" text="Name:" textFill="WHITE" />
+            <Label layoutX="110.0" layoutY="147.0" prefHeight="18.0" prefWidth="60.0" text="Album:" textFill="WHITE" />
+            <Label layoutX="106.0" layoutY="239.0" text="Lyrics:" textFill="WHITE" />
+            <Label layoutX="106.0" layoutY="193.0" text="Year:" textFill="WHITE" />
+            <Label layoutX="101.0" layoutY="284.0" text="Genre:" textFill="WHITE" />
+            <JFXTextField id="ageText" fx:id="yearSongModify" focusColor="#5bd36d" layoutX="171.0" layoutY="190.0" promptText="Year of song here" style="-fx-text-fill: #5bd36d;">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton layoutX="126.0" layoutY="385.0" onAction="#onSaveModify" style="-fx-background-color: #161619;" text="Save" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="101.0" layoutY="340.0" text="Score:" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="genreSongModify" focusColor="#5bd36d" layoutX="167.0" layoutY="289.0" promptText="Set the genre here" style="-fx-text-fill: #5bd36d;">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </JFXTextField>
+            <Label fx:id="songModifyLabel" layoutX="123.0" layoutY="14.0" text="Song Name" textFill="#686161">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="lyricsSongModify" focusColor="#5bd36d" layoutX="167.0" layoutY="236.0" promptText="Set the lyrics here" style="-fx-text-fill: #5bd36d;">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton layoutX="217.0" layoutY="385.0" onAction="#onCancelModify" style="-fx-background-color: #44020c;" text="Cancel" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+            <ImageView fx:id="star" fitHeight="38.0" fitWidth="35.0" layoutX="330.0" layoutY="222.0" onMousePressed="#onStarClicked" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@images/icon_star.png" />
+               </image>
+            </ImageView>
+            <HBox layoutX="167.0" layoutY="334.0" prefHeight="30.0" prefWidth="167.0">
+               <children>
+                  <ImageView fx:id="star1" fitHeight="150.0" fitWidth="25.0" onMousePressed="#onStarClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/icon_star_filled.png" />
+                     </image>
+                  </ImageView>
+                  <Separator prefWidth="200.0" visible="false" />
+                  <ImageView fx:id="star2" fitHeight="150.0" fitWidth="25.0" onMousePressed="#onStarClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/icon_star.png" />
+                     </image>
+                  </ImageView>
+                  <Separator prefWidth="200.0" visible="false" />
+                  <ImageView fx:id="star3" fitHeight="150.0" fitWidth="25.0" onMousePressed="#onStarClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/icon_star.png" />
+                     </image>
+                  </ImageView>
+                  <Separator prefWidth="200.0" visible="false" />
+                  <ImageView fx:id="star4" fitHeight="150.0" fitWidth="25.0" onMousePressed="#onStarClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/icon_star.png" />
+                     </image>
+                  </ImageView>
+                  <Separator prefWidth="200.0" visible="false" />
+                  <ImageView fx:id="star5" fitHeight="150.0" fitWidth="25.0" onMousePressed="#onStarClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/icon_star.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <ImageView fx:id="starFilled" fitHeight="150.0" fitWidth="25.0" layoutX="32.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@images/icon_star_filled.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="spotifyBtn" fitHeight="150.0" fitWidth="37.0" layoutX="26.0" layoutY="55.0" onMousePressed="#onSpotifyClicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icon_spotify.png" />
+               </image>
+            </ImageView>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </AnchorPane>
+      <ImageView fx:id="addLibArrow" fitHeight="16.0" fitWidth="35.0" layoutX="209.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@images/icon_arrow.png" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="addLibraryPanel" layoutX="-47.0" layoutY="224.0" prefHeight="436.0" prefWidth="390.0" style="-fx-background-color: #2b0220;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <JFXTextField fx:id="pathToAddLibrary" focusColor="WHITE" layoutX="87.0" layoutY="156.0" prefHeight="28.0" prefWidth="274.0" promptText="Set the path here!" style="-fx-text-fill: #e055bb;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXTextField>
+            <Label layoutX="111.0" layoutY="28.0" text="Odyssey ++" textFill="WHITE">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <Label layoutX="140.0" layoutY="91.0" text="Directory:" textFill="#666865">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <JFXButton layoutX="170.0" layoutY="226.0" onAction="#onAddFiles" style="-fx-background-color: #36843f;" text="Add" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+            <ImageView fitHeight="150.0" fitWidth="37.0" layoutX="28.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/iconn_directory.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="msgPanel" layoutY="83.0" prefHeight="288.0" prefWidth="390.0" style="-fx-background-color: #0e192b;" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label layoutX="42.0" layoutY="60.0" text="To:" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label layoutX="30.0" layoutY="112.0" prefHeight="28.0" prefWidth="55.0" text="Msg:" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label layoutX="87.0" layoutY="120.0" prefHeight="40.0" prefWidth="246.0" text="Hey you need to listen this song:" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Chandas" size="13.0" />
+               </font></Label>
+            <ImageView fx:id="star1" fitHeight="38.0" fitWidth="35.0" layoutX="330.0" layoutY="222.0" onMousePressed="#onStarClicked" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@images/icon_star.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="starFilled1" fitHeight="150.0" fitWidth="25.0" layoutX="32.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@images/icon_star_filled.png" />
+               </image>
+            </ImageView>
+            <JFXComboBox fx:id="comboFriends" layoutX="106.0" layoutY="58.0" prefHeight="26.0" prefWidth="123.0" />
+            <ImageView fitHeight="34.0" fitWidth="60.0" layoutX="321.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icon_Msg.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="48.0" fitWidth="40.0" layoutX="77.0" layoutY="220.0" onMousePressed="#onSendMsgClicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icon_sendMsg.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="48.0" fitWidth="40.0" layoutX="275.0" layoutY="220.0" onMousePressed="#onCancelMsgClicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icon_deleteMsg.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="msgSongName" layoutX="87.0" layoutY="144.0" prefHeight="40.0" prefWidth="246.0" text="Bed Roses.mp3" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Chandas" size="13.0" />
+               </font>
+            </Label>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </AnchorPane>
+   </children>
+</AnchorPane>
