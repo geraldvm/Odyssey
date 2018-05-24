@@ -1,19 +1,14 @@
 #ifndef NODE_H
 #define NODE_H
 
-
-
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 
-
-
-//using namespace std;
 template <class T>
 /**
- * @brief The Node class: Clase implementada para la lista simple enlazada.
- * Contiene un dato, y una referencia al siguiente nodo.
+ * @brief The Node class: Clase implementada para la lista simple enlazada
+ * Contiene un dato y siguiente nodo.
  */
 class Node {
     public:
@@ -21,12 +16,10 @@ class Node {
         Node(T data);
         ~Node();
         void setData(T data);
-        void setNext(Node* next);
+        void setNext(Node* _next);
         T getData();
         void print();
         Node<T>* getNext();
-
-
 
     private:
         Node* next;

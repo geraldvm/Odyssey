@@ -1,7 +1,14 @@
 #include "parserxml.h"
+#include "DataStructures/SimpleList/simplelist.h"
+#include "Document/jsonmaker.h"
+#include "DataStructures/SimpleList/hashmap.h"
+#include "DataStructures/SimpleList/arbolbb.cpp"
+
+//contraseña mysql root: ServerOdy2.0
 
 ParserXML::ParserXML()
 {
+    mapa.leerMapa();
     QFile xml(QDir::homePath().append("/Music/Odyssey/Temp/requested.xml"));
     xml.open(QIODevice::ReadOnly);
     xmlTemp= new QDomDocument();
@@ -9,12 +16,9 @@ ParserXML::ParserXML()
     xml.close();
 }
 
-
 std::string ParserXML::getRoot()
 {
-
     QDomElement root =xmlTemp->documentElement();
-    std::cout<<root.tagName().toStdString()<<std::endl;
     return root.tagName().toStdString();
     /*
     QFile xml("myXml.xml");
@@ -29,60 +33,57 @@ QDomElement ParserXML::getHeader()
     return xmlTemp->documentElement();
 }
 
-string *ParserXML::newUserParser()
+bool ParserXML::newUserParser()
 {
+    QDomElement user = this->getHeader().firstChild().toElement();
+    if (!ab.search(user.attribute("Username",""))) {
+        QJsonArray generos = QJsonArray();
+        QStringList lista = user.attribute("Genre","").split(',');
+        for (QString texto: lista) {
+            generos.append(texto);
+        }
+        lista = user.attribute("Friends","").split(",");
+        QJsonArray amigos = QJsonArray();
+        for (QString texto: lista) {
+            amigos.append(texto);
+        }
+        mapa.escribirPass(user.attribute("Username","").toStdString(),user.attribute("Password","").toStdString());
+        JsonMaker jsonMaker = JsonMaker(user.attribute("Username","").toStdString(),
+                                        user.attribute("Name","").toStdString(),
+                                        user.attribute("Lastname","").toStdString(),
+                                        user.attribute("Age","").toInt(),
+                                        generos,
+                                        mapa.generarId(user.attribute("Username","").toStdString()),
+                                        amigos);
+        ab.insert(jsonMaker.getJson());
+        return true;
+    }
+    return false;
 
-    QDomElement user =this->getHeader().firstChild().toElement();
-    string arr[6]={ user.attribute("Username","").toStdString(),
-                user.attribute("Password","").toStdString(),
-                    user.attribute("Name","").toStdString(),
-                  user.attribute("Lastname","").toStdString(),
-                  user.attribute("Age","").toStdString(),
-                  user.attribute("Genre","").toStdString()};
-
-    return arr;
-
-
-    //std::cout<<"username: "<<username.toStdString()<<"password: "<<pass.toStdString()<<std::endl;
-}
-/*
-SimpleList<Attribute>* ParserXML::userVerificationParser()
-{
-
-    SimpleList<Attribute>* list = new SimpleList<Attribute>();
-    QDomElement user =this->getHeader().firstChild().toElement();
-    Attribute* attr = new Attribute("Username",user.attribute("Username","").toStdString());
-    list->addLast(*attr);
-    attr->setAttribute("Password", user.attribute("Password","").toStdString());
-    list->addLast(*attr);
-    //std::cout<<"username: "<<username.toStdString()<<"password: "<<pass.toStdString()<<std::endl;
-    //std::cout<<"username: "<<username.toStdString()<<"password: "<<pass.toStdString()<<std::endl;
-    return list;
 }
 
-SimpleList<Attribute> *ParserXML::modifyMetaData()
+bool ParserXML::userVerificationParser()
 {
-    SimpleList<Attribute>* list= new SimpleList<Attribute>();
+    QDomElement user =this->getHeader().firstChild().toElement();
+    return mapa.confirmarPass(user.attribute("Username","").toStdString(),user.attribute("Password","").toStdString());
+}
+
+void ParserXML::modifyMetaData()
+{
     QDomElement song =this->getHeader().firstChild().toElement();
-    Attribute* attr = new Attribute("OldName",song.attribute("OldName","").toStdString());
-    list->addLast(*attr);
-    attr->setAttribute("NewName",song.attribute("NewName","").toStdString());
-    list->addLast(*attr);
-    attr->setAttribute("Artist",song.attribute("Artist","").toStdString());
-    list->addLast(*attr);
-    attr->setAttribute("Album",song.attribute("Album","").toStdString());
-    list->addLast(*attr);
-    attr->setAttribute("Year", song.attribute("Year","").toStdString());
-    list->addLast(*attr);
-    attr->setAttribute("Lyrics", song.attribute("Lyrics","").toStdString());
-    list->addLast(*attr);
-    attr->setAttribute("Genre",song.attribute("Genre","").toStdString());
-    list->addLast(*attr);
-    attr->setAttribute("Score", song.attribute("Score","").toStdString());
-    list->addLast(*attr);
-    return list;
+    QJsonObject instruccion = QJsonObject();
+    instruccion.insert("OldName",song.attribute("OldName",""));
+    instruccion.insert("Name",song.attribute("NewName",""));
+    instruccion.insert("Artist",song.attribute("Artist",""));
+    instruccion.insert("Album",song.attribute("Album",""));
+    instruccion.insert("Year", song.attribute("Year",""));
+    instruccion.insert("Lyrics", song.attribute("Lyrics",""));
+    instruccion.insert("Genre",song.attribute("Genre",""));
+    instruccion.insert("Score", song.attribute("Score",""));
+    listaCambios.push_back(instruccion);
 }
 
+/*
 SimpleList<Attribute> *ParserXML::pageRequested()
 {
     SimpleList<Attribute>* list= new SimpleList<Attribute>();
@@ -99,7 +100,6 @@ SimpleList<Attribute> *ParserXML::pageRequested()
 
 Attribute ParserXML::songRequested()
 {
-
     QDomElement song =this->getHeader().firstChild().toElement();
     Attribute* attr = new Attribute("Name",song.attribute("Name","").toStdString());
     return *attr;
@@ -113,7 +113,6 @@ string ParserXML::deleteSong()
 
 SimpleList<Attribute>* ParserXML::sendMsg()
 {
-
     SimpleList<Attribute>* list= new SimpleList<Attribute>();
     QDomElement Msg =this->getHeader().firstChild().toElement();
     Attribute* attr = new Attribute("Sender", Msg.attribute("Sender","").toStdString());
@@ -125,7 +124,8 @@ SimpleList<Attribute>* ParserXML::sendMsg()
     return list;
 
 }
-
+*/
+/*
 string ParserXML::spotifyRequested()
 {
 
@@ -133,7 +133,5 @@ string ParserXML::spotifyRequested()
     return Spotify.attribute("Name","").toStdString();
 
 }
-
-
-
 */
+

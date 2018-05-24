@@ -12,10 +12,10 @@ MAKEFILE      = Makefile
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_XML_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_XML_LIB -DQT_SQL_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -g -std=gnu++11 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I../OdyServer -I. -I../../../../Qt5.7.0/5.7/gcc_64/include -I../../../../Qt5.7.0/5.7/gcc_64/include/QtWidgets -I../../../../Qt5.7.0/5.7/gcc_64/include/QtGui -I../../../../Qt5.7.0/5.7/gcc_64/include/QtNetwork -I../../../../Qt5.7.0/5.7/gcc_64/include/QtXml -I../../../../Qt5.7.0/5.7/gcc_64/include/QtCore -I. -I. -I../../../../Qt5.7.0/5.7/gcc_64/mkspecs/linux-g++
+INCPATH       = -I../OdyServer -I. -isystem /usr/include/mysql -I../../../../Qt5.7.0/5.7/gcc_64/include -I../../../../Qt5.7.0/5.7/gcc_64/include/QtWidgets -I../../../../Qt5.7.0/5.7/gcc_64/include/QtGui -I../../../../Qt5.7.0/5.7/gcc_64/include/QtNetwork -I../../../../Qt5.7.0/5.7/gcc_64/include/QtXml -I../../../../Qt5.7.0/5.7/gcc_64/include/QtSql -I../../../../Qt5.7.0/5.7/gcc_64/include/QtCore -I. -I. -I../../../../Qt5.7.0/5.7/gcc_64/mkspecs/linux-g++
 QMAKE         = /home/andres/Qt5.7.0/5.7/gcc_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -36,7 +36,7 @@ DISTNAME      = OdyServer1.0.0
 DISTDIR = /home/andres/Downloads/Odyssey-master/OdyServer/build-OdyServer-Desktop_Qt_5_7_0_GCC_64bit-Debug/.tmp/OdyServer1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/home/andres/Qt5.7.0/5.7/gcc_64/lib
-LIBS          = $(SUBLIBS) -L/home/andres/Qt5.7.0/5.7/gcc_64/lib -lQt5Widgets -L/usr/lib64 -lQt5Gui -lQt5Network -lQt5Xml -lQt5Core -lGL -lpthread 
+LIBS          = $(SUBLIBS) -L/home/andres/Qt5.7.0/5.7/gcc_64/lib -lQt5Widgets -L/usr/lib64 -lQt5Gui -lQt5Network -lQt5Xml -lQt5Sql -lQt5Core -lGL -lpthread 
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -56,14 +56,16 @@ SOURCES       = ../OdyServer/main.cpp \
 		../OdyServer/DataStructures/SimpleList/node.cpp \
 		../OdyServer/Server/logic.cpp \
 		../OdyServer/Document/parserxml.cpp \
-		../OdyServer/Objects/attribute.cpp \
 		../OdyServer/Document/converter.cpp \
 		../OdyServer/DataStructures/SimpleList/nodoavl.cpp \
 		../OdyServer/Objects/cancion.cpp \
 		../OdyServer/Document/jsonmaker.cpp \
 		../OdyServer/Document/guardarjson.cpp \
 		../OdyServer/Document/leerjson.cpp \
-		../OdyServer/DataStructures/SimpleList/hashmap.cpp moc_mainwindow.cpp \
+		../OdyServer/DataStructures/SimpleList/simplelist.cpp \
+		../OdyServer/DataStructures/SimpleList/hashmap.cpp \
+		../OdyServer/DataStructures/SimpleList/nodobb.cpp \
+		../OdyServer/Document/mysqldb.cpp moc_mainwindow.cpp \
 		moc_server.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
@@ -73,14 +75,16 @@ OBJECTS       = main.o \
 		node.o \
 		logic.o \
 		parserxml.o \
-		attribute.o \
 		converter.o \
 		nodoavl.o \
 		cancion.o \
 		jsonmaker.o \
 		guardarjson.o \
 		leerjson.o \
+		simplelist.o \
 		hashmap.o \
+		nodobb.o \
+		mysqldb.o \
 		moc_mainwindow.o \
 		moc_server.o
 DIST          = ../../../../Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_pre.prf \
@@ -240,7 +244,6 @@ DIST          = ../../../../Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		../OdyServer/DataStructures/SimpleList/node.h \
 		../OdyServer/Server/logic.h \
 		../OdyServer/Document/parserxml.h \
-		../OdyServer/Objects/attribute.h \
 		../OdyServer/Document/converter.h \
 		../OdyServer/DataStructures/SimpleList/arbolavl.h \
 		../OdyServer/DataStructures/SimpleList/nodoavl.h \
@@ -251,7 +254,10 @@ DIST          = ../../../../Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		../OdyServer/Document/leerjson.h \
 		../OdyServer/DataStructures/SimpleList/hashmap.h \
 		../OdyServer/DataStructures/SimpleList/listasimple.h \
-		../OdyServer/DataStructures/SimpleList/nodolistasimple.h ../OdyServer/main.cpp \
+		../OdyServer/DataStructures/SimpleList/nodolistasimple.h \
+		../OdyServer/DataStructures/SimpleList/arbolbb.h \
+		../OdyServer/DataStructures/SimpleList/nodobb.h \
+		../OdyServer/Document/mysqldb.h ../OdyServer/main.cpp \
 		../OdyServer/mainwindow.cpp \
 		../OdyServer/Server/server.cpp \
 		../OdyServer/Document/xmldocument.cpp \
@@ -259,14 +265,16 @@ DIST          = ../../../../Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		../OdyServer/DataStructures/SimpleList/node.cpp \
 		../OdyServer/Server/logic.cpp \
 		../OdyServer/Document/parserxml.cpp \
-		../OdyServer/Objects/attribute.cpp \
 		../OdyServer/Document/converter.cpp \
 		../OdyServer/DataStructures/SimpleList/nodoavl.cpp \
 		../OdyServer/Objects/cancion.cpp \
 		../OdyServer/Document/jsonmaker.cpp \
 		../OdyServer/Document/guardarjson.cpp \
 		../OdyServer/Document/leerjson.cpp \
-		../OdyServer/DataStructures/SimpleList/hashmap.cpp
+		../OdyServer/DataStructures/SimpleList/simplelist.cpp \
+		../OdyServer/DataStructures/SimpleList/hashmap.cpp \
+		../OdyServer/DataStructures/SimpleList/nodobb.cpp \
+		../OdyServer/Document/mysqldb.cpp
 QMAKE_TARGET  = OdyServer
 DESTDIR       = 
 TARGET        = OdyServer
@@ -432,6 +440,7 @@ Makefile: ../OdyServer/OdyServer.pro ../../../../Qt5.7.0/5.7/gcc_64/mkspecs/linu
 		../../../../Qt5.7.0/5.7/gcc_64/lib/libQt5Gui.prl \
 		../../../../Qt5.7.0/5.7/gcc_64/lib/libQt5Network.prl \
 		../../../../Qt5.7.0/5.7/gcc_64/lib/libQt5Xml.prl \
+		../../../../Qt5.7.0/5.7/gcc_64/lib/libQt5Sql.prl \
 		../../../../Qt5.7.0/5.7/gcc_64/lib/libQt5Core.prl
 	$(QMAKE) -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ../OdyServer/OdyServer.pro
 ../../../../Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_pre.prf:
@@ -588,6 +597,7 @@ Makefile: ../OdyServer/OdyServer.pro ../../../../Qt5.7.0/5.7/gcc_64/mkspecs/linu
 ../../../../Qt5.7.0/5.7/gcc_64/lib/libQt5Gui.prl:
 ../../../../Qt5.7.0/5.7/gcc_64/lib/libQt5Network.prl:
 ../../../../Qt5.7.0/5.7/gcc_64/lib/libQt5Xml.prl:
+../../../../Qt5.7.0/5.7/gcc_64/lib/libQt5Sql.prl:
 ../../../../Qt5.7.0/5.7/gcc_64/lib/libQt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ../OdyServer/OdyServer.pro
@@ -603,8 +613,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../OdyServer/mainwindow.h ../OdyServer/Server/server.h ../OdyServer/Document/xmldocument.h ../OdyServer/Objects/message.h ../OdyServer/DataStructures/SimpleList/simplelist.h ../OdyServer/DataStructures/SimpleList/node.h ../OdyServer/Server/logic.h ../OdyServer/Document/parserxml.h ../OdyServer/Objects/attribute.h ../OdyServer/Document/converter.h ../OdyServer/DataStructures/SimpleList/arbolavl.h ../OdyServer/DataStructures/SimpleList/nodoavl.h ../OdyServer/DataStructures/SimpleList/mapa.h ../OdyServer/Objects/cancion.h ../OdyServer/Document/jsonmaker.h ../OdyServer/Document/guardarjson.h ../OdyServer/Document/leerjson.h ../OdyServer/DataStructures/SimpleList/hashmap.h ../OdyServer/DataStructures/SimpleList/listasimple.h ../OdyServer/DataStructures/SimpleList/nodolistasimple.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../OdyServer/main.cpp ../OdyServer/mainwindow.cpp ../OdyServer/Server/server.cpp ../OdyServer/Document/xmldocument.cpp ../OdyServer/Objects/message.cpp ../OdyServer/DataStructures/SimpleList/node.cpp ../OdyServer/Server/logic.cpp ../OdyServer/Document/parserxml.cpp ../OdyServer/Objects/attribute.cpp ../OdyServer/Document/converter.cpp ../OdyServer/DataStructures/SimpleList/nodoavl.cpp ../OdyServer/Objects/cancion.cpp ../OdyServer/Document/jsonmaker.cpp ../OdyServer/Document/guardarjson.cpp ../OdyServer/Document/leerjson.cpp ../OdyServer/DataStructures/SimpleList/hashmap.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../OdyServer/mainwindow.h ../OdyServer/Server/server.h ../OdyServer/Document/xmldocument.h ../OdyServer/Objects/message.h ../OdyServer/DataStructures/SimpleList/simplelist.h ../OdyServer/DataStructures/SimpleList/node.h ../OdyServer/Server/logic.h ../OdyServer/Document/parserxml.h ../OdyServer/Document/converter.h ../OdyServer/DataStructures/SimpleList/arbolavl.h ../OdyServer/DataStructures/SimpleList/nodoavl.h ../OdyServer/DataStructures/SimpleList/mapa.h ../OdyServer/Objects/cancion.h ../OdyServer/Document/jsonmaker.h ../OdyServer/Document/guardarjson.h ../OdyServer/Document/leerjson.h ../OdyServer/DataStructures/SimpleList/hashmap.h ../OdyServer/DataStructures/SimpleList/listasimple.h ../OdyServer/DataStructures/SimpleList/nodolistasimple.h ../OdyServer/DataStructures/SimpleList/arbolbb.h ../OdyServer/DataStructures/SimpleList/nodobb.h ../OdyServer/Document/mysqldb.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../OdyServer/main.cpp ../OdyServer/mainwindow.cpp ../OdyServer/Server/server.cpp ../OdyServer/Document/xmldocument.cpp ../OdyServer/Objects/message.cpp ../OdyServer/DataStructures/SimpleList/node.cpp ../OdyServer/Server/logic.cpp ../OdyServer/Document/parserxml.cpp ../OdyServer/Document/converter.cpp ../OdyServer/DataStructures/SimpleList/nodoavl.cpp ../OdyServer/Objects/cancion.cpp ../OdyServer/Document/jsonmaker.cpp ../OdyServer/Document/guardarjson.cpp ../OdyServer/Document/leerjson.cpp ../OdyServer/DataStructures/SimpleList/simplelist.cpp ../OdyServer/DataStructures/SimpleList/hashmap.cpp ../OdyServer/DataStructures/SimpleList/nodobb.cpp ../OdyServer/Document/mysqldb.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../OdyServer/mainwindow.ui $(DISTDIR)/
 
 
@@ -736,7 +746,7 @@ moc_mainwindow.cpp: ../../../../Qt5.7.0/5.7/gcc_64/include/QtWidgets/QMainWindow
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtGui/qicon.h \
 		../OdyServer/mainwindow.h \
 		../../../../Qt5.7.0/5.7/gcc_64/bin/moc
-	/home/andres/Qt5.7.0/5.7/gcc_64/bin/moc $(DEFINES) -I/home/andres/Qt5.7.0/5.7/gcc_64/mkspecs/linux-g++ -I/home/andres/Downloads/Odyssey-master/OdyServer/OdyServer -I/home/andres/Qt5.7.0/5.7/gcc_64/include -I/home/andres/Qt5.7.0/5.7/gcc_64/include/QtWidgets -I/home/andres/Qt5.7.0/5.7/gcc_64/include/QtGui -I/home/andres/Qt5.7.0/5.7/gcc_64/include/QtNetwork -I/home/andres/Qt5.7.0/5.7/gcc_64/include/QtXml -I/home/andres/Qt5.7.0/5.7/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../OdyServer/mainwindow.h -o moc_mainwindow.cpp
+	/home/andres/Qt5.7.0/5.7/gcc_64/bin/moc $(DEFINES) -I/home/andres/Qt5.7.0/5.7/gcc_64/mkspecs/linux-g++ -I/home/andres/Downloads/Odyssey-master/OdyServer/OdyServer -I/usr/include/mysql -I/home/andres/Qt5.7.0/5.7/gcc_64/include -I/home/andres/Qt5.7.0/5.7/gcc_64/include/QtWidgets -I/home/andres/Qt5.7.0/5.7/gcc_64/include/QtGui -I/home/andres/Qt5.7.0/5.7/gcc_64/include/QtNetwork -I/home/andres/Qt5.7.0/5.7/gcc_64/include/QtXml -I/home/andres/Qt5.7.0/5.7/gcc_64/include/QtSql -I/home/andres/Qt5.7.0/5.7/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../OdyServer/mainwindow.h -o moc_mainwindow.cpp
 
 moc_server.cpp: ../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QObject \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qobject.h \
@@ -866,12 +876,24 @@ moc_server.cpp: ../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QObject \
 		../OdyServer/DataStructures/SimpleList/node.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QString \
 		../OdyServer/Objects/attribute.h \
+		../OdyServer/DataStructures/SimpleList/hashmap.h \
+		../OdyServer/DataStructures/SimpleList/mapa.h \
+		../OdyServer/DataStructures/SimpleList/listasimple.h \
+		../OdyServer/DataStructures/SimpleList/nodolistasimple.h \
+		../OdyServer/DataStructures/SimpleList/arbolbb.h \
+		../OdyServer/DataStructures/SimpleList/nodobb.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QJsonObject \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qjsonobject.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qjsonvalue.h \
 		../OdyServer/Document/xmldocument.h \
 		../OdyServer/Objects/message.h \
 		../OdyServer/Document/converter.h \
+		../OdyServer/Document/leerjson.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QJsonArray \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qjsonarray.h \
 		../OdyServer/Server/server.h \
 		../../../../Qt5.7.0/5.7/gcc_64/bin/moc
-	/home/andres/Qt5.7.0/5.7/gcc_64/bin/moc $(DEFINES) -I/home/andres/Qt5.7.0/5.7/gcc_64/mkspecs/linux-g++ -I/home/andres/Downloads/Odyssey-master/OdyServer/OdyServer -I/home/andres/Qt5.7.0/5.7/gcc_64/include -I/home/andres/Qt5.7.0/5.7/gcc_64/include/QtWidgets -I/home/andres/Qt5.7.0/5.7/gcc_64/include/QtGui -I/home/andres/Qt5.7.0/5.7/gcc_64/include/QtNetwork -I/home/andres/Qt5.7.0/5.7/gcc_64/include/QtXml -I/home/andres/Qt5.7.0/5.7/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../OdyServer/Server/server.h -o moc_server.cpp
+	/home/andres/Qt5.7.0/5.7/gcc_64/bin/moc $(DEFINES) -I/home/andres/Qt5.7.0/5.7/gcc_64/mkspecs/linux-g++ -I/home/andres/Downloads/Odyssey-master/OdyServer/OdyServer -I/usr/include/mysql -I/home/andres/Qt5.7.0/5.7/gcc_64/include -I/home/andres/Qt5.7.0/5.7/gcc_64/include/QtWidgets -I/home/andres/Qt5.7.0/5.7/gcc_64/include/QtGui -I/home/andres/Qt5.7.0/5.7/gcc_64/include/QtNetwork -I/home/andres/Qt5.7.0/5.7/gcc_64/include/QtXml -I/home/andres/Qt5.7.0/5.7/gcc_64/include/QtSql -I/home/andres/Qt5.7.0/5.7/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../OdyServer/Server/server.h -o moc_server.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -1026,21 +1048,156 @@ main.o: ../OdyServer/main.cpp ../OdyServer/mainwindow.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qdir.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qfileinfo.h \
 		../OdyServer/Objects/attribute.h \
-		../OdyServer/Document/xmldocument.h \
-		../OdyServer/Objects/message.h \
-		../OdyServer/Document/converter.h \
-		../OdyServer/Document/jsonmaker.h \
+		../OdyServer/DataStructures/SimpleList/hashmap.h \
+		../OdyServer/DataStructures/SimpleList/mapa.h \
+		../OdyServer/DataStructures/SimpleList/listasimple.h \
+		../OdyServer/DataStructures/SimpleList/nodolistasimple.h \
+		../OdyServer/DataStructures/SimpleList/arbolbb.h \
+		../OdyServer/DataStructures/SimpleList/nodobb.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QJsonObject \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qjsonobject.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qjsonvalue.h \
+		../OdyServer/Document/xmldocument.h \
+		../OdyServer/Objects/message.h \
+		../OdyServer/Document/converter.h \
+		../OdyServer/Document/leerjson.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QJsonArray \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qjsonarray.h \
+		../OdyServer/Document/jsonmaker.h \
 		../OdyServer/Document/guardarjson.h \
-		../OdyServer/Document/leerjson.h \
-		../OdyServer/DataStructures/SimpleList/hashmap.h \
-		../OdyServer/DataStructures/SimpleList/mapa.h \
-		../OdyServer/DataStructures/SimpleList/simplelist.cpp \
-		../OdyServer/DataStructures/SimpleList/listasimple.h
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtSql/QtSql \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtSql/QtSqlDepends \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QtCore \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QtCoreDepends \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qabstractanimation.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qanimationgroup.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qparallelanimationgroup.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qpauseanimation.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qpropertyanimation.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qvariantanimation.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qeasingcurve.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qsequentialanimationgroup.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qtextcodec.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qendian.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qlibraryinfo.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qdatetime.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qbuffer.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qdiriterator.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qfileselector.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QStringList \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qfilesystemwatcher.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qlockfile.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qloggingcategory.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qprocess.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qresource.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qsavefile.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qsettings.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qstandardpaths.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qstorageinfo.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qtemporarydir.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QScopedPointer \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qtemporaryfile.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qabstractproxymodel.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qidentityproxymodel.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qsortfilterproxymodel.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qstringlistmodel.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qjsondocument.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qabstracteventdispatcher.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qabstractnativeeventfilter.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qbasictimer.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qmath.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qmetaobject.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qmimedata.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qobjectcleanuphandler.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qpointer.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qsharedmemory.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qsignalmapper.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qsocketnotifier.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qsystemsemaphore.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qtimer.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qtranslator.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qwineventnotifier.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qmimedatabase.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qmimetype.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qfactoryinterface.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qlibrary.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qplugin.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qpluginloader.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/quuid.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qabstractstate.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qabstracttransition.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qeventtransition.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qfinalstate.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qhistorystate.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qsignaltransition.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qstate.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qstatemachine.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qexception.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qfuture.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qfutureinterface.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qrunnable.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qresultstore.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qfuturesynchronizer.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qfuturewatcher.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qreadwritelock.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qsemaphore.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qthread.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qthreadpool.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qthreadstorage.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qwaitcondition.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qarraydataops.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qarraydatapointer.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qbitarray.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qbytearraymatcher.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qcache.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qcollator.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qcommandlineoption.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qcommandlineparser.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qcryptographichash.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qelapsedtimer.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qlinkedlist.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qmessageauthenticationcode.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qqueue.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qscopedvaluerollback.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qstack.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qtextboundaryfinder.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qtimeline.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qtimezone.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qversionnumber.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qtcoreversion.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtSql/qsql.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtSql/qsqldatabase.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtSql/qsqldriver.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtSql/qsqldriverplugin.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtSql/qsqlerror.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtSql/qsqlfield.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtSql/qsqlindex.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtSql/qsqlrecord.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtSql/qsqlquery.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtSql/qsqlresult.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtSql/qsqlquerymodel.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtSql/qsqlrelationaldelegate.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtWidgets/qitemdelegate.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtWidgets/qlistview.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtWidgets/qcombobox.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtSql/qsqlrelationaltablemodel.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtSql/qsqltablemodel.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtSql/qtsqlversion.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../OdyServer/main.cpp
 
 mainwindow.o: ../OdyServer/mainwindow.cpp ../OdyServer/mainwindow.h \
@@ -1314,9 +1471,21 @@ server.o: ../OdyServer/Server/server.cpp ../OdyServer/Server/server.h \
 		../OdyServer/DataStructures/SimpleList/node.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QString \
 		../OdyServer/Objects/attribute.h \
+		../OdyServer/DataStructures/SimpleList/hashmap.h \
+		../OdyServer/DataStructures/SimpleList/mapa.h \
+		../OdyServer/DataStructures/SimpleList/listasimple.h \
+		../OdyServer/DataStructures/SimpleList/nodolistasimple.h \
+		../OdyServer/DataStructures/SimpleList/arbolbb.h \
+		../OdyServer/DataStructures/SimpleList/nodobb.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QJsonObject \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qjsonobject.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qjsonvalue.h \
 		../OdyServer/Document/xmldocument.h \
 		../OdyServer/Objects/message.h \
-		../OdyServer/Document/converter.h
+		../OdyServer/Document/converter.h \
+		../OdyServer/Document/leerjson.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QJsonArray \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qjsonarray.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o server.o ../OdyServer/Server/server.cpp
 
 xmldocument.o: ../OdyServer/Document/xmldocument.cpp ../OdyServer/Document/xmldocument.h \
@@ -1487,6 +1656,15 @@ logic.o: ../OdyServer/Server/logic.cpp ../OdyServer/Server/logic.h \
 		../OdyServer/DataStructures/SimpleList/node.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QString \
 		../OdyServer/Objects/attribute.h \
+		../OdyServer/DataStructures/SimpleList/hashmap.h \
+		../OdyServer/DataStructures/SimpleList/mapa.h \
+		../OdyServer/DataStructures/SimpleList/listasimple.h \
+		../OdyServer/DataStructures/SimpleList/nodolistasimple.h \
+		../OdyServer/DataStructures/SimpleList/arbolbb.h \
+		../OdyServer/DataStructures/SimpleList/nodobb.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QJsonObject \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qjsonobject.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qjsonvalue.h \
 		../OdyServer/Document/xmldocument.h \
 		../OdyServer/Objects/message.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o logic.o ../OdyServer/Server/logic.cpp
@@ -1570,11 +1748,21 @@ parserxml.o: ../OdyServer/Document/parserxml.cpp ../OdyServer/Document/parserxml
 		../OdyServer/DataStructures/SimpleList/simplelist.h \
 		../OdyServer/DataStructures/SimpleList/node.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QString \
-		../OdyServer/Objects/attribute.h
+		../OdyServer/Objects/attribute.h \
+		../OdyServer/DataStructures/SimpleList/hashmap.h \
+		../OdyServer/DataStructures/SimpleList/mapa.h \
+		../OdyServer/DataStructures/SimpleList/listasimple.h \
+		../OdyServer/DataStructures/SimpleList/nodolistasimple.h \
+		../OdyServer/DataStructures/SimpleList/arbolbb.h \
+		../OdyServer/DataStructures/SimpleList/nodobb.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QJsonObject \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qjsonobject.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qjsonvalue.h \
+		../OdyServer/Document/jsonmaker.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QJsonArray \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qjsonarray.h \
+		../OdyServer/DataStructures/SimpleList/arbolbb.cpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o parserxml.o ../OdyServer/Document/parserxml.cpp
-
-attribute.o: ../OdyServer/Objects/attribute.cpp ../OdyServer/Objects/attribute.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o attribute.o ../OdyServer/Objects/attribute.cpp
 
 converter.o: ../OdyServer/Document/converter.cpp ../OdyServer/Document/converter.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QString \
@@ -1873,12 +2061,24 @@ leerjson.o: ../OdyServer/Document/leerjson.cpp ../OdyServer/Document/leerjson.h 
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qcontainerfwd.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qobject_impl.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qshareddata.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qhash.h
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qhash.h \
+		../OdyServer/DataStructures/SimpleList/listasimple.h \
+		../OdyServer/DataStructures/SimpleList/nodolistasimple.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QTextStream \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qtextstream.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qlocale.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qvariant.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qmap.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qdebug.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qvector.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qpoint.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qset.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qsharedpointer_impl.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o leerjson.o ../OdyServer/Document/leerjson.cpp
 
-hashmap.o: ../OdyServer/DataStructures/SimpleList/hashmap.cpp ../OdyServer/DataStructures/SimpleList/hashmap.h \
-		../OdyServer/DataStructures/SimpleList/mapa.h \
-		../OdyServer/DataStructures/SimpleList/simplelist.h \
+simplelist.o: ../OdyServer/DataStructures/SimpleList/simplelist.cpp ../OdyServer/DataStructures/SimpleList/simplelist.h \
 		../OdyServer/DataStructures/SimpleList/node.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QString \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qstring.h \
@@ -1909,10 +2109,44 @@ hashmap.o: ../OdyServer/DataStructures/SimpleList/hashmap.cpp ../OdyServer/DataS
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qrefcount.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qnamespace.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qarraydata.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qstringbuilder.h \
-		../OdyServer/DataStructures/SimpleList/simplelist.cpp \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qstringbuilder.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o simplelist.o ../OdyServer/DataStructures/SimpleList/simplelist.cpp
+
+hashmap.o: ../OdyServer/DataStructures/SimpleList/hashmap.cpp ../OdyServer/DataStructures/SimpleList/hashmap.h \
+		../OdyServer/DataStructures/SimpleList/mapa.h \
+		../OdyServer/DataStructures/SimpleList/listasimple.h \
+		../OdyServer/DataStructures/SimpleList/nodolistasimple.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QDir \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qdir.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qstring.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qchar.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qglobal.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qconfig.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qfeatures.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qtypetraits.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qisenum.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qsysinfo.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qlogging.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qflags.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qatomic.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qmutex.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qnumeric.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qversiontagging.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qbytearray.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qrefcount.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qnamespace.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qarraydata.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qstringbuilder.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qfileinfo.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qfile.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qfiledevice.h \
@@ -1936,9 +2170,80 @@ hashmap.o: ../OdyServer/DataStructures/SimpleList/hashmap.cpp ../OdyServer/DataS
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qcontainerfwd.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qobject_impl.h \
 		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qshareddata.h \
-		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qhash.h \
-		../OdyServer/DataStructures/SimpleList/listasimple.h
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qhash.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o hashmap.o ../OdyServer/DataStructures/SimpleList/hashmap.cpp
+
+nodobb.o: ../OdyServer/DataStructures/SimpleList/nodobb.cpp ../OdyServer/DataStructures/SimpleList/nodobb.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/QJsonObject \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qjsonobject.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qjsonvalue.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qglobal.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qconfig.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qfeatures.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qtypetraits.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qisenum.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qsysinfo.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qlogging.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qflags.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qatomic.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qmutex.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qnumeric.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qversiontagging.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qstring.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qchar.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qbytearray.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qrefcount.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qnamespace.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qarraydata.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qiterator.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qpair.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o nodobb.o ../OdyServer/DataStructures/SimpleList/nodobb.cpp
+
+mysqldb.o: ../OdyServer/Document/mysqldb.cpp ../OdyServer/Document/mysqldb.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtSql/QSqlDatabase \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtSql/qsqldatabase.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qstring.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qchar.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qglobal.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qconfig.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qfeatures.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qtypetraits.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qisenum.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qsysinfo.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qlogging.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qflags.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qatomic.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qmutex.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qnumeric.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qversiontagging.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qbytearray.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qrefcount.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qnamespace.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qarraydata.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../../Qt5.7.0/5.7/gcc_64/include/QtSql/qsql.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mysqldb.o ../OdyServer/Document/mysqldb.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
