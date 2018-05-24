@@ -1,15 +1,11 @@
 #include "node.h"
 
-
-// Constructor por defecto
 template<typename T>
 Node<T>::Node()
 {
     data = NULL;
     next = NULL;
 }
-
-// Constructor por parámetro
 template<typename T>
 Node<T>::Node(T _data)
 {
@@ -22,8 +18,6 @@ void Node<T>::setData(T _data) {
     data=_data;
 }
 
-
-
 template<typename T>
 Node<T>::~Node() {
     delete next;
@@ -34,7 +28,6 @@ void Node<T>::setNext(Node* _next) {
     next=_next;
 
 }
-
 template<class T>
 T Node<T>::getData() {
     return data;
@@ -48,6 +41,4 @@ Node<T> *Node<T>::getNext() {
 template<class T>
 void Node<T>::print() {
     std::cout << data << "-> ";
-    //std::string str =std::to_string(data);
-    //printf(std::to_string(data));
 }
