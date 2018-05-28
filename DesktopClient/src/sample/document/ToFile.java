@@ -19,6 +19,8 @@ public class ToFile {
         File destination = new File("sample.mp3");
        // toFile(data,destination);
         try {
+
+
             File f = new File("/home/gerald/Documents/I Sem 2018/Datos 2/Odyssey/DesktopClient/src/sample/Files/Prueba.mp3");
             Files.write(destination.toPath(), Files.readAllBytes(f.toPath()));
         }catch (Exception e){};
