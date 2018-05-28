@@ -4,7 +4,9 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network xml
+QT += core gui network xml
+QT += sql
+INCLUDEPATH += /usr/include/mysql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -32,7 +34,6 @@ SOURCES += \
     DataStructures/SimpleList/node.cpp \
     Server/logic.cpp \
     Document/parserxml.cpp \
-    Objects/attribute.cpp \
     Document/converter.cpp \
     DataStructures/SimpleList/nodoavl.cpp \
     Objects/cancion.cpp \
@@ -40,7 +41,10 @@ SOURCES += \
     Document/guardarjson.cpp \
     Document/leerjson.cpp \
     DataStructures/SimpleList/simplelist.cpp \
-    DataStructures/SimpleList/hashmap.cpp
+    DataStructures/SimpleList/hashmap.cpp \
+    DataStructures/SimpleList/arbolbb.cpp \
+    DataStructures/SimpleList/nodobb.cpp \
+    Document/mysqldb.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -51,7 +55,6 @@ HEADERS += \
     DataStructures/SimpleList/node.h \
     Server/logic.h \
     Document/parserxml.h \
-    Objects/attribute.h \
     Document/converter.h \
     DataStructures/SimpleList/arbolavl.h \
     DataStructures/SimpleList/nodoavl.h \
@@ -62,7 +65,12 @@ HEADERS += \
     Document/leerjson.h \
     DataStructures/SimpleList/hashmap.h \
     DataStructures/SimpleList/listasimple.h \
-    DataStructures/SimpleList/nodolistasimple.h
+    DataStructures/SimpleList/nodolistasimple.h \
+    DataStructures/SimpleList/arbolbb.h \
+    DataStructures/SimpleList/nodobb.h \
+    Document/mysqldb.h
 
 FORMS += \
         mainwindow.ui
+
+DISTFILES +=

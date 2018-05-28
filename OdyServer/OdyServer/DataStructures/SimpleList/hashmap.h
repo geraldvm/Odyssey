@@ -23,12 +23,7 @@ private:
      * @brief dirMap : Dirección para guardar y cargar la información de contraseñas
      */
     std::string dirMap = QDir::homePath().toStdString().append("/Music/Odyssey/data/passMap.txt");
-    /**
-     * @brief generearId : Función que genera un entero para usarlo de id
-     * @param nombre : Nombre del usuario a asignar valor
-     * @return : Entero con el la suma de los valores en entero de cada carácter del nombre de usuario
-     */
-    int generarId(std::string nombre);
+
 
 public:
     /**
@@ -52,6 +47,12 @@ public:
      * @return resultado de la comparación
      */
     bool confirmarPass(std::string pass, std::string nombre);
+    /**
+     * @brief generearId : Función que genera un entero para usarlo de id
+     * @param nombre : Nombre del usuario a asignar valor
+     * @return : Entero con el la suma de los valores en entero de cada carácter del nombre de usuario
+     */
+    int generarId(std::string nombre);
 };
 
 #endif // HASHMAP_H

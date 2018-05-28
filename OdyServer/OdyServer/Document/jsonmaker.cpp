@@ -32,16 +32,3 @@ JsonMaker::JsonMaker(string titulo, string artista, string album, string genero,
 QJsonObject JsonMaker::getJson() {
     return jsonObject;
 }
-
-bool JsonMaker::modificarMetadata(string titulo, vector<string> cambios, vector<string> valor) {
-    bool cambioEfectuado = false;
-    QJsonObject obj;
-    for (int i = 0; i < valor.size(); i++) {
-        if (cambios[i] == "anno" || cambios[i] == "numeroDisco" || cambios[i] == "numeroPista") {
-            obj.insert(QString::fromStdString(cambios[i]),stoi(valor[i]));
-        } else {
-            obj.insert(QString::fromStdString(cambios[i]),QString::fromStdString(valor[i]));
-        }
-    }
-    return cambioEfectuado;
-}
