@@ -27,7 +27,6 @@ void Server::stop()
 }
 
 void Server::newConnection(){
-
     QTcpSocket *socket = server->nextPendingConnection();
     socket->write("Hello client\r\n");
     socket->flush();
@@ -45,6 +44,8 @@ void Server::newConnection(){
             logic.decision();
             sendFile(socket);
             */
+
+            logic = new Logic(socket);
 
             //std::cout<<"Client: "<<GET<<std::endl;
             socket->waitForReadyRead(3000);

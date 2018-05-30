@@ -38,7 +38,7 @@ private:
     void sendFile(QTcpSocket *socket);
     void writeRequested(std::string data);
     void readRequested();
-    Logic logic;
+    Logic *logic;
     Converter converter;
 
 };

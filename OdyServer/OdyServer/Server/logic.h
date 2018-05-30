@@ -7,24 +7,31 @@
 #include <string>
 #include <iostream>
 //#include "page.h"
+#include <QTcpSocket>
 
 using namespace std;
 class Logic
 {
 public:
-    Logic();
+    Logic(QTcpSocket *socket);
     void decision();
     void setGET(string GET);
     /**
      * @brief writeGET create requested.xml
      */
     void writeGET();
+    void sendMP3(QString fileName);
+    void sendFile();
+
 
 private:
     string GET;
     XMLDocument *POST= new XMLDocument();
     ParserXML *xml= new ParserXML();
     void getFileList();
+    QTcpSocket socket;
+
+
     //Page* page;
 
 

@@ -13,6 +13,7 @@ XMLDocument::XMLDocument()
 
 void XMLDocument::userVerification(bool status)
 {
+
     QFile xml(path);
     xml.open(QIODevice::WriteOnly);
     QXmlStreamWriter docXml(&xml);
@@ -20,25 +21,24 @@ void XMLDocument::userVerification(bool status)
     docXml.writeStartDocument();
     docXml.writeStartElement("userVerification");
     docXml.writeStartElement("user");
-    docXml.writeAttribute("Status",status);
-    docXml.writeEndElement();
+    docXml.writeAttribute("Status",QString::fromStdString(status));
     docXml.writeEndElement();
     docXml.writeEndDocument();
     xml.close();
 
 }
 
-void XMLDocument::song(std::string number, std::string data)
+void XMLDocument::song(QString size, QString name)
 {
     QFile xml(path);
     xml.open(QIODevice::WriteOnly);
     QXmlStreamWriter docXml(&xml);
     docXml.setAutoFormatting(true);
     docXml.writeStartDocument();
+    docXml.writeStartElement("SongPost");
     docXml.writeStartElement("Song");
-    docXml.writeStartElement("Chunk");
-    //docXml.writeAttribute("Part",number);
-    //docXml.writeAttribute("Data",data);
+    docXml.writeAttribute("Name",name);
+    docXml.writeAttribute("Size",size);
     docXml.writeEndElement();
     docXml.writeEndElement();
     docXml.writeEndDocument();
