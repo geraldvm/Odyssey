@@ -105,8 +105,8 @@ SimpleList<Attribute> *ParserXML::pageRequested()
 Attribute ParserXML::songRequested()
 {
     QDomElement song =this->getHeader().firstChild().toElement();
-    Attribute* attr = new Attribute("Name",song.attribute("Name","").toStdString());
-    return *attr;
+    //Attribute* attr = new Attribute("Name",song.attribute("Name","").toStdString());
+    //return *attr;
 }
 
 bool ParserXML::deleteSong()

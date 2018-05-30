@@ -19,9 +19,10 @@ public:
     void newUser(bool status);
     void modifyMetadata(bool status);
     void deleteSong(bool status);
+
     void userVerification(bool status);
 
-    void song(QString size, QString name);
+    void song(std::string number, std::string data);
     void songList(string *array, int size);//como parametro lista enlazada o arreglo con las 10 canciones
     void userList(SimpleList<std::string> users);
     void sendMsg(SimpleList<Message> messageList);

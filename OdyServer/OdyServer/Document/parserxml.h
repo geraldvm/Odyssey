@@ -27,7 +27,7 @@ public:
     bool modifyMetaData();
     SimpleList<Attribute> *pageRequested();
     Attribute songRequested();
-    string deleteSong();
+    bool deleteSong();
     SimpleList<Attribute> *sendMsg();
     string spotifyRequested();
 

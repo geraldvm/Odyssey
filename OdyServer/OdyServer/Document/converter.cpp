@@ -22,3 +22,7 @@ void Converter::toFile(QByteArray bytes)
     file.write(bytes);
     file.close();
 }
+
+void Converter::setPath(QString dir){
+    path = QDir::homePath().append("/Music/Library/"+dir);
+}

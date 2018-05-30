@@ -17,6 +17,7 @@
 #include "Document/parserxml.h"
 #include "Document/leerjson.h"
 #include <QDir>
+#include <QBitArray>
 
 class Server : public QObject
 {
@@ -38,8 +39,14 @@ private:
     void sendFile(QTcpSocket *socket);
     void writeRequested(std::string data);
     void readRequested();
-    Logic *logic;
+    Logic logic;
     Converter converter;
+
+    QBitArray convertirABits(QByteArray in);
+    QByteArray convertirABytes(QBitArray in);
+
+    void stripping();
+    void  recovery();
 
 };
 
