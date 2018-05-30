@@ -3,7 +3,6 @@
 
 Logic::Logic()
 {
-
     //this->page= new Page();
 }
 
@@ -12,16 +11,13 @@ void Logic::decision()
     string x=xml->getRoot();
 
     if(x=="NewUser"){
-        std::cout<<"********New USer************"<<std::endl;
-        //Llamar metodo para guardar datos
+        POST->newUser(xml->newUserParser());
     }
     else if(x=="userVerification"){
-        //Llamar metodo para verificar datos
-        POST->userVerification("true");//or False
-        //enviar POST a cliente
+        POST->userVerification(xml->userVerificationParser());
     }
     else if(x=="ModifyMetaData"){
-        //Llamar metodo para modificar Metadata
+        POST->modifyMetadata(xml->modifyMetaData());
     }
     else if(x=="pageRequested"){
         //Llamar metodo para cargar paginas
@@ -36,10 +32,10 @@ void Logic::decision()
         //POST.song();
     }
     else if(x=="deleteSong"){
-        //Llamar metodo para eliminar Cancion
+        POST->deleteSong();
     }
     else if(x=="newMsg"){
-        //Llamar metodo para eliminar Cancion
+        //
     }
 
 }
@@ -64,4 +60,3 @@ void Logic::getFileList()
         //put file into array
     }*/
 }
-

@@ -4,9 +4,9 @@
 #
 #-------------------------------------------------
 
+CONFIG += c++11
 QT += core gui network xml
 QT += sql
-INCLUDEPATH += /usr/include/mysql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -73,4 +73,4 @@ HEADERS += \
 FORMS += \
         mainwindow.ui
 
-DISTFILES +=
+

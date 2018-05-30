@@ -8,7 +8,6 @@
 #include <iostream>
 //#include "page.h"
 
-
 using namespace std;
 class Logic
 {
@@ -25,7 +24,6 @@ private:
     string GET;
     XMLDocument *POST= new XMLDocument();
     ParserXML *xml= new ParserXML();
-
     void getFileList();
     //Page* page;
 

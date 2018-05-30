@@ -27,6 +27,7 @@ void Server::stop()
 }
 
 void Server::newConnection(){
+
     QTcpSocket *socket = server->nextPendingConnection();
     socket->write("Hello client\r\n");
     socket->flush();

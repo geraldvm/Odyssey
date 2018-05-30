@@ -9,11 +9,12 @@
 #include <QObject>
 #include <QFile>
 #include <QDir>
-#include "DataStructures/SimpleList/simplelist.h"
 #include "Objects/attribute.h"
 #include <QString>
 #include "DataStructures/SimpleList/hashmap.h"
 #include "DataStructures/SimpleList/arbolbb.h"
+#include "DataStructures/SimpleList/simplelist.h"
+#include "Document/mysqldb.h"
 
 using namespace std;
 class ParserXML
@@ -23,7 +24,7 @@ public:
     std::string getRoot();
     bool newUserParser();
     bool userVerificationParser();
-    void modifyMetaData();
+    bool modifyMetaData();
     SimpleList<Attribute> *pageRequested();
     Attribute songRequested();
     string deleteSong();
@@ -31,6 +32,7 @@ public:
     string spotifyRequested();
 
 private:
+    MySQLDB sql;
     arbolBB<QJsonObject> ab = arbolBB<QJsonObject>();
     hashmap mapa = hashmap();
     ListaSimple<QJsonObject> listaCambios = ListaSimple<QJsonObject>();

@@ -4,10 +4,11 @@
 #include "DataStructures/SimpleList/hashmap.h"
 #include "DataStructures/SimpleList/arbolbb.cpp"
 
-//contraseña mysql root: ServerOdy2.0
+//contraseña mysql root: OdyServer
 
 ParserXML::ParserXML()
 {
+    sql= MySQLDB();
     mapa.leerMapa();
     QFile xml(QDir::homePath().append("/Music/Odyssey/Temp/requested.xml"));
     xml.open(QIODevice::ReadOnly);
@@ -68,19 +69,22 @@ bool ParserXML::userVerificationParser()
     return mapa.confirmarPass(user.attribute("Username","").toStdString(),user.attribute("Password","").toStdString());
 }
 
-void ParserXML::modifyMetaData()
+bool ParserXML::modifyMetaData()
 {
     QDomElement song =this->getHeader().firstChild().toElement();
     QJsonObject instruccion = QJsonObject();
-    instruccion.insert("OldName",song.attribute("OldName",""));
-    instruccion.insert("Name",song.attribute("NewName",""));
-    instruccion.insert("Artist",song.attribute("Artist",""));
-    instruccion.insert("Album",song.attribute("Album",""));
-    instruccion.insert("Year", song.attribute("Year",""));
-    instruccion.insert("Lyrics", song.attribute("Lyrics",""));
-    instruccion.insert("Genre",song.attribute("Genre",""));
-    instruccion.insert("Score", song.attribute("Score",""));
-    listaCambios.push_back(instruccion);
+
+    instruccion.insert("titulo",song.attribute("NewName",""));
+    instruccion.insert("artista",song.attribute("Artist",""));
+    instruccion.insert("album",song.attribute("Album",""));
+    instruccion.insert("genero",song.attribute("Genre",""));
+    instruccion.insert("numeroPista", song.attribute("Pista",""));
+    instruccion.insert("numeroDisco", song.attribute("Disco",""));
+    instruccion.insert("anno", song.attribute("Year",""));
+    instruccion.insert("calificacion", song.attribute("Score",""));
+    instruccion.insert("letra", song.attribute("Lyrics",""));
+
+    return sql.modificarInfoCancion(song.attribute("OldName",""),instruccion);
 }
 
 /*
@@ -97,7 +101,7 @@ SimpleList<Attribute> *ParserXML::pageRequested()
     //std::cout<<"pageNum: "<<username.toStdString()<<"passw
     return list;
 }
-
+*/
 Attribute ParserXML::songRequested()
 {
     QDomElement song =this->getHeader().firstChild().toElement();
@@ -105,12 +109,12 @@ Attribute ParserXML::songRequested()
     return *attr;
 }
 
-string ParserXML::deleteSong()
+bool ParserXML::deleteSong()
 {
     QDomElement song =this->getHeader().firstChild().toElement();
-    return song.attribute("Name","").toStdString();
+    return sql.eliminarCancion(song.attribute("Name",""));
 }
-
+/*
 SimpleList<Attribute>* ParserXML::sendMsg()
 {
     SimpleList<Attribute>* list= new SimpleList<Attribute>();
