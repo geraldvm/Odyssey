@@ -20,7 +20,7 @@ using namespace std;
 class ParserXML
 {
 public:
-    ParserXML();
+    ParserXML(arbolBB<QJsonObject> user, hashmap mapa);
     std::string getRoot();
     bool newUserParser();
     bool userVerificationParser();
@@ -32,9 +32,11 @@ public:
     string spotifyRequested();
 
 private:
-    MySQLDB sql;
-    arbolBB<QJsonObject> ab = arbolBB<QJsonObject>();
-    hashmap mapa = hashmap();
+
+    MySQLDB sql = MySQLDB();
+    arbolBB<QJsonObject> userInfo;
+    hashmap passMap;
+
     ListaSimple<QJsonObject> listaCambios = ListaSimple<QJsonObject>();
     QDomDocument *xmlTemp;
     QDomElement getHeader();

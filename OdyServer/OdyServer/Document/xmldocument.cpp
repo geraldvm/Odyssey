@@ -1,6 +1,6 @@
 #include "xmldocument.h"
 
-#include <QDir>
+
 XMLDocument::XMLDocument()
 {
     path=QDir::homePath().append("/Music/Odyssey/Temp/myXml.xml");
@@ -91,6 +91,48 @@ void XMLDocument::songList(std::string* array,int size)
         docXml.writeAttribute("Name",name);
         docXml.writeEndElement();
     }
+    docXml.writeEndElement();
+    docXml.writeEndDocument();
+    xml.close();
+}
+
+void XMLDocument::newUser(bool status){
+    QFile xml(path);
+    xml.open(QIODevice::WriteOnly);
+    QXmlStreamWriter docXml(&xml);
+    docXml.setAutoFormatting(true);
+    docXml.writeStartDocument();
+    docXml.writeStartElement("newUser");
+    docXml.writeAttribute("Status",QString::number((int)status));
+    docXml.writeEndElement();
+    docXml.writeEndElement();
+    docXml.writeEndDocument();
+    xml.close();
+}
+
+void XMLDocument::modifyMetadata(bool status){
+    QFile xml(path);
+    xml.open(QIODevice::WriteOnly);
+    QXmlStreamWriter docXml(&xml);
+    docXml.setAutoFormatting(true);
+    docXml.writeStartDocument();
+    docXml.writeStartElement("modifyMetadata");
+    docXml.writeAttribute("Status",QString::number((int)status));
+    docXml.writeEndElement();
+    docXml.writeEndElement();
+    docXml.writeEndDocument();
+    xml.close();
+}
+
+void XMLDocument::deleteSong(bool status){
+    QFile xml(path);
+    xml.open(QIODevice::WriteOnly);
+    QXmlStreamWriter docXml(&xml);
+    docXml.setAutoFormatting(true);
+    docXml.writeStartDocument();
+    docXml.writeStartElement("deleteSong");
+    docXml.writeAttribute("Status",QString::number((int)status));
+    docXml.writeEndElement();
     docXml.writeEndElement();
     docXml.writeEndDocument();
     xml.close();

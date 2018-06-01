@@ -6,10 +6,10 @@
 
 //contraseña mysql root: OdyServer
 
-ParserXML::ParserXML()
+ParserXML::ParserXML(arbolBB<QJsonObject> user, hashmap mapa)
 {
-    sql= MySQLDB();
-    mapa.leerMapa();
+    userInfo = user;
+    passMap = mapa;
     QFile xml(QDir::homePath().append("/Music/Odyssey/Temp/requested.xml"));
     xml.open(QIODevice::ReadOnly);
     xmlTemp= new QDomDocument();
@@ -37,7 +37,7 @@ QDomElement ParserXML::getHeader()
 bool ParserXML::newUserParser()
 {
     QDomElement user = this->getHeader().firstChild().toElement();
-    if (!ab.search(user.attribute("Username",""))) {
+    if (!userInfo.search(user.attribute("Username",""))) {
         QJsonArray generos = QJsonArray();
         QStringList lista = user.attribute("Genre","").split(',');
         for (QString texto: lista) {
@@ -48,15 +48,15 @@ bool ParserXML::newUserParser()
         for (QString texto: lista) {
             amigos.append(texto);
         }
-        mapa.escribirPass(user.attribute("Username","").toStdString(),user.attribute("Password","").toStdString());
+        passMap.escribirPass(user.attribute("Username","").toStdString(),user.attribute("Password","").toStdString());
         JsonMaker jsonMaker = JsonMaker(user.attribute("Username","").toStdString(),
                                         user.attribute("Name","").toStdString(),
                                         user.attribute("Lastname","").toStdString(),
                                         user.attribute("Age","").toInt(),
                                         generos,
-                                        mapa.generarId(user.attribute("Username","").toStdString()),
+                                        passMap.generarId(user.attribute("Username","").toStdString()),
                                         amigos);
-        ab.insert(jsonMaker.getJson());
+        userInfo.insert(jsonMaker.getJson());
         return true;
     }
     return false;
@@ -66,7 +66,7 @@ bool ParserXML::newUserParser()
 bool ParserXML::userVerificationParser()
 {
     QDomElement user =this->getHeader().firstChild().toElement();
-    return mapa.confirmarPass(user.attribute("Username","").toStdString(),user.attribute("Password","").toStdString());
+    return passMap.confirmarPass(user.attribute("Username","").toStdString(),user.attribute("Password","").toStdString());
 }
 
 bool ParserXML::modifyMetaData()

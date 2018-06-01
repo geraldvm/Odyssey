@@ -1,8 +1,9 @@
 #include "logic.h"
 
 
-Logic::Logic()
+Logic::Logic(ParserXML *parser)
 {
+    xml = parser;
     //this->page= new Page();
 }
 
@@ -11,13 +12,13 @@ void Logic::decision()
     string x=xml->getRoot();
 
     if(x=="NewUser"){
-        //POST->newUser(xml->newUserParser());
+        POST->newUser(xml->newUserParser());
     }
     else if(x=="userVerification"){
-        //POST->userVerification(xml->userVerificationParser());
+        POST->userVerification(xml->userVerificationParser());
     }
     else if(x=="ModifyMetaData"){
-       // POST->modifyMetadata(xml->modifyMetaData());
+       POST->modifyMetadata(xml->modifyMetaData());
     }
     else if(x=="pageRequested"){
         //Llamar metodo para cargar paginas
@@ -32,7 +33,7 @@ void Logic::decision()
         //POST.song();
     }
     else if(x=="deleteSong"){
-        //POST->deleteSong(true);
+        POST->deleteSong(xml->deleteSong());
     }
     else if(x=="newMsg"){
         //

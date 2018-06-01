@@ -10,6 +10,7 @@
 #include <QtXml/QDomElement>
 #include "DataStructures/SimpleList/simplelist.h"
 #include "Objects/message.h"
+#include <QDir>
 
 class XMLDocument
 {
@@ -19,7 +20,6 @@ public:
     void newUser(bool status);
     void modifyMetadata(bool status);
     void deleteSong(bool status);
-
     void userVerification(bool status);
 
     void song(std::string number, std::string data);

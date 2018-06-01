@@ -1,6 +1,7 @@
 #include "mysqldb.h"
 
 MySQLDB::MySQLDB() {
+
     base = QSqlDatabase::addDatabase("QMYSQL");
     base.setHostName("localhost");
     base.setDatabaseName(nombreBase);
@@ -9,6 +10,7 @@ MySQLDB::MySQLDB() {
     if (base.open()) {
         std::cout << "Base de datos abierta"<<std::endl;
     } else std::cout << "Error al abrir base de datos" << std::endl;
+
 }
 
 bool MySQLDB::agregarCancion(QJsonObject info){

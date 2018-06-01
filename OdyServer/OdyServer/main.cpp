@@ -1,18 +1,11 @@
 #include "mainwindow.h"
 #include <QApplication>
-#include "DataStructures/SimpleList/simplelist.h"
 #include "Server/server.h"
-#include "Document/jsonmaker.h"
-#include "Document/guardarjson.h"
-#include "Document/leerjson.h"
-#include "Document/mysqldb.h"
-#include "DataStructures/SimpleList/hashmap.h"
-#include "DataStructures/SimpleList/arbolbb.cpp"
-#include <QtSql>
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
+
     /*
     MySQLDB base = MySQLDB();
     JsonMaker j = JsonMaker("ltitle","lartist","lalbum","lgenre",1,2,2018,5,"llyrics");

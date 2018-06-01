@@ -4,23 +4,24 @@
 Server::Server(QObject *parent) :
     QObject(parent)
 {
-    ListaSimple<QJsonObject> listaUsers = cargarInfo.getUsersInfo();
-    for (int i = 0; i < listaUsers.size; i++) {
-        infoUsers.insert(listaUsers.get(i));
-    }
-
-    usersPass.leerMapa();
-
     server= new QTcpServer(this);
     connect(server,SIGNAL(newConnection()),this,SLOT(newConnection()));
     if(!server->listen(QHostAddress::Any,7777)){
         std::cout<<"Server could not start!"<<std::endl;
     }else{
         std::cout<<"Server started!"<<std::endl;
-        ParserXML* xm = new ParserXML();
+
+        ListaSimple<QJsonObject> listaUsers = cargarInfo.getUsersInfo();
+        for (int i = 0; i < listaUsers.size; i++) {
+            infoUsers.insert(listaUsers.get(i));
+        }
+
+        usersPass.leerMapa();
+        xm = new ParserXML(infoUsers,usersPass);
         xm->getRoot();
-        stripping();
-        recovery();
+        logic = new Logic(xm);
+        //stripping();
+        //recovery();
     }
 }
 
@@ -105,22 +106,17 @@ void Server::stripping()
     QFile inputFile(path);
     inputFile.open(QIODevice::ReadOnly);
     QByteArray blob = inputFile.readAll();
-    int strip= blob.size()/3;
+    int strip= blob.size()/2;
     //Strip 1
     QByteArray bytes = blob.mid( 0, strip);
     converter.setPath("strip1.mp3");
     converter.toFile(bytes);
     //std::cout<<strip<<std::endl;
     //Strip 2
-    bytes = blob.mid(strip,strip);
+    bytes = blob.mid(strip,2*strip);
     converter.setPath("strip2.mp3");
     converter.toFile(bytes);
-    //Strip 3
-    bytes = blob.mid( 2*strip,3*strip);
-    converter.setPath("strip3.mp3");
-    converter.toFile(bytes);
-    inputFile.close();
-    }
+}
 
 void Server::recovery()
 {
@@ -128,36 +124,31 @@ void Server::recovery()
     QFile inputFile(path);
     inputFile.open(QIODevice::ReadOnly);
     QByteArray blob = inputFile.readAll();
-    int strip= blob.size()/3;
+    int strip= blob.size()/2;
 
     //Strip 1
-    QByteArray bytes1 = blob.mid( 0, strip);
+    QByteArray bytes1 = blob.mid(0, strip);
     //Strip 2
-    QByteArray bytes2 = blob.mid(strip,strip);
-    //Strip 3
-    QByteArray bytes3 = blob.mid( 2*strip,3*strip);
+    //std::cout << "blob."+ (QString::number(blob.size())).toStdString() << std::endl;
+    //QByteArray bytes3 = calcularParidad(blob);
     inputFile.close();
 
-
     QBitArray bits1 = convertirABits(bytes1);
-    QBitArray bits2 = convertirABits(bytes2);
-    QBitArray bits3 = convertirABits(bytes3);
-
-
+    QBitArray bits3 = calcularParidad(blob);
 
     //XOR Operation
     converter.setPath("xorResult.mp3");
 
+    std::cout << "b1."+ (QString::number(bits1.size())).toStdString() << std::endl;
+    std::cout << "b3."+ (QString::number(bits3.size())).toStdString() << std::endl;
 
-    QBitArray xorBits(bits1.count());// = bytes1 ^ bytes2;
+    QBitArray xorBits(bits1.count());
 
     for(int bitPos=0;bitPos<bits1.size();++bitPos){
 
-        //std::cout<<bits1.at(bitPos);
+        //std::cout<<bits3.at(bitPos);
 
-        //bool bit=(bytes1.at(bytePos) ^ bytes3.at(bytePos));
-
-        xorBits.setBit(bitPos,bits1.at(bitPos) ^ bits2.at(bitPos) ^ bits3.at(bitPos));
+        xorBits.setBit(bitPos,bits1.at(bitPos) ^ bits3.at(bitPos));
 
     }
 
@@ -188,3 +179,35 @@ QByteArray Server::convertirABytes(QBitArray in){
     return out;
 }
 
+QBitArray Server::calcularParidad(QByteArray in){
+
+    QBitArray bits = QBitArray(in.size());
+
+    std::cout << "in."+ (QString::number(in.size())).toStdString() << std::endl;
+    std::cout << "bs."+ (QString::number(bits.size())).toStdString() << std::endl;
+
+    for(int byte = 0; byte < in.size(); byte++){
+
+        QByteArray byteAux = QByteArray();
+
+        byteAux.push_back(in.at(byte));
+
+        QBitArray bitsAux = convertirABits(byteAux);
+
+        int paridad = 1;
+
+        for(int bit = 0; bit < 8; bit++){
+            if((bool) bitsAux.at(bit)){
+                paridad++;
+            }
+        }
+
+        if(paridad%2 == 0) {
+            bits.setBit(byte,false);
+        } else {
+            bits.setBit(byte,true);
+        }
+    }
+
+    return bits;
+}

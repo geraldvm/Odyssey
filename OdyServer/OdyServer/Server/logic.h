@@ -12,7 +12,7 @@ using namespace std;
 class Logic
 {
 public:
-    Logic();
+    Logic(ParserXML *parser);
     void decision();
     void setGET(string GET);
     /**
@@ -21,9 +21,10 @@ public:
     void writeGET();
 
 private:
+
     string GET;
     XMLDocument *POST= new XMLDocument();
-    ParserXML *xml= new ParserXML();
+    ParserXML *xml;
     void getFileList();
     //Page* page;
 
