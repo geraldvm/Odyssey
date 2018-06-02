@@ -3,19 +3,16 @@ package sample.document;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 import sample.DataStructures.SimpleList;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
-import sample.document.Message;
 
 
 public class ReadXML {
     private File xmlFile;
     public ReadXML(){
-        xmlFile = new File(System.getProperty("user.dir").toString()+"/src/sample/Files/temp.xml");
+        xmlFile = new File(System.getProperty("user.home")+"/Music/Odyssey/temp/temp.xml");
 
     }
     public String getHead()throws Exception{

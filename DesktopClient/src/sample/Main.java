@@ -2,14 +2,14 @@
 package sample;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import sample.DataStructures.SimpleList;
+import sample.document.XMLDocument;
 
 public class Main extends Application {
     private double yOffset;
@@ -17,26 +17,20 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
+        XMLDocument xml = new XMLDocument();
+
+        xml.modifySong(1,1,"ltitle","cancion","artista","album","2016","laletra","genero","3");
+
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        /**
-         * Methods to move window
-         */
-        root.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                yOffset= event.getSceneY();
-                xOffset= event.getSceneX();
-            }
+        root.setOnMousePressed(event -> {
+            yOffset= event.getSceneY();
+            xOffset= event.getSceneX();
         });
-        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                primaryStage.setX(event.getScreenX() - xOffset);
-                primaryStage.setY(event.getScreenY() - yOffset);
+        root.setOnMouseDragged(event -> {
+            primaryStage.setX(event.getScreenX() - xOffset);
+            primaryStage.setY(event.getScreenY() - yOffset);
 
-            }
         });
-
 
         primaryStage.setTitle("Odyssey Desktop App");
         primaryStage.initStyle(StageStyle.TRANSPARENT);

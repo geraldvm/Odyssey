@@ -109,8 +109,6 @@ public class Controller implements Initializable{
                 "Hip-Hop","Dance-Hall","House");
         comboSearch.getItems().addAll("Song","Artist","Album","Lyrics");
 
-
-
         sessionPanel = 0;
 
         addLibraryBtn.setDisable(true);
@@ -126,18 +124,11 @@ public class Controller implements Initializable{
         this.usersList.addLast("Jose");
         this.usersList.addLast("Amanda");
 
-
-
-
-
         progressBar.progressProperty().bind(slider.valueProperty().divide(100));
-
 
         ClientThread.initClient();
 
     }
-
-
 
     public void onExitButtonClicked(MouseEvent event){
         Platform.exit();
@@ -597,6 +588,7 @@ public class Controller implements Initializable{
             score="5";
         }
     }
+    //agregar modificar numero Pista y disco
     public void onSaveModify(ActionEvent e){
         modifyPanel.setVisible(false);
         playerBtn.setDisable(false);
@@ -604,7 +596,7 @@ public class Controller implements Initializable{
         socialBtn.setDisable(false);
         userBtn.setDisable(false);
         libraryPanel.setVisible(true);
-        myXML.modifySong(song,songNameModify.getText().toString(),
+        myXML.modifySong(1,2,song,songNameModify.getText().toString(),
                 artistSongModify.getText().toString(),
                 albumSongModify.getText().toString(),
                 yearSongModify.getText().toString(),

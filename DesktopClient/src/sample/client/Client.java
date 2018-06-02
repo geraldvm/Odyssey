@@ -150,7 +150,6 @@ public class Client extends Thread {
         System.out.println("Recibiendo...");
 
     }
-
     public void listen(){
         String text;
 

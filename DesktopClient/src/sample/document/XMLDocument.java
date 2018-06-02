@@ -3,6 +3,7 @@ package sample.document;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import sample.DataStructures.SimpleList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -14,22 +15,16 @@ import java.io.File;
 
 public class XMLDocument {
 
+    public void newUser(String username, String password, String name, String lastname,String age, String genre){
 
-
-    public void newUser(String username, String password,
-                        String name, String lastname,String age, String genre){
         try{
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-
             Document document = documentBuilder.newDocument();
-
             Element head = document.createElement("NewUser");
             document.appendChild(head);
-
             Element element = document.createElement("User");
             head.appendChild(element);
-
             Attr attr = document.createAttribute("Username");
             attr.setValue(username);
             element.setAttributeNode(attr);
@@ -48,23 +43,20 @@ public class XMLDocument {
             attr = document.createAttribute("Genre");
             attr.setValue(genre);
             element.setAttributeNode(attr);
+            attr = document.createAttribute("Friends");
+            attr.setValue(" ");
+            element.setAttributeNode(attr);
 
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(document);
 
-            String path =System.getProperty("user.dir").toString()+"/src/sample/Files/temp.xml";
+            String path = System.getProperty("user.home")+"/Music/Odyssey/temp/temp.xml";
             StreamResult streamResult = new StreamResult(new File(path));
-
             transformer.transform(source,streamResult);
-
             System.out.println("temp.xml sucessfully!\n");
 
-
-
-        }catch (Exception e){};
-
-
+        }catch (Exception e){e.printStackTrace();}
 
     }
 
@@ -73,53 +65,41 @@ public class XMLDocument {
         try{
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-
             Document document = documentBuilder.newDocument();
-
             Element head = document.createElement("userVerification");
             document.appendChild(head);
-
             Element element = document.createElement("User");
             head.appendChild(element);
-
             Attr attr = document.createAttribute("Username");
             attr.setValue(username);
             element.setAttributeNode(attr);
             attr = document.createAttribute("Password");
             attr.setValue(password);
             element.setAttributeNode(attr);
-
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(document);
 
-            String path =System.getProperty("user.dir").toString()+"/src/sample/Files/temp.xml";
+            String path = System.getProperty("user.home")+"/Music/Odyssey/temp/temp.xml";
             StreamResult streamResult = new StreamResult(new File(path));
 
             transformer.transform(source,streamResult);
 
             System.out.println("temp.xml sucessfully!\n");
 
-
-
-        }catch (Exception e){};
+        }catch (Exception e){e.printStackTrace();}
 
     }
-    public void modifySong(String oldName, String newName, String artist,
-                           String album,String year,
-                           String lyrics, String genre, String score){
+
+    public void modifySong(int numPista, int numDisco, String oldName, String newName, String artist, String album,String year, String lyrics, String genre, String score){
         try{
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-
             Document document = documentBuilder.newDocument();
-
             Element head = document.createElement("ModifyMetaData");
             document.appendChild(head);
-
             Element element = document.createElement("Song");
             head.appendChild(element);
-
             Attr attr = document.createAttribute("OldName");
             attr.setValue(oldName);
             element.setAttributeNode(attr);
@@ -144,39 +124,38 @@ public class XMLDocument {
             attr = document.createAttribute("Score");
             attr.setValue(score);
             element.setAttributeNode(attr);
+            attr = document.createAttribute("Pista");
+            attr.setValue(String.valueOf(numPista));
+            element.setAttributeNode(attr);
+            attr = document.createAttribute("Disco");
+            attr.setValue(String.valueOf(numDisco));
+            element.setAttributeNode(attr);
 
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(document);
 
-            String path =System.getProperty("user.dir").toString()+"/src/sample/Files/temp.xml";
+            String path = System.getProperty("user.home")+"/Music/Odyssey/temp/temp.xml";
             StreamResult streamResult = new StreamResult(new File(path));
 
             transformer.transform(source,streamResult);
 
             System.out.println("temp.xml sucessfully!\n");
 
-
-
-        }catch (Exception e){};
-
-
+        }catch (Exception e){e.printStackTrace();}
 
     }
+
     public void pageRequested(int pageNum,String type,String value){
 
         try{
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-
             Document document = documentBuilder.newDocument();
-
             Element head = document.createElement("pageRequested");
             document.appendChild(head);
-
             Element element = document.createElement("Page");
             head.appendChild(element);
-
             Attr attr = document.createAttribute("Num");
             attr.setValue(String.valueOf(pageNum));
             element.setAttributeNode(attr);
@@ -186,98 +165,80 @@ public class XMLDocument {
             attr = document.createAttribute("Value");
             attr.setValue(value);
             element.setAttributeNode(attr);
-
-
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(document);
 
-            String path =System.getProperty("user.dir").toString()+"/src/sample/Files/temp.xml";
+            String path = System.getProperty("user.home")+"/Music/Odyssey/temp/temp.xml";
             StreamResult streamResult = new StreamResult(new File(path));
 
             transformer.transform(source,streamResult);
 
             System.out.println("temp.xml sucessfully!\n");
 
-
-
-        }catch (Exception e){};
+        }catch (Exception e){e.printStackTrace();}
     }
 
     public void songRequested(String name){
         try{
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-
             Document document = documentBuilder.newDocument();
-
             Element head = document.createElement("songRequested");
             document.appendChild(head);
-
             Element element = document.createElement("Song");
             head.appendChild(element);
-
             Attr attr = document.createAttribute("Name");
             attr.setValue(name);
             element.setAttributeNode(attr);
-
-
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(document);
 
-            String path =System.getProperty("user.dir").toString()+"/src/sample/Files/temp.xml";
+            String path = System.getProperty("user.home")+"/Music/Odyssey/temp/temp.xml";
             StreamResult streamResult = new StreamResult(new File(path));
 
             transformer.transform(source,streamResult);
 
             System.out.println("temp.xml sucessfully!\n");
-        }catch (Exception e){};
+        }catch (Exception e){e.printStackTrace();}
     }
+
     public void deleteSong(String name){
         try{
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-
             Document document = documentBuilder.newDocument();
-
             Element head = document.createElement("deleteSong");
             document.appendChild(head);
-
             Element element = document.createElement("Song");
             head.appendChild(element);
-
             Attr attr = document.createAttribute("Name");
             attr.setValue(name);
             element.setAttributeNode(attr);
-
-
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(document);
 
-            String path =System.getProperty("user.dir").toString()+"/src/sample/Files/temp.xml";
+            String path = System.getProperty("user.home")+"/Music/Odyssey/temp/temp.xml";
             StreamResult streamResult = new StreamResult(new File(path));
 
             transformer.transform(source,streamResult);
 
             System.out.println("temp.xml sucessfully!\n");
-        }catch (Exception e){};
+
+        }catch (Exception e){e.printStackTrace();}
     }
 
     public void sendMSG(String sender,String receiver,String song){
         try{
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-
             Document document = documentBuilder.newDocument();
-
             Element head = document.createElement("newMsg");
             document.appendChild(head);
-
             Element element = document.createElement("MSG");
             head.appendChild(element);
-
             Attr attr = document.createAttribute("Sender");
             attr.setValue(sender);
             element.setAttributeNode(attr);
@@ -292,49 +253,40 @@ public class XMLDocument {
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(document);
 
-            String path =System.getProperty("user.dir").toString()+"/src/sample/Files/temp.xml";
+            String path = System.getProperty("user.home")+"/Music/Odyssey/temp/temp.xml";
             StreamResult streamResult = new StreamResult(new File(path));
 
             transformer.transform(source,streamResult);
 
             System.out.println("temp.xml sucessfully!\n");
 
-
-
-        }catch (Exception e){};
+        }catch (Exception e){e.printStackTrace();}
 
     }
     public void spotifyRequested(String song){
         try{
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-
             Document document = documentBuilder.newDocument();
-
             Element head = document.createElement("spotifyRequested");
             document.appendChild(head);
-
             Element element = document.createElement("Song");
             head.appendChild(element);
-
             Attr attr = document.createAttribute("Name");
             attr.setValue(song);
             element.setAttributeNode(attr);
-
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(document);
 
-            String path =System.getProperty("user.dir").toString()+"/src/sample/Files/temp.xml";
+            String path = System.getProperty("user.home")+"/Music/Odyssey/temp/temp.xml";
             StreamResult streamResult = new StreamResult(new File(path));
 
             transformer.transform(source,streamResult);
 
             System.out.println("temp.xml sucessfully!\n");
 
-
-
-        }catch (Exception e){};
+        }catch (Exception e){e.printStackTrace();}
 
     }
 }
