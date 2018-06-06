@@ -19,6 +19,8 @@
 #include "Document/mysqldb.h"
 #include <QDir>
 #include <QBitArray>
+#include <QFileInfo>
+#include "Document/converter.h"
 
 class Server : public QObject
 {
@@ -49,10 +51,10 @@ private:
 
     QBitArray convertirABits(QByteArray in);
     QByteArray convertirABytes(QBitArray in);
-    QBitArray calcularParidad(QByteArray in);
+    QByteArray calcularParidad(QByteArray p1, QByteArray p2);
 
-    void stripping();
-    void  recovery();
+    void stripping(QString nombre);
+    void  recovery(QString nombre);
 
 };
 

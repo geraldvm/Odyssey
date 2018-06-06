@@ -1,5 +1,5 @@
 #include "server.h"
-
+#include "Document/converter.cpp"
 
 Server::Server(QObject *parent) :
     QObject(parent)
@@ -20,8 +20,8 @@ Server::Server(QObject *parent) :
         xm = new ParserXML(infoUsers,usersPass);
         xm->getRoot();
         logic = new Logic(xm);
-        //stripping();
-        //recovery();
+        //stripping("cancion.mp3");
+        recovery("cancion.mp3");
     }
 }
 
@@ -100,63 +100,95 @@ void Server::readRequested()
 
 }
 
-void Server::stripping()
+void Server::stripping(QString nombre)
 {
-    QString path = QDir::homePath().append("/Music/Library/cancion.mp3");
+    QString path = QDir::homePath().append("/Music/Odyssey/Library/Repository/").append(nombre);
+
     QFile inputFile(path);
     inputFile.open(QIODevice::ReadOnly);
     QByteArray blob = inputFile.readAll();
     int strip= blob.size()/2;
+
     //Strip 1
-    QByteArray bytes = blob.mid( 0, strip);
-    converter.setPath("strip1.mp3");
-    converter.toFile(bytes);
-    //std::cout<<strip<<std::endl;
+    QByteArray bytes1 = blob.mid( 0, strip);
+    converter.setPath("Disc1/"+nombre);
+    converter.toFile(bytes1);
+
     //Strip 2
-    bytes = blob.mid(strip,2*strip);
-    converter.setPath("strip2.mp3");
-    converter.toFile(bytes);
+    QByteArray bytes2 = blob.mid(strip,2*strip);
+    converter.setPath("Disc2/"+nombre);
+    converter.toFile(bytes2);
+
+    QByteArray paridad = calcularParidad(bytes1,bytes2);
+    converter.setPath("Disc3/"+nombre);
+    converter.toFile(paridad);
+
 }
 
-void Server::recovery()
+void Server::recovery(QString nombre)
 {
-    QString path = QDir::homePath().append("/Music/Library/cancion.mp3");
-    QFile inputFile(path);
-    inputFile.open(QIODevice::ReadOnly);
-    QByteArray blob = inputFile.readAll();
-    int strip= blob.size()/2;
 
-    //Strip 1
-    QByteArray bytes1 = blob.mid(0, strip);
-    //Strip 2
-    //std::cout << "blob."+ (QString::number(blob.size())).toStdString() << std::endl;
-    //QByteArray bytes3 = calcularParidad(blob);
-    inputFile.close();
+    QString pathP1 = QDir::homePath().append("/Music/Odyssey/Library/Disc1/");
+    QString pathP2 = QDir::homePath().append("/Music/Odyssey/Library/Disc2/");
+    QString pathPAR = QDir::homePath().append("/Music/Odyssey/Library/Disc3/");
 
-    QBitArray bits1 = convertirABits(bytes1);
-    QBitArray bits3 = calcularParidad(blob);
+    QFile disco1(pathP1.append(nombre));
+    QFile disco2(pathP2.append(nombre));
+    QFile disco3(pathPAR.append(nombre));
 
-    //XOR Operation
-    converter.setPath("xorResult.mp3");
+    QByteArray p1;
+    QByteArray p2;
 
-    std::cout << "b1."+ (QString::number(bits1.size())).toStdString() << std::endl;
-    std::cout << "b3."+ (QString::number(bits3.size())).toStdString() << std::endl;
+    if (disco1.exists() && disco2.exists() && disco3.exists()){
+        disco1.open(QIODevice::ReadOnly);
+        p1 = disco1.readAll();
+        disco2.open(QIODevice::ReadOnly);
+        p2 = disco2.readAll();
+        std::cout << "fine"<< std::endl;;
+    } else {
+        if (disco1.exists() && disco2.exists()){
+            std::cout << "error en el 3"<< std::endl;;
+            disco1.open(QIODevice::ReadOnly);
+            p1 = disco1.readAll();
+            disco2.open(QIODevice::ReadOnly);
+            p2 = disco2.readAll();
+            QByteArray par = calcularParidad(p1, p2);
+            QDir().mkdir(pathPAR);
+            converter.setPath("Disc3/"+nombre);
+            converter.toFile(par);
+        } else {
+            if (disco3.exists()){
+                 if(disco1.exists()){
+                     std::cout << "error en el 2"<< std::endl;;
+                     disco1.open(QIODevice::ReadOnly);
+                     p1 = disco1.readAll();
+                     disco3.open(QIODevice::ReadOnly);
+                     QByteArray par = disco3.readAll();
+                     p2 = calcularParidad(par,p1);
+                     QDir().mkdir(QDir::homePath().append("/Music/Odyssey/Library/Disc2"));
+                     converter.setPath("Disco2/"+nombre);
+                     converter.toFile(p2);
+                 } else {
+                     std::cout << "error en el 1"<< std::endl;;
+                     disco2.open(QIODevice::ReadOnly);
+                     p2 = disco2.readAll();
+                     disco3.open(QIODevice::ReadOnly);
+                     QByteArray par = disco3.readAll();
+                     p1 = calcularParidad(p2,par);
+                     QDir().mkdir(QDir::homePath().append("/Music/Odyssey/Library/Disc1"));
+                     converter.setPath("Disco1/"+nombre);
+                     converter.toFile(p1);
+                 }
 
-    QBitArray xorBits(bits1.count());
-
-    for(int bitPos=0;bitPos<bits1.size();++bitPos){
-
-        //std::cout<<bits3.at(bitPos);
-
-        xorBits.setBit(bitPos,bits1.at(bitPos) ^ bits3.at(bitPos));
-
+            } else {
+                std::cout << "error irrecuperable en mas de 1 disco" << std::endl;
+                return;
+            }
+        }
     }
-
-    std::cout << "final" << std::endl;
-
-    QByteArray xorBytes = convertirABytes(xorBits);
-
-    converter.toFile(xorBytes);
+    converter.setPath("Repository/cancionEnviar.mp3");
+    converter.toFile(p1+p2);
+    std::cout << "done" << std::endl;
 }
 
 QBitArray Server::convertirABits(QByteArray in){
@@ -179,35 +211,15 @@ QByteArray Server::convertirABytes(QBitArray in){
     return out;
 }
 
-QBitArray Server::calcularParidad(QByteArray in){
+QByteArray Server::calcularParidad(QByteArray p1, QByteArray p2){
 
-    QBitArray bits = QBitArray(in.size());
+    QBitArray bits1 = convertirABits(p1);
+    QBitArray bits2 = convertirABits(p2);
+    QBitArray res = QBitArray(bits1.size());
 
-    std::cout << "in."+ (QString::number(in.size())).toStdString() << std::endl;
-    std::cout << "bs."+ (QString::number(bits.size())).toStdString() << std::endl;
-
-    for(int byte = 0; byte < in.size(); byte++){
-
-        QByteArray byteAux = QByteArray();
-
-        byteAux.push_back(in.at(byte));
-
-        QBitArray bitsAux = convertirABits(byteAux);
-
-        int paridad = 1;
-
-        for(int bit = 0; bit < 8; bit++){
-            if((bool) bitsAux.at(bit)){
-                paridad++;
-            }
-        }
-
-        if(paridad%2 == 0) {
-            bits.setBit(byte,false);
-        } else {
-            bits.setBit(byte,true);
-        }
+    for (int bitPos = 0; bitPos < bits1.size(); bitPos++) {
+        res.setBit(bitPos,(bits1.at(bitPos) ^ bits2.at(bitPos)));
     }
 
-    return bits;
+    return convertirABytes(res);
 }

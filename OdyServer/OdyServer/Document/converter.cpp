@@ -2,7 +2,7 @@
 
 Converter::Converter()
 {
-    path=QDir::homePath().append("/Music/Library/newSong.mp3");
+    path=QDir::homePath().append("/Music/Odyssey/Libray/");
 
 }
 
@@ -24,5 +24,5 @@ void Converter::toFile(QByteArray bytes)
 }
 
 void Converter::setPath(QString dir){
-    path = QDir::homePath().append("/Music/Library/"+dir);
+    path = QDir::homePath().append("/Music/Odyssey/Library/"+dir);
 }
