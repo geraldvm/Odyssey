@@ -76,3 +76,23 @@ QJsonObject MySQLDB::getInfoCancion(QString nombre){
 
     return metadata;
 }
+
+ListaSimple<QString> MySQLDB::obtenerCanciones(){
+    ListaSimple<QString> res = ListaSimple<QString>();
+    QSqlQuery query;
+    query.prepare("SELECT titulo FROM metadata");
+    query.exec();
+    while(query.next()){
+        res.push_back(query.value(0).toString());
+    }
+    return res;
+}
+
+QString MySQLDB::obtenerLetra(QString nombre){
+    QSqlQuery query;
+    query.prepare("SELECT letra FROM metadata WHERE titulo=:title");
+    query.bindValue(":title",nombre);
+    query.exec();
+    query.next();
+    return query.value(0).toString();
+}

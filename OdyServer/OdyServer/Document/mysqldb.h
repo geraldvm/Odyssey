@@ -16,6 +16,8 @@ public:
     bool modificarInfoCancion(QString nombre, QJsonObject info);
     bool agregarCancion(QJsonObject info);
     bool eliminarCancion(QString nombre);
+    ListaSimple<QString> obtenerCanciones();
+    QString obtenerLetra(QString nombre);
 
 private:
     QSqlDatabase base;

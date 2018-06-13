@@ -87,6 +87,11 @@ bool ParserXML::modifyMetaData()
     return sql.modificarInfoCancion(song.attribute("OldName",""),instruccion);
 }
 
+QString ParserXML::buscarFrase(){
+    QDomElement busqueda =this->getHeader().firstChild().toElement();
+    return (QString) backtrack.buscar(busqueda.attribute("frase",""));
+}
+
 /*
 SimpleList<Attribute> *ParserXML::pageRequested()
 {
@@ -114,6 +119,8 @@ bool ParserXML::deleteSong()
     QDomElement song =this->getHeader().firstChild().toElement();
     return sql.eliminarCancion(song.attribute("Name",""));
 }
+
+
 /*
 SimpleList<Attribute>* ParserXML::sendMsg()
 {

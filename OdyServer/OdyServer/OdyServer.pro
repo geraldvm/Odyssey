@@ -44,7 +44,8 @@ SOURCES += \
     DataStructures/SimpleList/hashmap.cpp \
     DataStructures/SimpleList/arbolbb.cpp \
     DataStructures/SimpleList/nodobb.cpp \
-    Document/mysqldb.cpp
+    Document/mysqldb.cpp \
+    Document/backtracking.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -68,7 +69,8 @@ HEADERS += \
     DataStructures/SimpleList/nodolistasimple.h \
     DataStructures/SimpleList/arbolbb.h \
     DataStructures/SimpleList/nodobb.h \
-    Document/mysqldb.h
+    Document/mysqldb.h \
+    Document/backtracking.h
 
 FORMS += \
         mainwindow.ui

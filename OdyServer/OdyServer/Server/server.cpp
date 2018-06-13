@@ -21,7 +21,7 @@ Server::Server(QObject *parent) :
         xm->getRoot();
         logic = new Logic(xm);
         //stripping("cancion.mp3");
-        recovery("cancion.mp3");
+        //recovery("cancion.mp3");
     }
 }
 
@@ -110,7 +110,7 @@ void Server::stripping(QString nombre)
     int strip= blob.size()/2;
 
     //Strip 1
-    QByteArray bytes1 = blob.mid( 0, strip);
+    QByteArray bytes1 = blob.mid(0, strip+1);
     converter.setPath("Disc1/"+nombre);
     converter.toFile(bytes1);
 
@@ -122,6 +122,7 @@ void Server::stripping(QString nombre)
     QByteArray paridad = calcularParidad(bytes1,bytes2);
     converter.setPath("Disc3/"+nombre);
     converter.toFile(paridad);
+    std::cout << "done" << std::endl;
 
 }
 
@@ -153,31 +154,41 @@ void Server::recovery(QString nombre)
             disco2.open(QIODevice::ReadOnly);
             p2 = disco2.readAll();
             QByteArray par = calcularParidad(p1, p2);
-            QDir().mkdir(pathPAR);
+            QDir().mkdir(QDir::homePath().append("/Music/Odyssey/Library/Disc3"));
             converter.setPath("Disc3/"+nombre);
             converter.toFile(par);
         } else {
             if (disco3.exists()){
                  if(disco1.exists()){
+
                      std::cout << "error en el 2"<< std::endl;;
+
                      disco1.open(QIODevice::ReadOnly);
                      p1 = disco1.readAll();
                      disco3.open(QIODevice::ReadOnly);
+
                      QByteArray par = disco3.readAll();
-                     p2 = calcularParidad(par,p1);
+                     p2 = calcularParidad(p1,par);
+
                      QDir().mkdir(QDir::homePath().append("/Music/Odyssey/Library/Disc2"));
-                     converter.setPath("Disco2/"+nombre);
+                     converter.setPath("Disc2/"+nombre);
                      converter.toFile(p2);
+
                  } else {
-                     std::cout << "error en el 1"<< std::endl;;
+
+                     std::cout << "error en el 1"<< std::endl;
+
                      disco2.open(QIODevice::ReadOnly);
                      p2 = disco2.readAll();
                      disco3.open(QIODevice::ReadOnly);
+
                      QByteArray par = disco3.readAll();
                      p1 = calcularParidad(p2,par);
+
                      QDir().mkdir(QDir::homePath().append("/Music/Odyssey/Library/Disc1"));
-                     converter.setPath("Disco1/"+nombre);
+                     converter.setPath("Disc1/"+nombre);
                      converter.toFile(p1);
+
                  }
 
             } else {
@@ -186,8 +197,9 @@ void Server::recovery(QString nombre)
             }
         }
     }
-    converter.setPath("Repository/cancionEnviar.mp3");
-    converter.toFile(p1+p2);
+
+    //converter.setPath("Repository/cancionNueva.mp3");
+    //converter.toFile(p1+p2);
     std::cout << "done" << std::endl;
 }
 

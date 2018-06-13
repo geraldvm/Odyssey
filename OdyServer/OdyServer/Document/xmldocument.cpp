@@ -137,3 +137,17 @@ void XMLDocument::deleteSong(bool status){
     docXml.writeEndDocument();
     xml.close();
 }
+
+void XMLDocument::searchPhrase(QString nombre){
+    QFile xml(path);
+    xml.open(QIODevice::WriteOnly);
+    QXmlStreamWriter docXml(&xml);
+    docXml.setAutoFormatting(true);
+    docXml.writeStartDocument();
+    docXml.writeStartElement("Busqueda Frase");
+    docXml.writeAttribute("Cancion",nombre);
+    docXml.writeEndElement();
+    docXml.writeEndElement();
+    docXml.writeEndDocument();
+    xml.close();
+}

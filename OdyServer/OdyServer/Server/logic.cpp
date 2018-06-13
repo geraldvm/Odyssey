@@ -38,6 +38,9 @@ void Logic::decision()
     else if(x=="newMsg"){
         //
     }
+    else if(x == "buscarFrase"){
+        POST->searchPhrase(xml->buscarFrase());
+    }
 
 }
 

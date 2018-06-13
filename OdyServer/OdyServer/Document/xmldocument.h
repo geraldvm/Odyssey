@@ -26,7 +26,7 @@ public:
     void songList(string *array, int size);//como parametro lista enlazada o arreglo con las 10 canciones
     void userList(SimpleList<std::string> users);
     void sendMsg(SimpleList<Message> messageList);
-
+    void searchPhrase(QString nombre);
 private:
     QString path;
 };

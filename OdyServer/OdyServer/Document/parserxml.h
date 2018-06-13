@@ -15,6 +15,7 @@
 #include "DataStructures/SimpleList/arbolbb.h"
 #include "DataStructures/SimpleList/simplelist.h"
 #include "Document/mysqldb.h"
+#include "Document/backtracking.h"
 
 using namespace std;
 class ParserXML
@@ -30,6 +31,7 @@ public:
     bool deleteSong();
     SimpleList<Attribute> *sendMsg();
     string spotifyRequested();
+    QString buscarFrase();
 
 private:
 
@@ -37,6 +39,7 @@ private:
     arbolBB<QJsonObject> userInfo;
     hashmap passMap;
 
+    backtracking backtrack = backtracking();
     ListaSimple<QJsonObject> listaCambios = ListaSimple<QJsonObject>();
     QDomDocument *xmlTemp;
     QDomElement getHeader();
