@@ -88,7 +88,8 @@ void XMLDocument::songList(std::string* array,int size)
         x = *(array+i);
         name= QString::fromStdString(x);
                 //toStdString(x);
-        docXml.writeAttribute("Name",name);
+        docXml.writeAttribute("Name",*(array+i)->c_str());
+        //docXml.writeAttribute("Name",name);
         docXml.writeEndElement();
     }
     docXml.writeEndElement();

@@ -6,7 +6,8 @@
 #include "Document/xmldocument.h"
 #include <string>
 #include <iostream>
-//#include "page.h"
+#include "Objects/file.h"
+//#include "Objects/page.h"
 
 using namespace std;
 class Logic

@@ -4,7 +4,7 @@
 Logic::Logic(ParserXML *parser)
 {
     xml = parser;
-    //this->page= new Page();
+    this->page= new Page();
 }
 
 void Logic::decision()
@@ -22,8 +22,8 @@ void Logic::decision()
     }
     else if(x=="pageRequested"){
         //Llamar metodo para cargar paginas
-        //xml->pageRequested();
-        //POST->songList(page->getData(3),page->getSize(1));
+        xml->pageRequested();
+        POST->songList(page->getData(3),page->getSize(1));
         //POST.songList();
         //enviar POST a cliente
     }

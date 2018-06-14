@@ -68,7 +68,8 @@ SOURCES       = ../OdyServer/main.cpp \
 		../OdyServer/DataStructures/SimpleList/nodobb.cpp \
 		../OdyServer/Document/mysqldb.cpp \
 		../OdyServer/Document/backtracking.cpp \
-		../OdyServer/Objects/file.cpp moc_mainwindow.cpp \
+		../OdyServer/Objects/file.cpp \
+		../OdyServer/Objects/page.cpp moc_mainwindow.cpp \
 		moc_server.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
@@ -89,6 +90,7 @@ OBJECTS       = main.o \
 		mysqldb.o \
 		backtracking.o \
 		file.o \
+		page.o \
 		moc_mainwindow.o \
 		moc_server.o
 DIST          = /home/fio/Qt/5.10.1/gcc_64/mkspecs/features/spec_pre.prf \
@@ -247,6 +249,7 @@ DIST          = /home/fio/Qt/5.10.1/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/fio/Qt/5.10.1/gcc_64/mkspecs/features/qt_config.prf \
 		/home/fio/Qt/5.10.1/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/fio/Qt/5.10.1/gcc_64/mkspecs/features/spec_post.prf \
+		../OdyServer/.qmake.stash \
 		/home/fio/Qt/5.10.1/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/fio/Qt/5.10.1/gcc_64/mkspecs/features/toolchain.prf \
 		/home/fio/Qt/5.10.1/gcc_64/mkspecs/features/default_pre.prf \
@@ -289,7 +292,8 @@ DIST          = /home/fio/Qt/5.10.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../OdyServer/DataStructures/SimpleList/nodobb.h \
 		../OdyServer/Document/mysqldb.h \
 		../OdyServer/Document/backtracking.h \
-		../OdyServer/Objects/file.h ../OdyServer/main.cpp \
+		../OdyServer/Objects/file.h \
+		../OdyServer/Objects/page.h ../OdyServer/main.cpp \
 		../OdyServer/mainwindow.cpp \
 		../OdyServer/Server/server.cpp \
 		../OdyServer/Document/xmldocument.cpp \
@@ -307,7 +311,8 @@ DIST          = /home/fio/Qt/5.10.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../OdyServer/DataStructures/SimpleList/nodobb.cpp \
 		../OdyServer/Document/mysqldb.cpp \
 		../OdyServer/Document/backtracking.cpp \
-		../OdyServer/Objects/file.cpp
+		../OdyServer/Objects/file.cpp \
+		../OdyServer/Objects/page.cpp
 QMAKE_TARGET  = OdyServer
 DESTDIR       = 
 TARGET        = OdyServer
@@ -475,6 +480,7 @@ Makefile: ../OdyServer/OdyServer.pro /home/fio/Qt/5.10.1/gcc_64/mkspecs/linux-g+
 		/home/fio/Qt/5.10.1/gcc_64/mkspecs/features/qt_config.prf \
 		/home/fio/Qt/5.10.1/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/fio/Qt/5.10.1/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/home/fio/Qt/5.10.1/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/fio/Qt/5.10.1/gcc_64/mkspecs/features/toolchain.prf \
 		/home/fio/Qt/5.10.1/gcc_64/mkspecs/features/default_pre.prf \
@@ -658,6 +664,7 @@ Makefile: ../OdyServer/OdyServer.pro /home/fio/Qt/5.10.1/gcc_64/mkspecs/linux-g+
 /home/fio/Qt/5.10.1/gcc_64/mkspecs/features/qt_config.prf:
 /home/fio/Qt/5.10.1/gcc_64/mkspecs/linux-g++/qmake.conf:
 /home/fio/Qt/5.10.1/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /home/fio/Qt/5.10.1/gcc_64/mkspecs/features/exclusive_builds.prf:
 /home/fio/Qt/5.10.1/gcc_64/mkspecs/features/toolchain.prf:
 /home/fio/Qt/5.10.1/gcc_64/mkspecs/features/default_pre.prf:
@@ -699,8 +706,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /home/fio/Qt/5.10.1/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../OdyServer/mainwindow.h ../OdyServer/Server/server.h ../OdyServer/Document/xmldocument.h ../OdyServer/Objects/message.h ../OdyServer/DataStructures/SimpleList/simplelist.h ../OdyServer/DataStructures/SimpleList/node.h ../OdyServer/Server/logic.h ../OdyServer/Document/parserxml.h ../OdyServer/Document/converter.h ../OdyServer/DataStructures/SimpleList/arbolavl.h ../OdyServer/DataStructures/SimpleList/nodoavl.h ../OdyServer/DataStructures/SimpleList/mapa.h ../OdyServer/Objects/cancion.h ../OdyServer/Document/jsonmaker.h ../OdyServer/Document/guardarjson.h ../OdyServer/Document/leerjson.h ../OdyServer/DataStructures/SimpleList/hashmap.h ../OdyServer/DataStructures/SimpleList/listasimple.h ../OdyServer/DataStructures/SimpleList/nodolistasimple.h ../OdyServer/DataStructures/SimpleList/arbolbb.h ../OdyServer/DataStructures/SimpleList/nodobb.h ../OdyServer/Document/mysqldb.h ../OdyServer/Document/backtracking.h ../OdyServer/Objects/file.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../OdyServer/main.cpp ../OdyServer/mainwindow.cpp ../OdyServer/Server/server.cpp ../OdyServer/Document/xmldocument.cpp ../OdyServer/Objects/message.cpp ../OdyServer/DataStructures/SimpleList/node.cpp ../OdyServer/Server/logic.cpp ../OdyServer/Document/parserxml.cpp ../OdyServer/DataStructures/SimpleList/nodoavl.cpp ../OdyServer/Objects/cancion.cpp ../OdyServer/Document/jsonmaker.cpp ../OdyServer/Document/guardarjson.cpp ../OdyServer/Document/leerjson.cpp ../OdyServer/DataStructures/SimpleList/simplelist.cpp ../OdyServer/DataStructures/SimpleList/hashmap.cpp ../OdyServer/DataStructures/SimpleList/nodobb.cpp ../OdyServer/Document/mysqldb.cpp ../OdyServer/Document/backtracking.cpp ../OdyServer/Objects/file.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../OdyServer/mainwindow.h ../OdyServer/Server/server.h ../OdyServer/Document/xmldocument.h ../OdyServer/Objects/message.h ../OdyServer/DataStructures/SimpleList/simplelist.h ../OdyServer/DataStructures/SimpleList/node.h ../OdyServer/Server/logic.h ../OdyServer/Document/parserxml.h ../OdyServer/Document/converter.h ../OdyServer/DataStructures/SimpleList/arbolavl.h ../OdyServer/DataStructures/SimpleList/nodoavl.h ../OdyServer/DataStructures/SimpleList/mapa.h ../OdyServer/Objects/cancion.h ../OdyServer/Document/jsonmaker.h ../OdyServer/Document/guardarjson.h ../OdyServer/Document/leerjson.h ../OdyServer/DataStructures/SimpleList/hashmap.h ../OdyServer/DataStructures/SimpleList/listasimple.h ../OdyServer/DataStructures/SimpleList/nodolistasimple.h ../OdyServer/DataStructures/SimpleList/arbolbb.h ../OdyServer/DataStructures/SimpleList/nodobb.h ../OdyServer/Document/mysqldb.h ../OdyServer/Document/backtracking.h ../OdyServer/Objects/file.h ../OdyServer/Objects/page.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../OdyServer/main.cpp ../OdyServer/mainwindow.cpp ../OdyServer/Server/server.cpp ../OdyServer/Document/xmldocument.cpp ../OdyServer/Objects/message.cpp ../OdyServer/DataStructures/SimpleList/node.cpp ../OdyServer/Server/logic.cpp ../OdyServer/Document/parserxml.cpp ../OdyServer/DataStructures/SimpleList/nodoavl.cpp ../OdyServer/Objects/cancion.cpp ../OdyServer/Document/jsonmaker.cpp ../OdyServer/Document/guardarjson.cpp ../OdyServer/Document/leerjson.cpp ../OdyServer/DataStructures/SimpleList/simplelist.cpp ../OdyServer/DataStructures/SimpleList/hashmap.cpp ../OdyServer/DataStructures/SimpleList/nodobb.cpp ../OdyServer/Document/mysqldb.cpp ../OdyServer/Document/backtracking.cpp ../OdyServer/Objects/file.cpp ../OdyServer/Objects/page.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../OdyServer/mainwindow.ui $(DISTDIR)/
 
 
@@ -1139,6 +1146,8 @@ moc_server.cpp: /home/fio/Qt/5.10.1/gcc_64/include/QtCore/QObject \
 		../OdyServer/Document/backtracking.h \
 		../OdyServer/Document/xmldocument.h \
 		../OdyServer/Objects/message.h \
+		../OdyServer/Objects/file.h \
+		../OdyServer/Objects/page.h \
 		../OdyServer/Document/converter.h \
 		../OdyServer/Document/leerjson.h \
 		/home/fio/Qt/5.10.1/gcc_64/include/QtCore/QJsonArray \
@@ -1466,13 +1475,14 @@ main.o: ../OdyServer/main.cpp ../OdyServer/mainwindow.h \
 		../OdyServer/Document/backtracking.h \
 		../OdyServer/Document/xmldocument.h \
 		../OdyServer/Objects/message.h \
+		../OdyServer/Objects/file.h \
+		../OdyServer/Objects/page.h \
 		../OdyServer/Document/converter.h \
 		../OdyServer/Document/leerjson.h \
 		/home/fio/Qt/5.10.1/gcc_64/include/QtCore/QJsonArray \
 		/home/fio/Qt/5.10.1/gcc_64/include/QtCore/QBitArray \
 		/home/fio/Qt/5.10.1/gcc_64/include/QtCore/QFileInfo \
-		../OdyServer/Document/jsonmaker.h \
-		../OdyServer/Objects/file.h
+		../OdyServer/Document/jsonmaker.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../OdyServer/main.cpp
 
 mainwindow.o: ../OdyServer/mainwindow.cpp ../OdyServer/mainwindow.h \
@@ -1582,7 +1592,45 @@ mainwindow.o: ../OdyServer/mainwindow.cpp ../OdyServer/mainwindow.h \
 		/home/fio/Qt/5.10.1/gcc_64/include/QtGui/qtouchdevice.h \
 		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/qtabwidget.h \
 		/home/fio/Qt/5.10.1/gcc_64/include/QtGui/qicon.h \
-		ui_mainwindow.h
+		ui_mainwindow.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtCore/QVariant \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/QAction \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/qaction.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/qactiongroup.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/QApplication \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/qapplication.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtCore/qeventloop.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtGui/qguiapplication.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtGui/qinputmethod.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/QButtonGroup \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/qbuttongroup.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/QHeaderView \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/qheaderview.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/qabstractitemview.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/qframe.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtCore/qabstractitemmodel.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtCore/qitemselectionmodel.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/qstyleoption.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtGui/qvalidator.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtCore/qregularexpression.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/qslider.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/qabstractslider.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/qstyle.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/qtabbar.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/qrubberband.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/QMenuBar \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/qmenubar.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/qmenu.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/QStatusBar \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/qstatusbar.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/QToolBar \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/qtoolbar.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../OdyServer/mainwindow.cpp
 
 server.o: ../OdyServer/Server/server.cpp ../OdyServer/Server/server.h \
@@ -1878,6 +1926,8 @@ server.o: ../OdyServer/Server/server.cpp ../OdyServer/Server/server.h \
 		../OdyServer/Document/backtracking.h \
 		../OdyServer/Document/xmldocument.h \
 		../OdyServer/Objects/message.h \
+		../OdyServer/Objects/file.h \
+		../OdyServer/Objects/page.h \
 		../OdyServer/Document/converter.h \
 		../OdyServer/Document/leerjson.h \
 		/home/fio/Qt/5.10.1/gcc_64/include/QtCore/QJsonArray \
@@ -2253,7 +2303,10 @@ logic.o: ../OdyServer/Server/logic.cpp ../OdyServer/Server/logic.h \
 		/home/fio/Qt/5.10.1/gcc_64/include/QtSql/qtsqlversion.h \
 		../OdyServer/Document/backtracking.h \
 		../OdyServer/Document/xmldocument.h \
-		../OdyServer/Objects/message.h
+		../OdyServer/Objects/message.h \
+		../OdyServer/Objects/file.h \
+		/home/fio/Qt/5.10.1/gcc_64/include/QtCore/QDebug \
+		../OdyServer/Objects/page.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o logic.o ../OdyServer/Server/logic.cpp
 
 parserxml.o: ../OdyServer/Document/parserxml.cpp ../OdyServer/Document/parserxml.h \
@@ -3528,6 +3581,9 @@ file.o: ../OdyServer/Objects/file.cpp ../OdyServer/Objects/file.h \
 		/home/fio/Qt/5.10.1/gcc_64/include/QtCore/qdir.h \
 		/home/fio/Qt/5.10.1/gcc_64/include/QtCore/qfileinfo.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o file.o ../OdyServer/Objects/file.cpp
+
+page.o: ../OdyServer/Objects/page.cpp ../OdyServer/Objects/page.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o page.o ../OdyServer/Objects/page.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

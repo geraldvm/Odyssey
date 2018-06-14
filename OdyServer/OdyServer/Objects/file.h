@@ -9,8 +9,7 @@
 #include <iostream>
 #include <string>
 #include <string.h>
-#include "DataStructures/SimpleList/simplelist.h"
-#include "DataStructures/SimpleList/node.h"
+
 #include <dirent.h>
 
 
@@ -20,8 +19,6 @@ public:
     File();
     void muestra_contenido_de();
 
-private:
-    QString FileName = "/Music/Odyssey/Temppp";
 
 };
 

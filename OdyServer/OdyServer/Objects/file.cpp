@@ -6,8 +6,6 @@ File::File()
 }
 
 
-
-
 void File::muestra_contenido_de()
 {
 
