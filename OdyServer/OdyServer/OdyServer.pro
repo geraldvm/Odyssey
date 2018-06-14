@@ -45,7 +45,8 @@ SOURCES += \
     DataStructures/SimpleList/arbolbb.cpp \
     DataStructures/SimpleList/nodobb.cpp \
     Document/mysqldb.cpp \
-    Document/backtracking.cpp
+    Document/backtracking.cpp \
+    Objects/file.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -70,7 +71,8 @@ HEADERS += \
     DataStructures/SimpleList/arbolbb.h \
     DataStructures/SimpleList/nodobb.h \
     Document/mysqldb.h \
-    Document/backtracking.h
+    Document/backtracking.h \
+    Objects/file.h
 
 FORMS += \
         mainwindow.ui

@@ -5,6 +5,7 @@
 #include "Document/jsonmaker.h"
 #include "Document/backtracking.h"
 #include "Document/mysqldb.h"
+#include "Objects/file.h"
 
 int main(int argc, char *argv[])
 {
@@ -20,6 +21,10 @@ int main(int argc, char *argv[])
     ListaSimple<QJsonObject> l = u.preorder();
     std::cout << l.get(0).value("usuario").toString().toStdString();
     */
+
+    File f = File();
+    f.muestra_contenido_de();
+
     Server mserver;
 
     return a.exec();
