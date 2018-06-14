@@ -23,8 +23,7 @@ public:
     void userVerification(bool status);
 
     void song(std::string number, std::string data);
-    //void songList(string *array, int size);//como parametro lista enlazada o arreglo con las 10 canciones
-    void songList(string *array, int size);
+    void songList(string *array, int size);//como parametro lista enlazada o arreglo con las 10 canciones
     void userList(SimpleList<std::string> users);
     void sendMsg(SimpleList<Message> messageList);
     void searchPhrase(QString nombre);

@@ -41,6 +41,19 @@ public:
         return cont;
     }
 
+    int getIndex(T obj){
+        NodoListaSimple<T> *aux = inicio;
+        if (obj == aux->get()) { return 0;}
+        for (int i = 0; i < size; i++) {
+            if(obj != aux->get()){
+                aux = aux->next();
+            } else{
+                return i;
+            }
+        }
+
+    }
+
     ListaSimple() {
 
     }
