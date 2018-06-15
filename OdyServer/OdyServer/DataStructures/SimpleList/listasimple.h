@@ -1,7 +1,6 @@
 #ifndef LISTASIMPLE_H
 #define LISTASIMPLE_H
 
-
 #include "nodolistasimple.h"
 
 template <typename T>
@@ -14,6 +13,7 @@ public:
     int size = 0;
 
     void push_back(T cont) {
+
         if (inicio == nullptr) {
             inicio = new NodoListaSimple<T>(size,cont);
         } else {
@@ -51,7 +51,7 @@ public:
                 return i;
             }
         }
-
+        return -1;
     }
 
     ListaSimple() {

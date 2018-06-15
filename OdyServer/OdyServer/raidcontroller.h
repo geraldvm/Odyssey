@@ -10,6 +10,7 @@
 #include <QFileInfo>
 #include "DataStructures/SimpleList/listasimple.h"
 #include <fstream>
+#include <stdio.h>
 #include <c++/5/iostream>
 
 class RaidController
@@ -28,20 +29,19 @@ private:
     QByteArray calcularParidad(QByteArray p1, QByteArray p2);
 
     QByteArray Autorecovery(QString d1, QString d2, QString d3);
-
-    QByteArray recovery(int size,QString d1, QString d2, QString d3);
     void stripping(QByteArray in, QString d1, QString d2, QString d3);
     int indicePar = 3;
 
-    ListaSimple<QString> listaNombres = ListaSimple<QString>();
-    ListaSimple<int> indexes = ListaSimple<int>();
-    ListaSimple<int> fileSizes = ListaSimple<int>();
+    std::vector<QString> listaNombres;
+    std::vector<int> indexes;
+    std::vector<int> fileSizes;
     void guardarRegistro(QString nombre, int i, int size);
 
 public:
     RaidController();
     QByteArray songRequest(QString nombre, int pos);
     void writeSong(QString nombre, QByteArray in);
+    bool deleteSong(QString nombre);
 
 };
 

@@ -7,9 +7,6 @@
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
-    Converter con;
-    RaidController cont = RaidController();
-    cont.writeSong("song.mp3",con.toBytes("song.mp3"));
     //w.show();string user, string nombre, string apellido, int edad, QJsonArray favoritos, int pass, QJsonArray amigosUsers
     /*
     arbolBB<QJsonObject> u = arbolBB<QJsonObject>();

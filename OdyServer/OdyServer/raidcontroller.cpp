@@ -7,8 +7,11 @@ RaidController::RaidController()
     if(!file.is_open()){
         return;
     }
+    listaNombres = std::vector<QString>();
+    indexes = std::vector<int>();
+    fileSizes = std::vector<int>();
+    int i = 0;
     while(getline(file,str)) {
-        int i = 0;
         if (i == 0){
             listaNombres.push_back(QString::fromStdString(str));
             i ++;
@@ -22,10 +25,22 @@ RaidController::RaidController()
             }
         }
     }
-    indicePar = indexes.get(indexes.size -1);
+    if(indexes.empty()){
+        return;
+    }
+    indicePar = indexes.at(indexes.size() - 1);
+    if(indicePar == 3){
+        indicePar = 1;
+    } else {
+        if(indicePar == 2){
+            indicePar = 3;
+        } else {
+            indicePar = 2;
+        }
+    }
     file.close();
 }
-//funcion delete y corregir paths
+
 void RaidController::writeSong(QString nombre, QByteArray in)
 {
     if(indicePar == 3){
@@ -35,13 +50,13 @@ void RaidController::writeSong(QString nombre, QByteArray in)
         return;
     }
     if(indicePar == 1){
-        stripping(in,disc3+nombre+".par",disc1+nombre+".part1",disc2+nombre+".part2");
+        stripping(in,disc2+nombre+".part1",disc3+nombre+".part2",disc1+nombre+".par");
         guardarRegistro(nombre,1,in.size());
         indicePar = 2;
         return;
     }
     if(indicePar == 2){
-        stripping(in,disc2+nombre+".part2",disc3+nombre+".par",disc1+nombre+".part1");
+        stripping(in,disc1+nombre+".part2",disc3+nombre+".part1",disc2+nombre+".par");
         guardarRegistro(nombre,2,in.size());
         indicePar = 3;
         return;
@@ -53,11 +68,18 @@ void RaidController::stripping(QByteArray in,QString d1,QString d2,QString d3)
 {
     int strip= in.size()/2;
 
-    QByteArray bytes1 = in.mid(0, strip+1);
+    QByteArray bytes1 = in.mid(0, strip);
+    QByteArray bytes2 = in.mid(strip,2*strip);
+
+    if(bytes1.size() != bytes2.size()){
+        if (bytes1.size() < bytes2.size()){
+            bytes1 = in.mid(0, strip+1);
+        } else {
+            bytes2 = in.mid(strip-1,strip*2);
+        }
+    }
     converter.setPathFull(d1);
     converter.toFile(bytes1);
-
-    QByteArray bytes2 = in.mid(strip,2*strip);
     converter.setPathFull(d2);
     converter.toFile(bytes2);
 
@@ -70,24 +92,25 @@ void RaidController::stripping(QByteArray in,QString d1,QString d2,QString d3)
 
 QByteArray RaidController::songRequest(QString nombre, int pos)
 {
-    int indice = indexes.get(listaNombres.getIndex(nombre));
-    int size = fileSizes.get(listaNombres.getIndex(nombre));
-
+    int i;
+    for(i = 0; i < listaNombres.size(); i ++){
+        if (listaNombres[i] == nombre){
+            break;
+        }
+    }
+    int indice = indexes.at(i);
+    int size = fileSizes.at(i);
     QByteArray full;
     if(indice == 3){
         full = Autorecovery(disc1+nombre+".part1",disc2+nombre+".part2",disc3+nombre+".par");
     }
-    if(indicePar == 1){
+    if(indice == 1){
         full = Autorecovery(disc2+nombre+".part1",disc3+nombre+".part2",disc1+nombre+".par");
     }
-    if(indicePar == 2){
+    if(indice == 2){
         full = Autorecovery(disc3+nombre+".part1",disc1+nombre+".part2",disc2+nombre+".par");
     }
-    if(pos < size/2){
-       return full.mid(0,size);
-    } else {
-       return full.mid(size,size*2);
-    }
+    return full.mid(pos,size);
 }
 
 QByteArray RaidController::Autorecovery(QString d1,QString d2,QString d3)
@@ -106,6 +129,7 @@ QByteArray RaidController::Autorecovery(QString d1,QString d2,QString d3)
         p2 = disco2.readAll();
 
         std::cout << "fine"<< std::endl;
+        return p1+p2;
     } else {
         if (disco1.exists() && disco2.exists()){
             std::cout << "error en: " << d3.toStdString() << std::endl;;
@@ -113,8 +137,7 @@ QByteArray RaidController::Autorecovery(QString d1,QString d2,QString d3)
             p1 = disco1.readAll();
             disco2.open(QIODevice::ReadOnly);
             p2 = disco2.readAll();
-            return  calcularParidad(p1, p2);
-
+            return p1+p2;
         } else {
             if (disco3.exists()){
                  if(disco1.exists()){
@@ -170,7 +193,6 @@ QByteArray RaidController::calcularParidad(QByteArray p1, QByteArray p2){
     QBitArray bits1 = convertirABits(p1);
     QBitArray bits2 = convertirABits(p2);
     QBitArray res = QBitArray(bits1.size());
-
     for (int bitPos = 0; bitPos < res.size(); bitPos++) {
         res[bitPos] = bits1[bitPos] ^ bits2[bitPos];
     }
@@ -189,4 +211,49 @@ void RaidController::guardarRegistro(QString nombre, int i, int size)
     file << std::to_string(size) + '\n';
     file.close();
 
+}
+
+bool RaidController::deleteSong(QString nombre)
+{
+    int i;
+    if (listaNombres.empty()){
+        return 0;
+    }
+    for(i = 0; i < listaNombres.size(); i ++){
+        if (listaNombres[i] == nombre){
+            break;
+        }
+    }
+
+    QFile p1;
+    QFile p2;
+    QFile p3;
+    int indice = indexes[i];
+    if(indice == 3){
+        p1.setFileName(disc1 + nombre+ ".part1");
+        p2.setFileName(disc2+nombre+".part2");
+        p3.setFileName(disc3+nombre+".par");
+    }
+    if(indice == 1){
+        p1.setFileName(disc2+nombre+".part1");
+        p2.setFileName(disc3+nombre+".part2");
+        p3.setFileName(disc1+nombre+".par");
+    }
+    if(indice == 2){
+        p1.setFileName(disc3+nombre+".part1");
+        p2.setFileName(disc1+nombre+".part2");
+        p3.setFileName(disc2+nombre+".par");
+    }
+    listaNombres.erase(listaNombres.begin() + i);
+    indexes.erase(indexes.begin() + i);
+    fileSizes.erase(fileSizes.begin() + i);
+    std::ofstream file(auxInfo.toStdString(), std::ios::binary | std::ios::out);
+    for(i = 0; i < listaNombres.size(); i++){
+        file << ((QString) listaNombres[i]).toStdString() + '\n';
+        file << std::to_string(indexes[i]) + '\n';
+        file << std::to_string(fileSizes[i]) + '\n';
+    }
+    file.close();
+
+    return p1.remove() && p2.remove() && p3.remove();
 }
