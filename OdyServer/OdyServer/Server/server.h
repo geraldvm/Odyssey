@@ -1,14 +1,17 @@
 #ifndef SERVER_H
 #define SERVER_H
 
-#include <iostream>
 #include <QObject>
 #include <QDebug>
 #include <QTcpServer>
 #include <QTcpSocket>
 #include <QFile>
+#include <iostream>
 #include <QApplication>
 #include <fstream>
+#include <QDir>
+#include <QBitArray>
+#include <QFileInfo>
 #include "logic.h"
 #include "DataStructures/SimpleList/arbolbb.h"
 #include "DataStructures/SimpleList/hashmap.h"
@@ -17,9 +20,6 @@
 #include "Document/parserxml.h"
 #include "Document/leerjson.h"
 #include "Document/mysqldb.h"
-#include <QDir>
-#include <QBitArray>
-#include <QFileInfo>
 #include "Document/converter.h"
 #include "Objects/page.h"
 class Server : public QObject
@@ -36,6 +36,7 @@ public slots:
 
 private:
 
+    Converter converter;
     arbolBB<QJsonObject> infoUsers;
     hashmap usersPass;
     leerJson cargarInfo = leerJson();

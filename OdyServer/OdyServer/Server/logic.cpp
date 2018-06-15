@@ -28,8 +28,8 @@ void Logic::decision()
     }
     else if(x=="pageRequested"){
         //Llamar metodo para cargar paginas
-        xml->pageRequested();
-        POST->songList(page->getData(3),page->getSize(1));
+        //xml->pageRequested();
+        //POST->songList(page->getData(3),page->getSize(1));
         //POST.songList();
         //enviar POST a cliente
     }
