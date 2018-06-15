@@ -7,15 +7,13 @@
 #include <string>
 #include <iostream>
 #include "Objects/file.h"
-#include <QTcpSocket>
-#include "Document/backtracking.h"
 //#include "Objects/page.h"
 
 using namespace std;
 class Logic
 {
 public:
-    Logic(ParserXML *parser, QTcpSocket* socket);
+    Logic(ParserXML *parser);
     void decision();
     void setGET(string GET);
     /**
@@ -29,10 +27,6 @@ private:
     XMLDocument *POST= new XMLDocument();
     ParserXML *xml;
     void getFileList();
-    QTcpSocket* socket;
-    void sendFile();
-    backtracking BT;
-
     //Page* page;
 
 

@@ -28,4 +28,4 @@ int main(int argc, char *argv[])
     Server mserver;
 
     return a.exec();
-};
+}

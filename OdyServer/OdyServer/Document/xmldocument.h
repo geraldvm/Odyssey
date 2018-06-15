@@ -22,7 +22,7 @@ public:
     void deleteSong(bool status);
     void userVerification(bool status);
 
-    void sendSong(int size, std::string name);
+    void song(std::string number, std::string data);
     //void songList(string *array, int size);//como parametro lista enlazada o arreglo con las 10 canciones
     void songList(string *array, int size);
     void userList(SimpleList<std::string> users);

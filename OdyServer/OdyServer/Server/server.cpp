@@ -6,7 +6,6 @@ Server::Server(QObject *parent) :
 {
     server= new QTcpServer(this);
     connect(server,SIGNAL(newConnection()),this,SLOT(newConnection()));
-    page = new Page();
     if(!server->listen(QHostAddress::Any,7777)){
         std::cout<<"Server could not start!"<<std::endl;
     }else{
@@ -18,9 +17,9 @@ Server::Server(QObject *parent) :
         }
 
         usersPass.leerMapa();
-        xmlDesktop = new ParserXML(infoUsers,usersPass);
-        //xmlDesktop->getRoot();
-        //logic = new Logic(xm,socket);NERIO
+        xm = new ParserXML(infoUsers,usersPass);
+        xm->getRoot();
+        logic = new Logic(xm);
         //stripping("cancion.mp3");
         //recovery("cancion.mp3");
     }
@@ -38,24 +37,18 @@ void Server::newConnection(){
     socket->flush();
     socket->waitForBytesWritten(3000);
     socket->waitForReadyRead(3000);
-    //logic = new Logic(xm,socket);
     while(true){
         if(socket->bytesAvailable()>0){
             //std::cout<<"Reading "<<socket->bytesAvailable()<<std::endl;
-            if (modeStream==true){
-                //Saving File
-                converter.toFile(socket->readAll());
-                modeStream=false;
-                //Save File in RAID
-            }
-            else{
-                std::cout<<"Receiving requested..."<<std::endl;
-                std::string GET = socket->readAll().toStdString();
-                GET.erase(0,2);
-
-
-            }
-
+            converter.toFile(socket->readAll());
+            std::cout<<"MP# LISTO"<<std::endl;
+            /*std::string GET = socket->readAll().toStdString();
+            GET.erase(0,2);
+            logic.setGET(GET);
+            logic.writeGET();
+            logic.decision();
+            sendFile(socket);
+            */
 
             //std::cout<<"Client: "<<GET<<std::endl;
             socket->waitForReadyRead(3000);
@@ -80,11 +73,9 @@ void Server::newConnection(){
  * @brief Server::sendFile
  * @param socket
  */
-void Server::sendFile(QTcpSocket* socket, QString name)
+void Server::sendFile(QTcpSocket* socket)
 {
-    QString path = QDir::homePath().append("/Music/Odyssey/Library/");
-    path.append(name);
-    //File desde RAID
+    QString path = QDir::homePath().append("/Music/Odyssey/Temp/myXml.xml");
     QFile inputFile(path);
     QByteArray read ;
     inputFile.open(QIODevice::ReadOnly);
@@ -99,6 +90,7 @@ void Server::sendFile(QTcpSocket* socket, QString name)
         read.clear();
     }
     inputFile.close();
+    std::cout<<"SEND MSG"<<std::endl;
 }
 /**
  * @brief Server::readRequested
@@ -209,84 +201,6 @@ void Server::recovery(QString nombre)
     //converter.setPath("Repository/cancionNueva.mp3");
     //converter.toFile(p1+p2);
     std::cout << "done" << std::endl;
-}
-
-void Server::logic(string root, QTcpSocket* socket)
-{
-    root= xmlDesktop->getRoot();
-    if(root=="NewUser"){
-        xmlDesktop->newUserParser();
-        //Agregar en Database
-        //POST->newUser(xml->newUserParser());
-    }
-    else if(root=="userVerification"){
-        xmlServer->userVerification(xmlDesktop->userVerificationParser());
-        //Agregar DB
-        //socket->write();
-    }
-    else if(root=="ModifyMetaData"){
-       //POST->modifyMetadata(xml->modifyMetaData());
-        xmlDesktop->modifyMetaData();//Modificar en Database
-       //DATABASE
-    }
-    else if(root=="pageRequested"){
-        //Llamar metodo para cargar paginas
-        xmlDesktop->pageRequested();
-        xmlServer->songList(page->getData(3),page->getSize(1));
-        sendXML(socket);
-        //POST.songList();
-        //enviar POST a cliente
-    }
-    else if(root=="songRequested"){
-        //Llamar metodo para cargar Cancion
-        //enviar POST a cliente
-
-        //Cambiar por HUFFMAN
-        QString name = xmlDesktop->songRequested();
-        xmlServer->sendSong(inputFile.size(),name);//Hacer la peticion al Raid Controller
-        this->sendXML(socket);
-        this->sendFile(socket,name);
-        std::cout<<"SEND MP3/MP4"<<std::endl;
-    }
-    else if(root=="deleteSong"){
-        xmlServer->deleteSong(xml->deleteSong());
-        //ELIMINAR EN DATABASE
-        //ELIMINAR EN RAID MANAGER
-    }
-    else if(root=="newMsg"){
-        //
-    }
-    else if(root == "buscarFrase"){
-        QString songName = BT.buscar(xml->buscarFrase());
-        xmlServer->searchPhrase(songName);
-        sendXML(socket);
-    }
-    else if(root == "receiveStream"){
-
-        QString songName = //XML receive
-        modeStream = true;
-
-    }
-}
-
-void Server::sendXML(QTcpSocket *socket)
-{
-    QString path = QDir::homePath().append("/Music/Odyssey/Temp/myXml.xml");
-    QFile inputFile(path);
-    QByteArray read ;
-    inputFile.open(QIODevice::ReadOnly);
-    while(1)
-    {
-        read.clear();
-        read = inputFile.read(32768*8);
-        if(read.size()==0)
-           break;
-        socket->write(read+"\n");
-        socket->waitForBytesWritten();
-        read.clear();
-    }
-    inputFile.close();
-    std::cout<<"SEND MSG"<<std::endl;
 }
 
 QBitArray Server::convertirABits(QByteArray in){

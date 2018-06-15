@@ -21,7 +21,7 @@
 #include <QBitArray>
 #include <QFileInfo>
 #include "Document/converter.h"
-#include "Objects/page.h"
+
 class Server : public QObject
 {
     Q_OBJECT
@@ -41,16 +41,12 @@ private:
     leerJson cargarInfo = leerJson();
     QTcpServer *server;
 
-    void sendFile(QTcpSocket *socket, QString name);
+    void sendFile(QTcpSocket *socket);
     void writeRequested(std::string data);
     void readRequested();
 
-    //Add
-    ParserXML* xmlDesktop;
-    XMLDocument* xmlServer= new XMLDocument();
-    Page* page;
-    bool modeStream = false;
-    //Logic *logic = nullptr;
+    ParserXML* xm;
+    Logic *logic = nullptr;
     Converter converter;
 
     QBitArray convertirABits(QByteArray in);
@@ -59,8 +55,6 @@ private:
 
     void stripping(QString nombre);
     void  recovery(QString nombre);
-    void logic(std::string root, QTcpSocket *socket);
-    void sendXML(QTcpSocket* socket);
 
 };
 
