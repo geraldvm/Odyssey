@@ -65,7 +65,8 @@ SOURCES       = ../OdyServer/main.cpp \
 		../OdyServer/DataStructures/SimpleList/hashmap.cpp \
 		../OdyServer/DataStructures/SimpleList/nodobb.cpp \
 		../OdyServer/Document/mysqldb.cpp \
-		../OdyServer/Document/backtracking.cpp moc_mainwindow.cpp \
+		../OdyServer/Document/backtracking.cpp \
+		../OdyServer/raidcontroller.cpp moc_mainwindow.cpp \
 		moc_server.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
@@ -85,6 +86,7 @@ OBJECTS       = main.o \
 		nodobb.o \
 		mysqldb.o \
 		backtracking.o \
+		raidcontroller.o \
 		moc_mainwindow.o \
 		moc_server.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -166,7 +168,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../OdyServer/DataStructures/SimpleList/arbolbb.h \
 		../OdyServer/DataStructures/SimpleList/nodobb.h \
 		../OdyServer/Document/mysqldb.h \
-		../OdyServer/Document/backtracking.h ../OdyServer/main.cpp \
+		../OdyServer/Document/backtracking.h \
+		../OdyServer/raidcontroller.h ../OdyServer/main.cpp \
 		../OdyServer/mainwindow.cpp \
 		../OdyServer/Server/server.cpp \
 		../OdyServer/Document/xmldocument.cpp \
@@ -183,7 +186,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../OdyServer/DataStructures/SimpleList/hashmap.cpp \
 		../OdyServer/DataStructures/SimpleList/nodobb.cpp \
 		../OdyServer/Document/mysqldb.cpp \
-		../OdyServer/Document/backtracking.cpp
+		../OdyServer/Document/backtracking.cpp \
+		../OdyServer/raidcontroller.cpp
 QMAKE_TARGET  = OdyServer
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = OdyServer
@@ -357,8 +361,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../OdyServer/mainwindow.h ../OdyServer/Server/server.h ../OdyServer/Document/xmldocument.h ../OdyServer/Objects/message.h ../OdyServer/DataStructures/SimpleList/simplelist.h ../OdyServer/DataStructures/SimpleList/node.h ../OdyServer/Server/logic.h ../OdyServer/Document/parserxml.h ../OdyServer/Document/converter.h ../OdyServer/DataStructures/SimpleList/arbolavl.h ../OdyServer/DataStructures/SimpleList/nodoavl.h ../OdyServer/DataStructures/SimpleList/mapa.h ../OdyServer/Objects/cancion.h ../OdyServer/Document/jsonmaker.h ../OdyServer/Document/guardarjson.h ../OdyServer/Document/leerjson.h ../OdyServer/DataStructures/SimpleList/hashmap.h ../OdyServer/DataStructures/SimpleList/listasimple.h ../OdyServer/DataStructures/SimpleList/nodolistasimple.h ../OdyServer/DataStructures/SimpleList/arbolbb.h ../OdyServer/DataStructures/SimpleList/nodobb.h ../OdyServer/Document/mysqldb.h ../OdyServer/Document/backtracking.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../OdyServer/main.cpp ../OdyServer/mainwindow.cpp ../OdyServer/Server/server.cpp ../OdyServer/Document/xmldocument.cpp ../OdyServer/Objects/message.cpp ../OdyServer/DataStructures/SimpleList/node.cpp ../OdyServer/Server/logic.cpp ../OdyServer/Document/parserxml.cpp ../OdyServer/DataStructures/SimpleList/nodoavl.cpp ../OdyServer/Objects/cancion.cpp ../OdyServer/Document/jsonmaker.cpp ../OdyServer/Document/guardarjson.cpp ../OdyServer/Document/leerjson.cpp ../OdyServer/DataStructures/SimpleList/simplelist.cpp ../OdyServer/DataStructures/SimpleList/hashmap.cpp ../OdyServer/DataStructures/SimpleList/nodobb.cpp ../OdyServer/Document/mysqldb.cpp ../OdyServer/Document/backtracking.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../OdyServer/mainwindow.h ../OdyServer/Server/server.h ../OdyServer/Document/xmldocument.h ../OdyServer/Objects/message.h ../OdyServer/DataStructures/SimpleList/simplelist.h ../OdyServer/DataStructures/SimpleList/node.h ../OdyServer/Server/logic.h ../OdyServer/Document/parserxml.h ../OdyServer/Document/converter.h ../OdyServer/DataStructures/SimpleList/arbolavl.h ../OdyServer/DataStructures/SimpleList/nodoavl.h ../OdyServer/DataStructures/SimpleList/mapa.h ../OdyServer/Objects/cancion.h ../OdyServer/Document/jsonmaker.h ../OdyServer/Document/guardarjson.h ../OdyServer/Document/leerjson.h ../OdyServer/DataStructures/SimpleList/hashmap.h ../OdyServer/DataStructures/SimpleList/listasimple.h ../OdyServer/DataStructures/SimpleList/nodolistasimple.h ../OdyServer/DataStructures/SimpleList/arbolbb.h ../OdyServer/DataStructures/SimpleList/nodobb.h ../OdyServer/Document/mysqldb.h ../OdyServer/Document/backtracking.h ../OdyServer/raidcontroller.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../OdyServer/main.cpp ../OdyServer/mainwindow.cpp ../OdyServer/Server/server.cpp ../OdyServer/Document/xmldocument.cpp ../OdyServer/Objects/message.cpp ../OdyServer/DataStructures/SimpleList/node.cpp ../OdyServer/Server/logic.cpp ../OdyServer/Document/parserxml.cpp ../OdyServer/DataStructures/SimpleList/nodoavl.cpp ../OdyServer/Objects/cancion.cpp ../OdyServer/Document/jsonmaker.cpp ../OdyServer/Document/guardarjson.cpp ../OdyServer/Document/leerjson.cpp ../OdyServer/DataStructures/SimpleList/simplelist.cpp ../OdyServer/DataStructures/SimpleList/hashmap.cpp ../OdyServer/DataStructures/SimpleList/nodobb.cpp ../OdyServer/Document/mysqldb.cpp ../OdyServer/Document/backtracking.cpp ../OdyServer/raidcontroller.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../OdyServer/mainwindow.ui $(DISTDIR)/
 
 
@@ -400,6 +404,7 @@ moc_server.cpp: ../OdyServer/Server/logic.h \
 		../OdyServer/DataStructures/SimpleList/simplelist.h \
 		../OdyServer/DataStructures/SimpleList/node.h \
 		../OdyServer/Document/mysqldb.h \
+		../OdyServer/Document/backtracking.h \
 		../OdyServer/Document/xmldocument.h \
 		../OdyServer/Objects/message.h \
 		../OdyServer/Document/converter.h \
@@ -439,10 +444,12 @@ main.o: ../OdyServer/main.cpp ../OdyServer/mainwindow.h \
 		../OdyServer/DataStructures/SimpleList/simplelist.h \
 		../OdyServer/DataStructures/SimpleList/node.h \
 		../OdyServer/Document/mysqldb.h \
+		../OdyServer/Document/backtracking.h \
 		../OdyServer/Document/xmldocument.h \
 		../OdyServer/Objects/message.h \
 		../OdyServer/Document/converter.h \
-		../OdyServer/Document/leerjson.h
+		../OdyServer/Document/leerjson.h \
+		../OdyServer/Document/jsonmaker.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../OdyServer/main.cpp
 
 mainwindow.o: ../OdyServer/mainwindow.cpp ../OdyServer/mainwindow.h \
@@ -462,6 +469,7 @@ server.o: ../OdyServer/Server/server.cpp ../OdyServer/Server/server.h \
 		../OdyServer/DataStructures/SimpleList/simplelist.h \
 		../OdyServer/DataStructures/SimpleList/node.h \
 		../OdyServer/Document/mysqldb.h \
+		../OdyServer/Document/backtracking.h \
 		../OdyServer/Document/xmldocument.h \
 		../OdyServer/Objects/message.h \
 		../OdyServer/Document/converter.h \
@@ -493,6 +501,7 @@ logic.o: ../OdyServer/Server/logic.cpp ../OdyServer/Server/logic.h \
 		../OdyServer/DataStructures/SimpleList/simplelist.h \
 		../OdyServer/DataStructures/SimpleList/node.h \
 		../OdyServer/Document/mysqldb.h \
+		../OdyServer/Document/backtracking.h \
 		../OdyServer/Document/xmldocument.h \
 		../OdyServer/Objects/message.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o logic.o ../OdyServer/Server/logic.cpp
@@ -508,6 +517,7 @@ parserxml.o: ../OdyServer/Document/parserxml.cpp ../OdyServer/Document/parserxml
 		../OdyServer/DataStructures/SimpleList/simplelist.h \
 		../OdyServer/DataStructures/SimpleList/node.h \
 		../OdyServer/Document/mysqldb.h \
+		../OdyServer/Document/backtracking.h \
 		../OdyServer/Document/jsonmaker.h \
 		../OdyServer/DataStructures/SimpleList/arbolbb.cpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o parserxml.o ../OdyServer/Document/parserxml.cpp
@@ -551,8 +561,16 @@ mysqldb.o: ../OdyServer/Document/mysqldb.cpp ../OdyServer/Document/mysqldb.h \
 		../OdyServer/DataStructures/SimpleList/nodolistasimple.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mysqldb.o ../OdyServer/Document/mysqldb.cpp
 
-backtracking.o: ../OdyServer/Document/backtracking.cpp ../OdyServer/Document/backtracking.h
+backtracking.o: ../OdyServer/Document/backtracking.cpp ../OdyServer/Document/backtracking.h \
+		../OdyServer/DataStructures/SimpleList/listasimple.h \
+		../OdyServer/DataStructures/SimpleList/nodolistasimple.h \
+		../OdyServer/Document/mysqldb.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o backtracking.o ../OdyServer/Document/backtracking.cpp
+
+raidcontroller.o: ../OdyServer/raidcontroller.cpp ../OdyServer/raidcontroller.h \
+		../OdyServer/Document/converter.cpp \
+		../OdyServer/Document/converter.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o raidcontroller.o ../OdyServer/raidcontroller.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

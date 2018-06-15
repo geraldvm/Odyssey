@@ -1,7 +1,6 @@
 #ifndef LISTASIMPLE_H
 #define LISTASIMPLE_H
 
-
 #include "nodolistasimple.h"
 
 template <typename T>
@@ -14,6 +13,7 @@ public:
     int size = 0;
 
     void push_back(T cont) {
+
         if (inicio == nullptr) {
             inicio = new NodoListaSimple<T>(size,cont);
         } else {
@@ -39,6 +39,19 @@ public:
         T cont = inicio->get();
         inicio = aux;
         return cont;
+    }
+
+    int getIndex(T obj){
+        NodoListaSimple<T> *aux = inicio;
+        if (obj == aux->get()) { return 0;}
+        for (int i = 0; i < size; i++) {
+            if(obj != aux->get()){
+                aux = aux->next();
+            } else{
+                return i;
+            }
+        }
+        return -1;
     }
 
     ListaSimple() {

@@ -46,8 +46,7 @@ SOURCES += \
     DataStructures/SimpleList/nodobb.cpp \
     Document/mysqldb.cpp \
     Document/backtracking.cpp \
-    Objects/file.cpp \
-    Objects/page.cpp
+    raidcontroller.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -73,8 +72,7 @@ HEADERS += \
     DataStructures/SimpleList/nodobb.h \
     Document/mysqldb.h \
     Document/backtracking.h \
-    Objects/file.h \
-    Objects/page.h
+    raidcontroller.h
 
 FORMS += \
         mainwindow.ui

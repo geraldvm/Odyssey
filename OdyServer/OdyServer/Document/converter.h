@@ -14,6 +14,8 @@ public:
     QByteArray toBytes(QString name);
     void toFile(QByteArray bytes);
     void setPath(QString dir);
+    void setPathFull(QString dir);
+
 };
 
 #endif // CONVERTER_H
