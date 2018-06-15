@@ -107,11 +107,12 @@ SimpleList<Attribute> *ParserXML::pageRequested()
     return list;
 }
 */
-Attribute ParserXML::songRequested()
+QString ParserXML::songRequested()
 {
     QDomElement song =this->getHeader().firstChild().toElement();
-    //Attribute* attr = new Attribute("Name",song.attribute("Name","").toStdString());
-    //return *attr;
+    Attribute* attr = new Attribute("Name",song.attribute("Name","").toStdString());
+    QString name = QString::fromStdString(attr->getValue());
+    return name;
 }
 
 bool ParserXML::deleteSong()

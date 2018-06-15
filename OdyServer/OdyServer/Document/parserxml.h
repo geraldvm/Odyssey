@@ -27,7 +27,7 @@ public:
     bool userVerificationParser();
     bool modifyMetaData();
     SimpleList<Attribute> *pageRequested();
-    Attribute songRequested();
+    QString songRequested();
     bool deleteSong();
     SimpleList<Attribute> *sendMsg();
     string spotifyRequested();
