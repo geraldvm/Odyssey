@@ -34,7 +34,6 @@ SOURCES += \
     DataStructures/SimpleList/node.cpp \
     Server/logic.cpp \
     Document/parserxml.cpp \
-    Document/converter.cpp \
     DataStructures/SimpleList/nodoavl.cpp \
     Objects/cancion.cpp \
     Document/jsonmaker.cpp \
@@ -48,7 +47,8 @@ SOURCES += \
     Document/backtracking.cpp \
     raidcontroller.cpp \
     Objects/page.cpp \
-    Objects/file.cpp
+    Objects/file.cpp \
+    Objects/converter.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -59,7 +59,6 @@ HEADERS += \
     DataStructures/SimpleList/node.h \
     Server/logic.h \
     Document/parserxml.h \
-    Document/converter.h \
     DataStructures/SimpleList/arbolavl.h \
     DataStructures/SimpleList/nodoavl.h \
     DataStructures/SimpleList/mapa.h \
@@ -76,7 +75,8 @@ HEADERS += \
     Document/backtracking.h \
     raidcontroller.h \
     Objects/page.h \
-    Objects/file.h
+    Objects/file.h \
+    Objects/converter.h
 
 FORMS += \
         mainwindow.ui
