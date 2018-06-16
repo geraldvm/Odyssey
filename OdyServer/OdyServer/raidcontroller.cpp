@@ -56,7 +56,7 @@ void RaidController::writeSong(QString nombre, QByteArray in)
         return;
     }
     if(indicePar == 2){
-        stripping(in,disc1+nombre+".part2",disc3+nombre+".part1",disc2+nombre+".par");
+        stripping(in,disc3+nombre+".part1",disc1+nombre+".part2",disc2+nombre+".par");
         guardarRegistro(nombre,2,in.size());
         indicePar = 3;
         return;
