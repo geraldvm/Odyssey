@@ -1,6 +1,6 @@
 #ifndef GUARDARJSON_H
 #define GUARDARJSON_H
-#include <c++/5/string>
+#include <string>
 #include <QtCore/QJsonObject>
 #include <fstream>
 #include <QtCore/QJsonArray>
