@@ -1,6 +1,5 @@
 #include "page.h"
-
-
+/*
 Page::Page()
 {
 
@@ -30,3 +29,5 @@ int Page::getSize(int page)
         return 10;
     }
 }
+
+*/

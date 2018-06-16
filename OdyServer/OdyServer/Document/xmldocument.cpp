@@ -28,17 +28,18 @@ void XMLDocument::userVerification(bool status)
 
 }
 
-void XMLDocument::song(std::string number, std::string data)
+void XMLDocument::sendSong(int size, QString name)
 {
+    QString sizeFile = QString::number(size);
     QFile xml(path);
     xml.open(QIODevice::WriteOnly);
     QXmlStreamWriter docXml(&xml);
     docXml.setAutoFormatting(true);
     docXml.writeStartDocument();
     docXml.writeStartElement("Song");
-    docXml.writeStartElement("Chunk");
-    //docXml.writeAttribute("Part",number);
-    //docXml.writeAttribute("Data",data);
+    //docXml.writeStartElement("Name");
+    docXml.writeAttribute("Size",sizeFile);
+    docXml.writeAttribute("Name",name);
     docXml.writeEndElement();
     docXml.writeEndElement();
     docXml.writeEndDocument();

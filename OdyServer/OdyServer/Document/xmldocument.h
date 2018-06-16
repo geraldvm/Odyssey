@@ -22,7 +22,8 @@ public:
     void deleteSong(bool status);
     void userVerification(bool status);
 
-    void song(std::string number, std::string data);
+    void sendSong(int size, QString name);
+
     void songList(string *array, int size);//como parametro lista enlazada o arreglo con las 10 canciones
     void userList(SimpleList<std::string> users);
     void sendMsg(SimpleList<Message> messageList);

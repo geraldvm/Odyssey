@@ -42,12 +42,28 @@ private:
     leerJson cargarInfo = leerJson();
     QTcpServer *server;
 
-    void sendFile(QTcpSocket *socket);
+    void sendFile(QTcpSocket* socket, QString name);
     void writeRequested(std::string data);
     void readRequested();
 
-    ParserXML* xm;
-    Logic *logic = nullptr;
+    //Add
+    ParserXML* xmlDesktop;
+    XMLDocument* xmlServer= new XMLDocument();
+    //Page* page;
+    bool modeStream = false;
+    backtracking BT;
+    //Logic *logic = nullptr;
+    //Converter converter;
+
+    QBitArray convertirABits(QByteArray in);
+    QByteArray convertirABytes(QBitArray in);
+    QByteArray calcularParidad(QByteArray p1, QByteArray p2);
+
+    void stripping(QString nombre);
+    void  recovery(QString nombre);
+    void logic(std::string root, QTcpSocket *socket);
+    void sendXML(QTcpSocket* socket);
+
 
 };
 

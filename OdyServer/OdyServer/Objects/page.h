@@ -1,8 +1,7 @@
 #ifndef PAGE_H
 #define PAGE_H
 
-
-
+/*
 class Page
 {
 public:
@@ -11,8 +10,9 @@ public:
     string * getData(int page);
     void setArray(string *array);
     int getSize(int page);
-
 private:
     string *array;
+};
+*/
 
 #endif // PAGE_H
