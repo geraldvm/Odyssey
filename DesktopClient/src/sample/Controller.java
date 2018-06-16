@@ -64,7 +64,7 @@ public class Controller implements Initializable{
     @FXML private AnchorPane modifyPanel;
     @FXML private Label songModifyLabel;
     @FXML private JFXTextField songNameModify, artistSongModify, albumSongModify, yearSongModify;
-    @FXML private JFXTextField lyricsSongModify,genreSongModify;
+    @FXML private JFXTextField lyricsSongModify,genreSongModify, trackNumberModify,albumNumberModify;
     @FXML private ImageView star,starFilled,star1,star2,star3,star4,star5;
 
     @FXML private Circle circle;
@@ -96,18 +96,18 @@ public class Controller implements Initializable{
     private String valuePage;
     private String profileName;
 
-    private ReadXML POST;
+    private ReadXML xmlServer;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {//"Constructor" de las variables de la interfaz
         nameText.addEventFilter(KeyEvent.ANY, handlerLetters);
         lastnameText.addEventFilter(KeyEvent.ANY, handlerLetters);
         ageText.addEventFilter(KeyEvent.ANY,handlerNumbers);
         searchText.addEventFilter(KeyEvent.ANY,handlerLetters);
-        this.POST = new ReadXML();
+        this.xmlServer = new ReadXML();
 
         comboBoxGenre.getItems().addAll("Pop","Rock","Reggae","R&B",
                 "Hip-Hop","Dance-Hall","House");
-        comboSearch.getItems().addAll("Song","Artist","Album","Lyrics");
+        comboSearch.getItems().addAll("Song","Artist","Album","Lyrics","Phrase");
 
         sessionPanel = 0;
 
@@ -521,7 +521,7 @@ public class Controller implements Initializable{
     }
     public void onDeleteSong(ActionEvent e){
         String song= musicList.getSelectionModel().getSelectedItem();
-        System.out.println("Delete: "+song+".mp3");
+        System.out.println("Delete: "+song);
         myXML.deleteSong(song);
         GET();
     }
@@ -596,7 +596,9 @@ public class Controller implements Initializable{
         socialBtn.setDisable(false);
         userBtn.setDisable(false);
         libraryPanel.setVisible(true);
-        myXML.modifySong(1,2,song,songNameModify.getText().toString(),
+        myXML.modifySong(Integer.parseInt(trackNumberModify.getText().toString()),
+                Integer.parseInt(albumNumberModify.getText().toString()),
+                song,songNameModify.getText().toString(),
                 artistSongModify.getText().toString(),
                 albumSongModify.getText().toString(),
                 yearSongModify.getText().toString(),
@@ -614,14 +616,21 @@ public class Controller implements Initializable{
     }
 
 
-    public void searchSongBy(MouseEvent e){
+    public void searchSongBy(MouseEvent e) throws Exception {
         typePage= comboSearch.getValue().toString();
         valuePage=searchText.getText().toString();
         pageNum=0;
         System.out.println("Search by"+typePage);
         System.out.println("Searching..."+valuePage);
-        myXML.pageRequested(pageNum,typePage, valuePage);
-        GET();
+        if(typePage=="Phrase") {
+            myXML.backtracking(valuePage);
+            GET();
+            xmlServer.backtrack();//Cargar esto a paginas
+        }else {
+            myXML.pageRequested(pageNum, typePage, valuePage);
+            GET();
+        }
+
     }
 
     public void onUserSocialClicked(MouseEvent e){
@@ -664,6 +673,7 @@ public class Controller implements Initializable{
             File f = new File(pathToAddLibrary.getText().toString());
             try {
                 if (f.isFile()) {
+                    myXML.uploadFile(f.getName());
                     byte[] byteMp3 = Files.readAllBytes(f.toPath());
                     ClientThread.client.sendSong(byteMp3);
 
@@ -672,6 +682,7 @@ public class Controller implements Initializable{
                     File[] listOfFiles = f.listFiles();
                     for (File file : listOfFiles) {
                         if (file.isFile()) {
+                            myXML.uploadFile(f.getName());
                             byte[] byteMp3 = Files.readAllBytes(f.toPath());
                             ClientThread.client.sendSong(byteMp3);
                             //send path+"/"+file.getName();

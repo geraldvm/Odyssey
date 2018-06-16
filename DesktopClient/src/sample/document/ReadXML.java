@@ -12,7 +12,7 @@ import java.io.File;
 public class ReadXML {
     private File xmlFile;
     public ReadXML(){
-        xmlFile = new File(System.getProperty("user.home")+"/Music/Odyssey/temp/temp.xml");
+        xmlFile = new File(System.getProperty("user.home")+"/Music/Odyssey/temp/myXml.xml");
 
     }
     public String getHead()throws Exception{
@@ -136,6 +136,19 @@ public class ReadXML {
             String size = element.getAttribute("Size");
             return Integer.parseInt(size);
         }return 0;
+    }
+
+    public String backtrack()throws Exception{
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        Document document = documentBuilder.parse(xmlFile);
+        Element e = document.getDocumentElement();
+        Node backt = e.getFirstChild();
+        String phrase="";
+        if(backt.getNodeType()==Node.ELEMENT_NODE) {
+            Element element = (Element) backt;
+            phrase = element.getAttribute("Song");
+        }return phrase;
     }
 
 }

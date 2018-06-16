@@ -135,7 +135,7 @@ public class XMLDocument {
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(document);
 
-            String path = System.getProperty("user.home")+"/Music/Odyssey/temp/temp.xml";
+            String path = System.getProperty("user.home")+"/Music/Odyssey/Temp/temp.xml";
             StreamResult streamResult = new StreamResult(new File(path));
 
             transformer.transform(source,streamResult);
@@ -177,6 +177,33 @@ public class XMLDocument {
             System.out.println("temp.xml sucessfully!\n");
 
         }catch (Exception e){e.printStackTrace();}
+    }
+
+
+    public void uploadFile(String fileName){
+
+        try{
+            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            Document document = documentBuilder.newDocument();
+            Element head = document.createElement("UploadFile");
+            document.appendChild(head);
+            Element element = document.createElement("File");
+            head.appendChild(element);
+            Attr attr = document.createAttribute("Name");
+            attr.setValue(fileName);
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(document);
+
+            String path = System.getProperty("user.home")+"/Music/Odyssey/temp/temp.xml";
+            StreamResult streamResult = new StreamResult(new File(path));
+            transformer.transform(source,streamResult);
+            System.out.println("temp.xml sucessfully!\n");
+
+        }catch (Exception e){e.printStackTrace();}
+
     }
 
     public void songRequested(String name){
@@ -274,6 +301,32 @@ public class XMLDocument {
             head.appendChild(element);
             Attr attr = document.createAttribute("Name");
             attr.setValue(song);
+            element.setAttributeNode(attr);
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(document);
+
+            String path = System.getProperty("user.home")+"/Music/Odyssey/temp/temp.xml";
+            StreamResult streamResult = new StreamResult(new File(path));
+
+            transformer.transform(source,streamResult);
+
+            System.out.println("temp.xml sucessfully!\n");
+
+        }catch (Exception e){e.printStackTrace();}
+
+    }
+    public void backtracking(String phrase){
+        try{
+            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            Document document = documentBuilder.newDocument();
+            Element head = document.createElement("backtracking");
+            document.appendChild(head);
+            Element element = document.createElement("Phrase");
+            head.appendChild(element);
+            Attr attr = document.createAttribute("Value");
+            attr.setValue(phrase);
             element.setAttributeNode(attr);
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();

@@ -220,7 +220,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="playerPanel" layoutX="10.0" layoutY="231.0" prefHeight="436.0" prefWidth="390.0" style="-fx-background-color: #0e192b;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-8.0">
+      <AnchorPane fx:id="playerPanel" layoutX="10.0" layoutY="231.0" prefHeight="436.0" prefWidth="390.0" style="-fx-background-color: #0e192b;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-8.0">
          <children>
             <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="200.0" layoutX="170.0" layoutY="50.0" />
             <Circle fx:id="circle" fill="#157323" layoutX="195.0" layoutY="140.0" opacity="0.38" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
@@ -330,7 +330,7 @@
             <Image url="@images/icon_arrow.png" />
          </image>
       </ImageView>
-      <AnchorPane fx:id="modifyPanel" layoutX="10.0" layoutY="231.0" prefHeight="436.0" prefWidth="390.0" style="-fx-background-color: #022d1f;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane fx:id="modifyPanel" layoutX="10.0" layoutY="231.0" prefHeight="436.0" prefWidth="390.0" style="-fx-background-color: #022d1f;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <JFXTextField fx:id="albumSongModify" focusColor="#5bd36d" layoutX="171.0" layoutY="145.0" promptText="Write Album here" style="-fx-text-fill: #5bd36d;">
                <font>
@@ -436,6 +436,16 @@
                   <Image url="@images/icon_spotify.png" />
                </image>
             </ImageView>
+            <JFXTextField id="ageText" fx:id="trackNumberModify" focusColor="#5bd36d" layoutX="316.0" layoutY="63.0" prefHeight="22.0" prefWidth="60.0" promptText="Number" style="-fx-text-fill: #5bd36d;">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField id="ageText" fx:id="albumNumberModify" focusColor="#5bd36d" layoutX="316.0" layoutY="145.0" prefHeight="22.0" prefWidth="60.0" promptText="Number" style="-fx-text-fill: #5bd36d;">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </JFXTextField>
          </children>
          <opaqueInsets>
             <Insets />

@@ -18,7 +18,7 @@ public class Client extends Thread {
     DataInputStream input;
     byte[] buffer = new byte[250000];
     int veces=0;
-
+    public boolean modeStream=false;
 
     public Client(String ip){
 
